@@ -1,0 +1,14 @@
+# Installation
+
+I clone this repo into my home directory to `~/.asciidoctor/theme` and then
+convert my documents with:
+
+[source]
+----
+asciidoctor-pdf \
+  -a pdf-themesdir=~/.asciidoctor/theme \
+  -a pdf-theme=stoeps-theme.yml \
+  "document.adoc"
+----
+
+Or clone as submodule to your Asciidoctor repository.

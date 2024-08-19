@@ -1,0 +1,31 @@
+session_name: work
+windows:
+  - window_name: rpm-ostree
+    panes:
+      - rpm-ostree status
+  - window_name: mail
+    layout: tiled
+    shell_command_before:
+      - cmd: distrobox enter fedora
+        sleep_before: 1
+        sleep_after: 1
+    panes:
+      - neomutt
+      - gmail
+  - window_name: pim
+    layout: tiled
+    shell_command_before:
+      - cmd: distrobox enter fedora
+        sleep_before: 1
+        sleep_after: 1
+    panes:
+      - mbsync -a && vdirsyncer sync && today
+      - cd ~/logseq-til
+  - window_name: devel
+    shell_command_before:
+      - cmd: distrobox enter fedora
+        sleep_before: 1
+        sleep_after: 1
+    panes:
+      - ls
+
