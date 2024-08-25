@@ -80,6 +80,8 @@ ZSH_TMUX_AUTOSTART_ONCE=true
 
 source $ZSH/oh-my-zsh.sh
 
+export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
