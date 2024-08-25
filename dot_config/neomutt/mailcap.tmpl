@@ -1,0 +1,37 @@
+# MS Word documents
+application/msword; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
+application/vnd.ms-excel; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
+application/vnd.openxmlformats-officedocument.presentationml.presentation; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
+application/vnd.oasis.opendocument.text; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
+
+# HTML
+# text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# text/html; (xdg-open %s && sleep 2) &; nametemplate=%s.html; needsterminal
+
+# The first one here is triggered when going in to view the attachments, then pressing 'm' on the text/html
+# -sixel changes w3m behavior a bit. Without it, images will show up, but only when you do something to the screen
+# having the option shows the images immediately
+text/html;                         w3m -sixel -o auto_image=TRUE -o display_image=1 -T text/html %s; nametemplate=%s.html; needsterminal
+
+# This second one is chosen by auto_view due to the copiousoutput tag
+text/html;                         w3m -I %{charset} -T text/html -cols 140 -o display_link_number=1 -dump; copiousoutput
+
+# The third, non-existent one is going in to view the attachments,
+# then press 'V' on the text/html attachment, which opens in a proper browser
+text/plain; nvim %s
+
+#PDFs
+application/pdf; flatpak run org.gnome.Evince %s pdf
+
+#Images
+image/png; /usr/bin/feh %s
+image/jpeg; /usr/bin/feh %s
+image/gif; /usr/bin/feh %s
+image/eps; /usr/bin/feh %s
+
+#Calendar
+# text/calendar; khal import -a work %s;
+# application/ics; khal import -a work %s;
+
+text/calendar; mutt-ical.py -i -e {{ (bitwarden "item" "Microsoft-Mail").login.username }} %s
+application/ics; mutt-ical.py -i -e {{ (bitwarden "item" "Microsoft-Mail").login.username }} %s

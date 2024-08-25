@@ -1,0 +1,1 @@
+{{ (bitwarden "item" "cnx6").notes }}

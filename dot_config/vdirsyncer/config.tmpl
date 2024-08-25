@@ -1,0 +1,59 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+[pair work_calendars]
+a = "work_calendars_local"
+b = "work_calendars_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+[storage work_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars/"
+fileext = ".ics"
+
+[storage work_calendars_remote]
+type = "caldav"
+
+url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/"
+username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
+password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+
+[pair gmail_calendars]
+a = "gmail_calendars_local"
+b = "gmail_calendars_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+conflict_resolution = "b wins"
+
+[storage gmail_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars-gmail/"
+fileext = ".ics"
+
+[storage gmail_calendars_remote]
+type = "google_calendar"
+token_file = "~/.vdirsyncer/token"
+client_id = "{{ (bitwarden "item" "Google-Calendar").login.username }}"
+client_secret = "{{ (bitwarden "item" "Google-Calendar").login.password }}"
+
+
+# CARDDAV
+[pair work_addressbook]
+a = "work_addressbook_local"
+b = "work_addressbook_remote"
+conflict_resolution = "b wins"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+[storage work_addressbook_local]
+type = "filesystem"
+path = "~/.local/share/contacts/work"
+fileext = ".vcf"
+
+[storage work_addressbook_remote]
+type = "carddav"
+url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/contacts"
+username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
+password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+

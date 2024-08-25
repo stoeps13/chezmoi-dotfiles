@@ -1,0 +1,1 @@
+{{ (bitwarden "item" "vit-ed25519-gitlab").notes }}

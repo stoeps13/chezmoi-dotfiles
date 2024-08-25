@@ -1,0 +1,47 @@
+[calendars]
+
+#  [[home]]
+#    path = ~/.calendars/home/
+#    color = dark green
+#    priority = 20
+#
+  [[work]]
+    path = ~/.local/share/calendars/calendar/
+    color = dark blue
+  [[zep]]
+    path = ~/.local/share/calendars/ZEP/
+  [[personal]]
+    path = ~/.local/share/calendars-gmail/christoph.stoettner@stoeps.de/
+  [[corinna]]
+    path = ~/.local/share/calendars-gmail/corinna.stoettner@stoeps.de/
+  [[paula]]
+    path = ~/.local/share/calendars-gmail/paula@stoeps.de/
+  [[ida]]
+    path = ~/.local/share/calendars-gmail/ida@stoeps.de/
+  [[zakb]]
+    path = ~/.local/share/calendars-gmail/c_ejpnfvvdnfh5endm0qllo2hteg@group.calendar.google.com/
+    color = light green
+  [[basketball]]
+    path = ~/.local/share/calendars-gmail/stoeps.de_6ba9medtoarupc0bb1psahmsao@group.calendar.google.com/
+  [[schulferien]]
+    path = ~/.local/share/calendars-gmail/c_fd4cfc1f048eb6bc12d1ee329a706bc5fa0d5ab805feb175bea1316c691775b7@group.calendar.google.com/
+  [[birthdays]]
+    path = ~/.local/share/calendars-gmail/c5i68sj5edpm4rrfdchm6rreehgm6t3j81jn4rrle0n7cbj3c5m6arj4c5p2sprfdtjmop9ecdnmq@virtual
+  [[Schulferien)]]
+    path = ~/.local/share/calendars-gmail/c_fd4cfc1f048eb6bc12d1ee329a706bc5fa0d5ab805feb175bea1316c691775b7@group.calendar.google.com
+  [[Feiertage in Deutschland]]
+    path = ~/.local/share/calendars-gmail/chiispr5e9mm2rh3d1nmoqb4c5sk0pridtqn0bjm5phm2r35dpi62shectnmuprcckn66rrd@virtual
+
+
+[locale]
+local_timezone= Europe/Berlin
+default_timezone= Europe/Berlin
+timeformat= %H:%M
+dateformat= %d.%m.
+longdateformat= %d.%m.%Y
+datetimeformat= %d.%m. %H:%M
+longdatetimeformat= %d.%m.%Y %H:%M
+
+[view]
+event_format={calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
+agenda_event_format={calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}

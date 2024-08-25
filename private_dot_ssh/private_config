@@ -1,0 +1,71 @@
+Host *.stoeps.internal
+  User root
+  IdentityFile ~/.ssh/cnx6
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking=no
+  ForwardX11 yes
+  ForwardAgent yes
+Host 172.104.228.63
+  User root
+  IdentityFile ~/.ssh/stoeps_rsa
+Host stoeps.de
+  HostName home26617100.1and1-data.host
+  User p7594620
+  AddKeysToAgent yes
+  ServerAliveInterval 120
+  ServerAliveCountMax 15
+  IdentityFile ~/.ssh/vit-ed25519-stoeps.de
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  UpdateHostKeys no
+  IdentityFile ~/.ssh/vit-ed25519-gitlab
+Host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/vit-ed25519-github
+Host df.eu
+  HostName unverpackt-lorsch.de
+  User ssh-531188-stoeps
+  IdentityFile ~/.ssh/stoeps_rsa
+Host git.vegardit.com
+  HostName git.vegardit.com
+  Port 12005
+  User git
+  IdentityFile ~/.ssh/vit-ed25519-gitea
+Host *.stoeps.local
+  Port 22
+  User ansible
+  IdentityFile ~/.ssh/cnx6
+Host *.stoeps.home
+  Port 22
+  User ansible
+  # RemoteCommand TERM=xterm $SHELL
+  # RequestTTY yes
+  IdentityFile ~/.ssh/cnx6
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  ForwardAgent yes
+  # RemoteCommand TERM=xterm $SHELL
+Host 10.0.22.*
+  Port 22
+  User ansible
+  IdentityFile ~/.ssh/cnx6
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  ForwardAgent yes
+  # RemoteCommand TERM=xterm $SHELL
+Host 192.168.1.210
+  Port 22
+  User ubuntu
+  IdentityFile vit-ed25519-ubuntu
+Host lnx-stwsh
+  Port 22
+  User stoeps
+  IdentityFile ansible_ed25519
+Host *
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/cnx6
