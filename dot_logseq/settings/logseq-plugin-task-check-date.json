@@ -1,0 +1,10 @@
+{
+  "taskMarkers": "DONE, NOW, LATER, DOING, TODO, WAITING",
+  "taskMarkersComplete": "DONE, CANCELLED",
+  "includeDate": true,
+  "completedDateProperty": "completed",
+  "includeTime": false,
+  "completedTimeProperty": "time",
+  "timeFormat": "HH:mm",
+  "disabled": false
+}

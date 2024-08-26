@@ -1,0 +1,7 @@
+{
+  "disabled": false,
+  "notifications": {
+    "previousPluginVersion": "v4.1.0",
+    "introducedQueryTableView": true
+  }
+}

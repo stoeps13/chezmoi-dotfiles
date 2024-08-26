@@ -1,0 +1,11 @@
+{:logseq13-full-house {:version "v3.4.0", :repo "stdword/logseq13-full-house-plugin", :effect true, :theme false}
+ :logseq-journals-calendar {:version "v0.10.10", :repo "xyhp915/logseq-journals-calendar", :effect false, :theme false}
+ :logseq-git {:version "v1.5.5", :repo "haydenull/logseq-plugin-git", :effect true, :theme false}
+ :logseq-plugin-show-weekday-and-week-number {:version "v1.53.1", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
+ :logseq-block-to-page {:version "v1.3.0", :repo "hyrijk/logseq-plugin-block-to-page", :effect false, :theme false}
+ :logseq-bonofix-theme {:version "v3.10.3", :repo "sansui233/logseq-bonofix-theme", :effect false, :theme true}
+ :logseq-flow-nord-theme {:version "v0.10.32", :repo "henices/logseq-flow-nord", :effect false, :theme true}
+ :logseq-dev-theme {:version "v1.26.17", :repo "pengx17/logseq-dev-theme", :effect false, :theme true}
+ :logseq-atlas-theme {:version "v0.3.5", :repo "sethfair/logseq-atlas-theme", :effect false, :theme true}
+ :logseq-split-block {:version "v1.2.0", :repo "hyrijk/logseq-plugin-split-block", :effect false, :theme false}}
+ :logseq-monokai {:version "v0.1.1", :repo "tzcl/logseq-monokai", :effect false, :theme true}}

@@ -1,0 +1,36 @@
+{
+  "theme": {
+    "name": "Flow Nord Theme - Nord",
+    "url": "assets:///var/home/stoeps/.logseq/plugins/logseq-flow-nord-theme/nord.css",
+    "description": "Flow Nord Theme - Nord",
+    "pid": "logseq-flow-nord-theme"
+  },
+  "themes": {
+    "mode": "dark",
+    "light": {
+      "name": "Bonofix Theme",
+      "url": "assets:///home/stoeps/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "description": "A clean theme",
+      "pid": "logseq-bonofix-theme",
+      "group-first": true,
+      "group-desc": "light & dark themes",
+      "mode": "light",
+      "selected": false
+    },
+    "dark": {
+      "name": "Flow Nord Theme - One dark Pro",
+      "url": "assets:///var/home/stoeps/.logseq/plugins/logseq-flow-nord-theme/onedark.css",
+      "description": "Flow Nord Theme - One dark Pro",
+      "mode": "dark",
+      "pid": "logseq-flow-nord-theme",
+      "selected": false
+    }
+  },
+  "externals": [],
+  "pinnedToolbarItems": [
+    "logseq-habit-tracker:show-habits",
+    "logseq-journals-calendar:open-calendar",
+    "logseq-git:git",
+    "logseq-journals-calendar:goto-today"
+  ]
+}
