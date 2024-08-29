@@ -1,0 +1,53 @@
+return {
+  {
+    'williamboman/mason.nvim',
+    lazy = false,
+    config = function()
+      require('mason').setup()
+    end
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = { 'lua_ls', 'ltex', 'ansiblels', 'yamlls' }
+      })
+    end
+  },
+  {
+
+    'neovim/nvim-lspconfig',
+    lazy = false,
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.lua_ls.setup({})
+      lspconfig.ansiblels.setup({})
+      lspconfig.yamlls.setup({})
+      lspconfig.ltex.setup({
+          filetypes = { "markdown", "latex",  "tex", "mail" },
+          settings = {
+            ltex = {
+              additionalRules = {
+                enablePickyRules = true,
+                motherTongue = "de-DE",
+              },
+              language = "en-US",
+              languageToolHttpServerUri = "https://api.languagetoolplus.com",
+              languageToolOrg = {
+                username = "{{ (bitwarden "item" "LanguageTool-ApiKey").login.username }}",
+                apiKey = "{{ (bitwarden "item" "LanguageTool-ApiKey").login.password }}"
+              },
+              checkFrequency = "save",
+            },
+          },
+        })
+
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+      vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, {})
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
+      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+    end
+  }
+}
