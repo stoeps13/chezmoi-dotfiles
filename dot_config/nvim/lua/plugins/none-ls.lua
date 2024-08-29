@@ -5,10 +5,7 @@ return {
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.diagnostics.ansiblelint,
-				null_ls.builtins.diagnostics.eslint_d,
 				null_ls.builtins.diagnostics.markdownlint,
-				null_ls.builtins.diagnostics.shellcheck,
-				null_ls.builtins.diagnostics.shellharden,
 				null_ls.builtins.diagnostics.yamllint,
 				null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.isort,
