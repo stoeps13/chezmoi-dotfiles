@@ -42,18 +42,15 @@ do
 done
 
 echo
-# echo "  +++++ Starting Oracle database +++++"
-# echo
-# ssh oracle@cnx8-db2-db.stoeps.home /home/oracle/scripts/ora_start.sh
-echo
 echo "  +++++ Starting Connections +++++"
 echo
-ssh root@cnx8-db2-was.stoeps.home ./cnx-start.sh
+ssh root@cnx8-db2-was.stoeps.home /opt/IBM/HTTPServer/bin/apachectl -k start
+ssh root@cnx8-db2-was.stoeps.home /opt/IBM/HTTPServer/bin/adminctl start
+ssh root@cnx8-db2-was.stoeps.home /opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startManager.sh
+ssh root@cnx8-db2-was.stoeps.home /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh
 echo
 echo "  +++++ Restart Haproxy and nginx +++++"
 echo
 ssh root@cnx8-db2.stoeps.home 'systemctl restart haproxy'
 ssh root@cnx8-db2.stoeps.home 'systemctl restart nginx'
 echo
-echo "  +++++ Start Keycloak +++++"
-ssh root@cnx-keycloak.stoeps.home './kc-start.sh'

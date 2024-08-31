@@ -13,6 +13,7 @@ return {
         null_ls.builtins.formatting.shellharden,
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.yamlfix,
+				null_ls.builtins.formatting.yamlfmt,
 			},
 		})
 
