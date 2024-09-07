@@ -5,8 +5,7 @@ return {
 		-- symbols for spaces, auto re-index tags db
 		vim.g.vimwiki_list = {
 			{
-				path = "~/logseq-til",
-        diary_rel_path = "journals",
+				path = "~/vimwiki",
 				syntax = "markdown",
 				ext = ".md",
 				links_space_char = "_",
