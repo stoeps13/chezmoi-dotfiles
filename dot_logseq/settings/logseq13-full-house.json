@@ -1,7 +1,7 @@
 {
   "disabled": false,
   "notifications": {
-    "previousPluginVersion": "v4.2.1",
+    "previousPluginVersion": "v4.2.2",
     "introducedInstantInsertions": true
   }
 }

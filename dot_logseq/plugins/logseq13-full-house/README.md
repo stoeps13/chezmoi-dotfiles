@@ -127,6 +127,24 @@ See info about `pages-tagged-with` in [Showroom](https://github.com/stdword/logs
 
 
 
+### Use shortcuts for templates 🎹
+<img width="250px" src="https://github.com/user-attachments/assets/9e6f5678-9a7e-413d-ad9f-7d9ed4230869" />
+
+See details in [documentation](https://stdword.github.io/logseq13-full-house-plugin/#/reference__configuring?id=insertion-shortcut).
+
+
+### Easily perform actions on blocks 🥊
+<img width="350px" src="https://github.com/user-attachments/assets/800b6078-c241-4010-b4e2-9b289f047ded" />
+
+See details in [documentation](https://stdword.github.io/logseq13-full-house-plugin/#/reference__tags_advanced?id=blocks-actions).
+
+
+### Add missing Logseq commands ⌘
+<img width="450px" src="https://github.com/user-attachments/assets/1a7e21f4-a7f1-43bc-861f-bde992ffd506" />
+
+See details [here](https://github.com/stdword/logseq13-full-house-plugin/discussions/49).
+
+
 ### Create beutiful dashboards 🎛️
 <img width="700px" src="https://github.com/user-attachments/assets/b6d0bbaf-0577-4fb4-a295-c931ad0d6948" />
 
@@ -291,8 +309,10 @@ See setup instructions in [Showroom](https://github.com/stdword/logseq13-full-ho
       --fht-scrollbar-thumb-hover: var(--ls-scrollbar-thumb-hover-color);
    }
 ```
+
 ### How to insert frequently used templates rapidly fast?
-1. Create the `:command` in `config.edn`.
+0. Since `v4.2.0` you can use [shortctus](https://stdword.github.io/logseq13-full-house-plugin/#/reference__configuring?id=insertion-shortcut) feature.
+1. **OR** you can create the `:command` in `config.edn`.
    **Hint**: to perform fast searches, use any command name, but add a special character (e.g. the dot «.»)
    ```clojure
    :commands
