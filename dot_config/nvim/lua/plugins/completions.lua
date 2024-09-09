@@ -5,8 +5,14 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
       "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
     },
   },
   {
@@ -33,10 +39,11 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          -- { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
-        }, {
-          { name = "buffer" },
+          { name = "nvim_lsp" },
+          { name = "nvim_lua" },
+          { name = "buffer",  keyword_length = 3 },
+          { name = "path" },
         }),
       })
     end,

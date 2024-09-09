@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.opt.mouse = ""
+vim.opt.conceallevel = 2
 
 vim.opt.backspace = '2'
 vim.opt.showcmd = true

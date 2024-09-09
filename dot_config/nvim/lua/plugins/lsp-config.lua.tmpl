@@ -28,6 +28,10 @@ return {
 			lspconfig.ansiblels.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.marksman.setup({
+				capabilities = capabilities,
+        on_attach = on_attach,
+			})
 			lspconfig.yamlls.setup({
 				capabilities = capabilities,
 			})
