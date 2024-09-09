@@ -11,7 +11,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ltex", "ansiblels", "yamlls" },
+				ensure_installed = { "lua_ls", "ltex", "ansiblels", "yamlls", "marksman" },
 			})
 		end,
 	},
@@ -50,7 +50,7 @@ return {
                 username = "{{ (bitwarden "item" "LanguageTool-ApiKey").login.username }}",
                 apiKey = "{{ (bitwarden "item" "LanguageTool-ApiKey").login.password }}"
               },
-						checkFrequency = "save",
+						checkFrequency = "manual",
 					},
 				},
 			})
