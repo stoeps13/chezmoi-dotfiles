@@ -9,7 +9,7 @@ config.font = wezterm.font 'FiraCode Nerd Font'
 config.font_size = 13
 -- For example, changing the color scheme:
 config.color_scheme = 'Nord (Gogh)'
-config.enable_tab_bar = false
+-- config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 -- config.window_background_opacity = 0.9
 
