@@ -1,7 +1,8 @@
 return {
   "vimwiki/vimwiki",
   dependencies = {
-    "mattn/calendar-vim"
+    "mattn/calendar-vim",
+    "WnP/vimwiki_markdown"
   },
   init = function()
     -- Default directory, syntax and file type,
@@ -12,10 +13,14 @@ return {
         syntax = "markdown",
         ext = ".md",
         links_space_char = "_",
+        path_html = "~/vimwiki/site_html/",
+        custom_wiki2html = "vimwiki_markdown",
         auto_tags = 1,
+        auto_diary_index = 1
       },
     }
     vim.g.vimwiki_global_ext = 0
+
     -- Disable header levels keybindings so oil.nvim will work
     vim.g.vimwiki_key_mappings = {
       headers = 0,
@@ -38,7 +43,7 @@ return {
       \ call append(0,[
       \ "# " . split(expand('%:r'),'/')[-1], "",
       \ "## Meetings", "",
-      \ "## Logbook",  "" ])
+      \ "## Logbook",  ""])
     ]])
   end,
 }

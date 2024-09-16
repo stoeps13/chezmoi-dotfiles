@@ -98,12 +98,6 @@ return {
 					i(0),
 				}),
 
-				s("div", {
-					t({ "----", "", "" }),
-					i(1, "Write"),
-					t({ "", "", "----" }),
-				}),
-
 				s("home", {
 					t("[[/index|Home]]"),
 				}),
@@ -115,18 +109,6 @@ return {
 					t("/"),
 					i(1, "back directory"),
 					t("|Back]]"),
-				}),
-
-				s("create_new_dir", {
-					t("[["),
-					f(addDirect),
-					t("/"),
-					i(1, "file"),
-					t("/"),
-					rep(1),
-					t("|"),
-					i(2, "name"),
-					t("]]"),
 				}),
 
 				s("h1", {
@@ -147,62 +129,12 @@ return {
 					i(1, "Name header"),
 				}),
 
-				s("bold", {
-					t("*"),
-					i(1, "Text"),
-					t("*"),
-				}),
-
-				s("italic", {
-					t("_"),
-					i(1, "Text"),
-					t("_"),
-				}),
-
-				s("superscript", {
-					i(1, "Big"),
-					t("^"),
-					i(2, "Small"),
-					t("^"),
-				}),
-
-				s("subscript", {
-					i(1, "big"),
-					t(",,"),
-					i(2, "small"),
-					t(",,"),
-				}),
-
-				s("create_file", {
-					t("[["),
-					i(1, "Location"),
-					t("|"),
-					i(2, "Linktitle"),
-					t("]]"),
-				}),
-
-				s("image_large_down", {
-					t("{{local:"),
-					i(1, "file"),
-					t("|"),
-					i(2, "large picture"),
-					t('|style="max-width:500px;height:auto;"}}'),
-				}),
-
-				s("image_medium_down", {
-					t("{{local:"),
-					i(1, "file"),
-					t("|"),
-					i(2, "medium picture"),
-					t('|style="max-width:300px;height:auto;"}}'),
-				}),
-
-				s("image_small_down", {
-					t("{{local:"),
-					i(1, "file"),
-					t("|"),
-					i(2, "small picture"),
-					t('|style="max-width:100px;height:auto;"}}'),
+				s("link", {
+					t("["),
+					i(1, "Linktitle"),
+					t("]("),
+					i(2, "Location"),
+					t(")"),
 				}),
 
 				s("todo_incomp", {
