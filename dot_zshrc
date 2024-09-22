@@ -241,3 +241,7 @@ fi
 #
 # Source additional files
 source ~/.local/bin/fzf-git.sh
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
