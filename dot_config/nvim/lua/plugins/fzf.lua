@@ -5,7 +5,7 @@ return {
 	keys = {
 		{ "<leader>fd", "<cmd>FzfLua files<cr>", desc = "Find files" },
 		{ "<leader>fn", "<cmd>FzfLua complete_path<cr>", desc = "Get filename with path" },
-		{ "<leader>rg", "<cmd>FzfLua live_grep<cr><cr>", desc = "Live Grep" },
+		{ "<leader>rg", "<cmd>FzfLua live_grep<cr>", desc = "Live Grep" },
 		{ "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
 		{ "<leader>m", "<cmd>FzfLua marks<cr>", desc = "Marks" },
 		{ "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Git status" },
