@@ -64,6 +64,7 @@ Host 192.168.1.210
   IdentityFile vit-ed25519-ubuntu
 Host lnx-stwsh
   Port 22
+  ForwardX11 yes
   User stoeps
   IdentityFile ansible_ed25519
 Host *

@@ -5,10 +5,6 @@ return {
 		"WnP/vimwiki_markdown",
 		"michal-h21/vim-zettel",
 	},
-  keys = {
-    { "<leader>zo", "<cmd>ZettelOpen<cr>", desc = "Open Zettel" },
-    { "<leader>zn", "<cmd>ZettelNew<cr>", desc = "New Zettel" },
-  },
 	init = function()
 		-- Default directory, syntax and file type,
 		-- symbols for spaces, auto re-index tags db
@@ -44,6 +40,7 @@ return {
 			},
 		}
 		vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki" }
+    vim.g.zettel_format = "%y%m%d-%H%M%-title"
 		vim.cmd([[
       autocmd BufNewFile ~/vimwiki/diary/*.md
       \ call append(0,[
