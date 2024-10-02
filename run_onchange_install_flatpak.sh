@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -u
 flatpak install -u flathub com.bitwarden.desktop -y
 flatpak install -u flathub com.calibre_ebook.calibre -y
 flatpak install -u flathub com.discordapp.Discord -y
