@@ -245,3 +245,6 @@ source ~/.local/bin/fzf-git.sh
 # . "$HOME/.atuin/bin/env"
 
 # eval "$(atuin init zsh)"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCREEN_SCALE_FACTORS="1;1"
+

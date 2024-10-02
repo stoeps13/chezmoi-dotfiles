@@ -3,7 +3,7 @@ return {
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   build = "cd app && yarn install",
 	keys = {
-		{ "<leader>v", "<cmd>MarkdownPreview<cr>", desc = "Find files" },
+		{ "<leader>v", "<cmd>MarkdownPreview<cr>", desc = "Preview markdown" },
   },
   init = function()
     vim.g.mkdp_filetypes = { "markdown" }
