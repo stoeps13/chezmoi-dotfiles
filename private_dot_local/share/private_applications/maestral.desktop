@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Maestral
+GenericName=Maestral
+Comment=Sync Dropbox files
+Path=/var/home/stoeps
+Exec=distrobox-enter -n fedora -- bash -cl "/home/stoeps/.local/bin/maestral gui"
+Terminal=false
+MimeType=application/x-resolveproj;
+StartupNotify=true
+Icon=/var/home/stoeps/Pictures/maestral.png
+Name[en_US]=Maestral
