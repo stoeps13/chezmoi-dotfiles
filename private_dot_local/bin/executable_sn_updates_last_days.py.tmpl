@@ -7,6 +7,7 @@ import pip
 import re
 import sys
 import datetime
+import argparse
 import html2text
 import textwrap
 
@@ -66,6 +67,20 @@ from xlrd import open_workbook
 
 wb = open_workbook('sncases.xls')
 
+# Create argument parser
+parser = argparse.ArgumentParser(description='Get the latest comments from ServiceNow @HCL')
+
+# Add argument for the option
+parser.add_argument('-d', '--days', help='Days to display')
+
+# Parse the command-line arguments
+args = parser.parse_args()
+
+days_display = 7
+
+if vars(args)['days']:
+    days_display = int(args.days)
+
 sorted_rows = []
 for s in wb.sheets():
     for row in range(1, s.nrows):  # Start from the second row
@@ -81,7 +96,7 @@ for s in wb.sheets():
 
 # Get today's date
 today = datetime.datetime.today().date()
-last_7_days = today - datetime.timedelta(days=7)
+last_days = today - datetime.timedelta(days=days_display)
 
 # Sort the list of rows based on the values in the first column
 sorted_rows.sort(key=lambda x: x[0])
@@ -106,7 +121,7 @@ for row in sorted_rows:
     # Calculate the difference between the two dates
     age = today - date_object
 
-    if last_7_days <= datetime.datetime.strptime(case_updated, "%Y-%m-%d").date() <= today:
+    if last_days <= datetime.datetime.strptime(case_updated, "%Y-%m-%d").date() <= today:
 
         # Check only comments for documents with update timestamp from last week
 
@@ -123,7 +138,7 @@ for row in sorted_rows:
             comment_date_str = comment[0].split(' - ')
             comment_date = datetime.datetime.strptime(comment_date_str[0], "%Y-%m-%d %H:%M:%S").date()
 
-            if last_7_days <= comment_date <= today:
+            if last_days <= comment_date <= today:
 
                 # Split the original text into lines and wrap each line
                 wrapped_lines = [textwrap.fill(line, width=80) for line in comment[1].lstrip().rstrip().splitlines()]
@@ -141,5 +156,3 @@ for row in sorted_rows:
 
     else:
         pass
-
-# vi: ft=python
