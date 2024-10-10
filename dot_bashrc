@@ -35,5 +35,6 @@ unset rc
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 # eval "$(atuin init bash)"
+export QT_SCREEN_SCALE_FACTORS="1.5;1"
 
 /usr/bin/zsh

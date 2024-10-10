@@ -156,6 +156,12 @@ return {
 					t({ "[[/index|Home]]", "", "" }),
 					t("Coming Soon..."),
 				}),
+
+        s("InterlocUpdate", {
+          t({"## " }),
+					f(date, {}),
+					t({ " Interloc Call" }),
+        })
 			})
 			local keymap = vim.api.nvim_set_keymap
 			local opts = { noremap = true, silent = true }

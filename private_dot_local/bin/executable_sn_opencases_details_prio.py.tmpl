@@ -4,7 +4,7 @@ from pysnc import ServiceNowClient
 from time import gmtime, strftime
 from datetime import datetime
 
-client = ServiceNowClient('https://support.hcltechsw.com/', ('{{ (bitwarden "item" "HCL Support (Bosch)").login.username }}', '{{ (bitwarden "item" "HCL Support (Bosch)").login.password}}'))
+client = ServiceNowClient('https://support.hcl-software.com/', ('{{ (bitwarden "item" "HCL Support (Bosch)").login.username }}', '{{ (bitwarden "item" "HCL Support (Bosch)").login.password}}'))
 
 gr = client.GlideRecord('sn_customerservice_case')
 gr.add_query("active", "true")
@@ -32,11 +32,11 @@ for r in gr:
     if case_da_no == '':
         case_da = ''
     else:
-        case_da = "[" + case_da_no + "](https://support.hcltechsw.com/csm?id=kb_article&sysparm_article=" + case_da_no + ")"
+        case_da = "[" + case_da_no + "](https://support.hcl-software.com/csm?id=kb_article&sysparm_article=" + case_da_no + ")"
 
     print('''\t - [[%s: %s]]'''
     % (case_no, case_title))
-    # sn-link:: https://support.hcltechsw.com/csm?id=csm_ticket&table=sn_customerservice_case&sys_id=%s&view=csp" % (r.get_display_value('sys_id')))
+    # sn-link:: https://support.hcl-software.com/csm?id=csm_ticket&table=sn_customerservice_case&sys_id=%s&view=csp" % (r.get_display_value('sys_id')))
     #print("\t\t - #### Status: %s" % (r.get_display_value('u_internal_status_1')))
     #print("\t\t - #### Created: %s, Last Update: %s, Age: %s days" % (r.get_display_value('sys_created_on'), r.get_display_value('sys_updated_on'), age))
     i=i+1

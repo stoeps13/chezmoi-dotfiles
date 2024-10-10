@@ -21,6 +21,13 @@ return {
 			},
 		}
 		vim.g.vimwiki_global_ext = 0
+    vim.g.markdown_folding = 1
+    vim.g.vimwiki_folding = 'syntax'
+    vim.g.vimwiki_header_type = '#'
+    vim.cmd([[
+        autocmd FileType vimwiki setlocal foldlevel=4
+    ]])
+    vim.g.vimwiki_fold_blank_lines = 1
 
 		-- Disable header levels keybindings so oil.nvim will work
 		vim.g.vimwiki_key_mappings = {
@@ -40,7 +47,8 @@ return {
 			},
 		}
 		vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki" }
-    vim.g.zettel_format = "%y%m%d-%H%M%-title"
+		vim.g.zettel_format = "%y%m%d-%H%M%-title"
+
 		vim.cmd([[
       autocmd BufNewFile ~/vimwiki/diary/*.md
       \ call append(0,[

@@ -12,6 +12,7 @@ return {
     { "<leader>rg", "<cmd>FzfLua live_grep<cr>",            desc = "Live Grep" },
     { "<leader>b",  "<cmd>FzfLua buffers<cr>",              desc = "Buffers" },
     { "<leader>m",  "<cmd>FzfLua marks<cr>",                desc = "Marks" },
+    { "<leader>t",  "<cmd>VimwikiToggleListItem<cr>",       desc = "Toggle Task" },
     { "<leader>gs", "<cmd>FzfLua git_status<cr>",           desc = "Git status" },
     { "<leader>cc", "<cmd>FzfLua lsp_code_actions<cr>",     desc = "Lsp Code Actions" },
     { "<leader>cd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document diagnostics" },

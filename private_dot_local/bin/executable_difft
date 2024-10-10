@@ -2,7 +2,7 @@
 # distrobox_binary
 # name: fedora
 if [ -z "${CONTAINER_ID}" ]; then
-	exec "distrobox-enter"  -n fedora  --  '/usr/bin/difft'  "$@"
+	exec "/usr/bin/distrobox-enter"  -n fedora  --  '/usr/bin/difft'  "$@"
 elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "fedora" ]; then
 	exec distrobox-host-exec '/var/home/stoeps/.local/bin/difft' "$@"
 else
