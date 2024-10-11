@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import requests
 from requests.auth import HTTPBasicAuth
+import argparse
+import datetime
+import html2text
+import os
 import pandas as pd
 import pip
 import re
+import requests
 import sys
-import datetime
-import argparse
-import html2text
 import textwrap
 
 def import_or_install(package):
@@ -52,107 +53,110 @@ url = 'https://support.hcl-software.com/sn_customerservice_case_list.do?sysparm_
 # Send a GET request with authentication
 response = requests.get(url, auth=HTTPBasicAuth(username, password))
 
-# Check if the request was successful (status code 200)
-if response.status_code == 200:
-    # Save the Excel file
-    with open('sncases.xls', 'wb') as f:
-        f.write(response.content)
-else:
-    print("Failed to download Excel file. Status code:", response.status_code)
-    sys.exit()
-
-import_or_install('xlrd')
-
-from xlrd import open_workbook
-
-wb = open_workbook('sncases.xls')
-
-# Create argument parser
-parser = argparse.ArgumentParser(description='Get the latest comments from ServiceNow @HCL')
-
-# Add argument for the option
-parser.add_argument('-d', '--days', help='Days to display')
-
-# Parse the command-line arguments
-args = parser.parse_args()
-
-days_display = 7
-
-if vars(args)['days']:
-    days_display = int(args.days)
-
-sorted_rows = []
-for s in wb.sheets():
-    for row in range(1, s.nrows):  # Start from the second row
-        col_values = []
-        for col in range(s.ncols):
-            value = s.cell(row, col).value
-            try:
-                value = str(int(value))
-            except ValueError:
-                pass
-            col_values.append(value)
-        sorted_rows.append(col_values)  # Append the row to the list of rows
-
-# Get today's date
-today = datetime.datetime.today().date()
-last_days = today - datetime.timedelta(days=days_display)
-
-# Sort the list of rows based on the values in the first column
-sorted_rows.sort(key=lambda x: x[0])
-
-for row in sorted_rows:
-    #print(row)
-    case_id=row[0]
-    case_title=row[1]
-    case_created=xldate_to_datetime(int(row[7]))
-    case_updated=xldate_to_datetime(int(row[8]))
-    if row[9] != '':
-        case_followup=xldate_to_datetime(int(row[9]))
+try:
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Save the Excel file
+        with open('sncases.xls', 'wb') as f:
+            f.write(response.content)
     else:
-        case_followup=''
+        print("Failed to download Excel file. Status code:", response.status_code)
+        sys.exit()
 
-    status=row[3]
-    internal_status=row[4]
-    defect_no=row[13]
+    import_or_install('xlrd')
 
-    date_object = datetime.datetime.strptime(case_created, '%Y-%m-%d').date()
+    from xlrd import open_workbook
 
-    # Calculate the difference between the two dates
-    age = today - date_object
+    wb = open_workbook('sncases.xls')
 
-    if last_days <= datetime.datetime.strptime(case_updated, "%Y-%m-%d").date() <= today:
+    # Create argument parser
+    parser = argparse.ArgumentParser(description='Get the latest comments from ServiceNow @HCL')
 
-        # Check only comments for documents with update timestamp from last week
+    # Add argument for the option
+    parser.add_argument('-d', '--days', help='Days to display')
 
-        # Check if the --sort option was provided
-        comments = split_text(row[11])
-        i=1
-        comment_output = []
+    # Parse the command-line arguments
+    args = parser.parse_args()
 
-        for comment in comments[:10]:
+    days_display = 7
 
-            comment = comment.split('(Additional comments)')
+    if vars(args)['days']:
+        days_display = int(args.days)
 
-            # Check the timestamp of the comment
-            comment_date_str = comment[0].split(' - ')
-            comment_date = datetime.datetime.strptime(comment_date_str[0], "%Y-%m-%d %H:%M:%S").date()
+    sorted_rows = []
+    for s in wb.sheets():
+        for row in range(1, s.nrows):  # Start from the second row
+            col_values = []
+            for col in range(s.ncols):
+                value = s.cell(row, col).value
+                try:
+                    value = str(int(value))
+                except ValueError:
+                    pass
+                col_values.append(value)
+            sorted_rows.append(col_values)  # Append the row to the list of rows
 
-            if last_days <= comment_date <= today:
+    # Get today's date
+    today = datetime.datetime.today().date()
+    last_days = today - datetime.timedelta(days=days_display)
 
-                # Split the original text into lines and wrap each line
-                wrapped_lines = [textwrap.fill(line, width=80) for line in comment[1].lstrip().rstrip().splitlines()]
+    # Sort the list of rows based on the values in the first column
+    sorted_rows.sort(key=lambda x: x[0])
 
-                # Join the wrapped lines with line feeds
-                final_output = "\n".join(wrapped_lines)
+    for row in sorted_rows:
+        #print(row)
+        case_id=row[0]
+        case_title=row[1]
+        case_created=xldate_to_datetime(int(row[7]))
+        case_updated=xldate_to_datetime(int(row[8]))
+        if row[9] != '':
+            case_followup=xldate_to_datetime(int(row[9]))
+        else:
+            case_followup=''
 
-                comment_output.append('##### ' + comment[0] + '\n')
-                comment_output.append(convert_code_html_to_markdown(final_output) + '\n')
+        status=row[3]
+        internal_status=row[4]
+        defect_no=row[13]
 
-        if len(comment_output) > 0:
-            print("#### [%s: %s](/hcl/cases/%s)\n\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, internal_status, case_updated))
-            for output in comment_output:
-                print(output)
+        date_object = datetime.datetime.strptime(case_created, '%Y-%m-%d').date()
 
-    else:
-        pass
+        # Calculate the difference between the two dates
+        age = today - date_object
+
+        if last_days <= datetime.datetime.strptime(case_updated, "%Y-%m-%d").date() <= today:
+
+            # Check only comments for documents with update timestamp from last week
+
+            # Check if the --sort option was provided
+            comments = split_text(row[11])
+            i=1
+            comment_output = []
+
+            for comment in comments[:10]:
+
+                comment = comment.split('(Additional comments)')
+
+                # Check the timestamp of the comment
+                comment_date_str = comment[0].split(' - ')
+                comment_date = datetime.datetime.strptime(comment_date_str[0], "%Y-%m-%d %H:%M:%S").date()
+
+                if last_days <= comment_date <= today:
+
+                    # Split the original text into lines and wrap each line
+                    wrapped_lines = [textwrap.fill(line, width=80) for line in comment[1].lstrip().rstrip().splitlines()]
+
+                    # Join the wrapped lines with line feeds
+                    final_output = "\n".join(wrapped_lines)
+
+                    comment_output.append('##### ' + comment[0] + '\n')
+                    comment_output.append(convert_code_html_to_markdown(final_output) + '\n')
+
+            if len(comment_output) > 0:
+                print("#### [%s: %s](/hcl/cases/%s)\n\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, internal_status, case_updated))
+                for output in comment_output:
+                    print(output)
+
+        else:
+            pass
+finally:
+    os.remove('sncases.xls')
