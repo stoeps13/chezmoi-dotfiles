@@ -103,6 +103,7 @@ try:
     # Sort the list of rows based on the values in the first column
     sorted_rows.sort(key=lambda x: x[0])
 
+    #print(sorted_rows)
     for row in sorted_rows:
         #print(row)
         case_id=row[0]
@@ -128,7 +129,7 @@ try:
             # Check only comments for documents with update timestamp from last week
 
             # Check if the --sort option was provided
-            comments = split_text(row[11])
+            comments = split_text(row[10])
             i=1
             comment_output = []
 
@@ -152,7 +153,7 @@ try:
                     comment_output.append(convert_code_html_to_markdown(final_output) + '\n')
 
             if len(comment_output) > 0:
-                print("#### [%s: %s](/hcl/cases/%s)\n\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, internal_status, case_updated))
+                print("#### [%s: %s](/hcl/cases/%s)\n\n* Case-no: [%s](/hcl/cases/%s)\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id,case_id, case_id, internal_status, case_updated))
                 for output in comment_output:
                     print(output)
 
@@ -160,3 +161,4 @@ try:
             pass
 finally:
     os.remove('sncases.xls')
+    # print("done")

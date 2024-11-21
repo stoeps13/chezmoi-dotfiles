@@ -6,10 +6,11 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font 'FiraCode Nerd Font'
-config.font_size = 13
+config.font_size = 9
 -- For example, changing the color scheme:
 config.color_scheme = 'Nord (Gogh)'
--- config.enable_tab_bar = false
+config.enable_tab_bar = false
+config.enable_wayland = true
 config.window_decorations = "RESIZE"
 -- config.window_background_opacity = 0.9
 

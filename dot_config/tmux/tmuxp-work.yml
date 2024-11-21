@@ -1,31 +1,25 @@
+---
+shell_command_before:
+  - cmd: distrobox enter fedora
+    sleep_before: 1
+    sleep_after: 1
 session_name: work
 windows:
-  - window_name: rpm-ostree
+  - window_name: til
     panes:
-      - rpm-ostree status
+      - shell_command:
+          - cd ~/vimwiki
+          - nvim -c VimwikiMakeDiaryNote
   - window_name: mail
     layout: tiled
-    shell_command_before:
-      - cmd: distrobox enter fedora
-        sleep_before: 1
-        sleep_after: 1
     panes:
       - neomutt
       - gmail
   - window_name: pim
     layout: tiled
-    shell_command_before:
-      - cmd: distrobox enter fedora
-        sleep_before: 1
-        sleep_after: 1
     panes:
       - mbsync -a && vdirsyncer sync && today
-      - cd ~/logseq-til
-  - window_name: devel
-    shell_command_before:
-      - cmd: distrobox enter fedora
-        sleep_before: 1
-        sleep_after: 1
+      - task
+  - window_name: ssh
     panes:
       - ls
-

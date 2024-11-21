@@ -16,6 +16,7 @@ return {
     { "<leader>gs", "<cmd>FzfLua git_status<cr>",           desc = "Git status" },
     { "<leader>cc", "<cmd>FzfLua lsp_code_actions<cr>",     desc = "Lsp Code Actions" },
     { "<leader>cd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document diagnostics" },
+    { "<leader>ol", "<cmd>VimwikiFollowLink<cr>", desc = "Open Link" },
     { "<leader>zo", "<cmd>ZettelOpen<cr>", desc = "Open Zettel" },
     { "<leader>zn", "<cmd>ZettelNew<cr>", desc = "New Zettel" },
     { "<leader>zs", "<cmd>ZettelSearch<cr>", desc = "Search Zettel" },

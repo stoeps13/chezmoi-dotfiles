@@ -1,14 +1,5 @@
 # .bashrc
 
-# Only trigger if:
-# - 'zsh' is not the parent process of this shell
-# - We did not call: bash -c '...'
-# - The fish binary exists and is executable
-if [[ $(ps --no-header --pid=$PPID --format=comm) != "zsh" && -z ${BASH_EXECUTION_STRING} && -x "/usr/bin/zsh" ]]; then
-  shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
-  exec zsh $LOGIN_OPTION
-fi
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -37,4 +28,17 @@ unset rc
 # eval "$(atuin init bash)"
 export QT_SCREEN_SCALE_FACTORS="1.5;1"
 
-/usr/bin/zsh
+if [ -n "$CONTAINER_ID" ]; then
+  # Only trigger if:
+  # - 'zsh' is not the parent process of this shell
+  # - We did not call: bash -c '...'
+  # - The fish binary exists and is executable
+  if [[ $(ps --no-header --pid=$PPID --format=comm) != "zsh" && -z ${BASH_EXECUTION_STRING} && -x "/usr/bin/zsh" ]]; then
+    #shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+    exec zsh $LOGIN_OPTION
+  fi
+fi
+
+# if [[ -x "/usr/bin/zsh" ]]; then
+#   exec zsh $LOGIN_OPTION
+# fi

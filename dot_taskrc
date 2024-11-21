@@ -27,7 +27,7 @@ data.location=/var/home/stoeps/.task
 #include light-16.theme
 #include light-256.theme
 #include dark-16.theme
-#include dark-256.theme
+include dark-256.theme
 #include dark-red-256.theme
 #include dark-green-256.theme
 #include dark-blue-256.theme
@@ -38,11 +38,23 @@ data.location=/var/home/stoeps/.task
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
+include ~/.task/holidays.de-DE.rc
 
-news.version=2.6.0
+news.version=3.2.0
+uda.priority.values = H,M,,L
+urgency.uda.priority.L.coefficient=0
+urgency.uda.priority..coefficient=1.8
 uda.reviewed.type=date
 uda.reviewed.label=Reviewed
 report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
 report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+sync.local.server_dir=\/var\/home\/stoeps\/Dropbox\/Christoph\/tasks
+uda.delegated.type=string
+uda.delegated.label=Delegated to
+report.ready.filter=+READY delegated:
+report.delegated.description=Tasks delegated to others
+report.delegated.columns=id,project,description,delegated
+report.delegated.sort=delegated+,project+,description+
+report.delegated.filter=delegated.not: +PENDING
