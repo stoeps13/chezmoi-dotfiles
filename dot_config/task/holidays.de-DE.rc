@@ -1,0 +1,81 @@
+###############################################################################
+# International Holiday Data provided by Holidata.net
+# https://holidata.net/de-DE/2024.json
+# https://holidata.net/de-DE/2025.json
+#
+# Copyright 2006 - 2021, Tomas Babej, Paul Beckingham, Federico Hernandez.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# https://www.opensource.org/licenses/mit-license.php
+#
+###############################################################################
+
+holiday.de-DE1.name=Neujahr
+holiday.de-DE1.date=20240101
+holiday.de-DE6.name=Karfreitag
+holiday.de-DE6.date=20240329
+holiday.de-DE7.name=Ostern
+holiday.de-DE7.date=20240331
+holiday.de-DE8.name=Ostermontag
+holiday.de-DE8.date=20240401
+holiday.de-DE9.name=Erster Maifeiertag
+holiday.de-DE9.date=20240501
+holiday.de-DE10.name=Christi Himmelfahrt
+holiday.de-DE10.date=20240509
+holiday.de-DE11.name=Pfingstsonntag
+holiday.de-DE11.date=20240519
+holiday.de-DE12.name=Pfingstmontag
+holiday.de-DE12.date=20240520
+holiday.de-DE21.name=Tag der Deutschen Einheit
+holiday.de-DE21.date=20241003
+holiday.de-DE37.name=Heilig Abend
+holiday.de-DE37.date=20241224
+holiday.de-DE38.name=Weihnachtstag
+holiday.de-DE38.date=20241225
+holiday.de-DE39.name=Zweiter Weihnachtstag
+holiday.de-DE39.date=20241226
+holiday.de-DE40.name=Silvester
+holiday.de-DE40.date=20241231
+holiday.de-DE41.name=Neujahr
+holiday.de-DE41.date=20250101
+holiday.de-DE46.name=Karfreitag
+holiday.de-DE46.date=20250418
+holiday.de-DE47.name=Ostern
+holiday.de-DE47.date=20250420
+holiday.de-DE48.name=Ostermontag
+holiday.de-DE48.date=20250421
+holiday.de-DE49.name=Erster Maifeiertag
+holiday.de-DE49.date=20250501
+holiday.de-DE50.name=Christi Himmelfahrt
+holiday.de-DE50.date=20250529
+holiday.de-DE51.name=Pfingstsonntag
+holiday.de-DE51.date=20250608
+holiday.de-DE52.name=Pfingstmontag
+holiday.de-DE52.date=20250609
+holiday.de-DE61.name=Tag der Deutschen Einheit
+holiday.de-DE61.date=20251003
+holiday.de-DE77.name=Heilig Abend
+holiday.de-DE77.date=20251224
+holiday.de-DE78.name=Weihnachtstag
+holiday.de-DE78.date=20251225
+holiday.de-DE79.name=Zweiter Weihnachtstag
+holiday.de-DE79.date=20251226
+holiday.de-DE80.name=Silvester
+holiday.de-DE80.date=20251231

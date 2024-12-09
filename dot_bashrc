@@ -42,3 +42,6 @@ fi
 # if [[ -x "/usr/bin/zsh" ]]; then
 #   exec zsh $LOGIN_OPTION
 # fi
+export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
+alias fedora='distrobox enter fedora'
+alias kali='distrobox enter kali'

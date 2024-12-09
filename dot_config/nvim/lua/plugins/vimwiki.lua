@@ -6,6 +6,7 @@ return {
     "michal-h21/vim-zettel",
     "michal-h21/vimwiki-sync",
     "majutsushi/tagbar",
+    "tools-life/taskwiki"
   },
   init = function()
     -- Default directory, syntax and file type,
@@ -50,6 +51,7 @@ return {
     }
     vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki" }
     vim.g.zettel_format = "%y%m%d-%H%M%S"
+    -- vim.g.zettel_default_mappings = 0
     vim.g.zettel_options = {
       {
         template = "~/vimwiki/template.tpl",
@@ -65,5 +67,8 @@ return {
       \ "## Meetings", "",
       \ "## Logbook",  "" ])
     ]])
+    vim.api.nvim_create_autocmd("FileType", { pattern = "vimwiki", command = [[unmap <buffer><silent> <CR>]] })
+    vim.keymap.set('n', '<CR>', ':VimwikiFollowLink<CR>', {})
+
   end,
 }

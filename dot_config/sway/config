@@ -60,10 +60,10 @@ output * bg /usr/share/backgrounds/default.png fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -155,22 +155,22 @@ set $w3   3: 
 set $w4   4: 
 set $w5   5: 
 set $w6   6: 
-set $w7   7: 
+set $w7   7: 
 set $w8   8: 
-set $w9   9: 
+set $w9   9: 
 set $w10 10: 
 
 # workspaces for monitor2
-set $w21 21: 
-set $w22 22: 
-set $w23 23: 
-set $w24 24: 
-set $w25 25: 
-set $w26 26: 
-set $w27 27: 
-set $w28 28: 
-set $w29 29: 
-set $w30 30: 
+set $w11 11: 
+set $w12 12: 
+set $w13 13: 
+set $w14 14: 
+set $w15 15: 
+set $w16 16: 
+set $w17 17: 
+set $w18 18: 
+set $w19 19: 
+set $w20 20: 
 
 workspace "$w1" output $monitor
 workspace "$w2" output $monitor
@@ -183,16 +183,16 @@ workspace "$w8" output $monitor
 workspace "$w9" output $monitor
 workspace "$w10" output $monitor
 
-workspace "$w21" output $monitor2
-workspace "$w22" output $monitor2
-workspace "$w23" output $monitor2
-workspace "$w24" output $monitor2
-workspace "$w25" output $monitor2
-workspace "$w26" output $monitor2
-workspace "$w27" output $monitor2
-workspace "$w28" output $monitor2
-workspace "$w29" output $monitor2
-workspace "$w30" output $monitor2
+workspace "$w11" output $monitor2
+workspace "$w12" output $monitor2
+workspace "$w13" output $monitor2
+workspace "$w14" output $monitor2
+workspace "$w15" output $monitor2
+workspace "$w16" output $monitor2
+workspace "$w17" output $monitor2
+workspace "$w18" output $monitor2
+workspace "$w19" output $monitor2
+workspace "$w20" output $monitor2
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -219,28 +219,28 @@ bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
 
 # switch to workspace
-bindsym $mod2+1 workspace $w21
-bindsym $mod2+2 workspace $w22
-bindsym $mod2+3 workspace $w23
-bindsym $mod2+4 workspace $w24
-bindsym $mod2+5 workspace $w25
-bindsym $mod2+6 workspace $w26
-bindsym $mod2+7 workspace $w27
-bindsym $mod2+8 workspace $w28
-bindsym $mod2+9 workspace $w29
-bindsym $mod2+0 workspace $w30
+bindsym $mod2+1 workspace $w11
+bindsym $mod2+2 workspace $w12
+bindsym $mod2+3 workspace $w13
+bindsym $mod2+4 workspace $w14
+bindsym $mod2+5 workspace $w15
+bindsym $mod2+6 workspace $w16
+bindsym $mod2+7 workspace $w17
+bindsym $mod2+8 workspace $w18
+bindsym $mod2+9 workspace $w19
+bindsym $mod2+0 workspace $w20
 
 # move focused container to workspace
-bindsym $mod2+Shift+1 move container to workspace $w21
-bindsym $mod2+Shift+2 move container to workspace $w22
-bindsym $mod2+Shift+3 move container to workspace $w23
-bindsym $mod2+Shift+4 move container to workspace $w24
-bindsym $mod2+Shift+5 move container to workspace $w25
-bindsym $mod2+Shift+6 move container to workspace $w26
-bindsym $mod2+Shift+7 move container to workspace $w27
-bindsym $mod2+Shift+8 move container to workspace $w28
-bindsym $mod2+Shift+9 move container to workspace $w29
-bindsym $mod2+Shift+0 move container to workspace $w30
+bindsym $mod2+Shift+1 move container to workspace $w11
+bindsym $mod2+Shift+2 move container to workspace $w12
+bindsym $mod2+Shift+3 move container to workspace $w13
+bindsym $mod2+Shift+4 move container to workspace $w14
+bindsym $mod2+Shift+5 move container to workspace $w15
+bindsym $mod2+Shift+6 move container to workspace $w16
+bindsym $mod2+Shift+7 move container to workspace $w17
+bindsym $mod2+Shift+8 move container to workspace $w18
+bindsym $mod2+Shift+9 move container to workspace $w19
+bindsym $mod2+Shift+0 move container to workspace $w20
 
 
 #    # Switch to workspace
@@ -337,6 +337,17 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Start some apps automatically
+exec --no-startup-id swaymsg 'workspace $w2; exec kitty'
+exec --no-startup-id swaymsg 'workspace $w7; exec flatpak run com.discordapp.Discord'
+exec --no-startup-id swaymsg 'workspace $w9; exec flatpak run com.github.IsmaelMartinez.teams_for_linux'
+exec --no-startup-id swaymsg 'workspace $w1; exec flatpak run com.github.zocker_160.SyncThingy'
+exec --no-startup-id swaymsg 'workspace $w8; exec flatpak run com.slack.Slack'
+exec --no-startup-id swaymsg 'workspace $w10; exec flatpak run hu.irl.cameractrls'
+exec --no-startup-id swaymsg 'workspace $w9; exec flatpak run im.riot.Riot'
+exec --no-startup-id swaymsg 'exec distrobox-enter -n fedora -- bash -cl "/home/stoeps/.local/bin/maestral gui"'
+exec --no-startup-id swaymsg 'workspace $w10; exec flatpak run org.davmail.DavMail'
+exec --no-startup-id swaymsg 'workspace $w10; exec flatpak run us.zoom.Zoom'
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
 #  - /etc/sway/config.d

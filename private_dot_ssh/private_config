@@ -69,4 +69,4 @@ Host lnx-stwsh
   IdentityFile ansible_ed25519
 Host *
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/cnx6
+  IdentityFile ~/.ssh/ansible_ed25519
