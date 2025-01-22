@@ -18,3 +18,5 @@
         difftool = true
 [alias]
   dft = difftool
+[safe]
+	directory = /var/mnt/stoeps-customizer-css

@@ -37,6 +37,20 @@ token_file = "~/.vdirsyncer/token"
 client_id = "{{ (bitwarden "item" "Google-Calendar").login.username }}"
 client_secret = "{{ (bitwarden "item" "Google-Calendar").login.password }}"
 
+[pair dnug_calendar]
+a = "dnug_calendar_local"
+b = "dnug_calendar_remote"
+collections = null
+
+[storage dnug_calendar_local]
+type = "filesystem"
+path = "~/.local/share/calendar-dnug/"
+fileext = ".ics"
+
+[storage dnug_calendar_remote]
+type = "http"
+url = "https://dnug.de/ical-de.ics"
+
 
 # CARDDAV
 [pair work_addressbook]

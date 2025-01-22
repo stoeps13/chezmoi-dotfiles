@@ -45,3 +45,10 @@ fi
 export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
 alias fedora='distrobox enter fedora'
 alias kali='distrobox enter kali'
+alias ubuntu='distrobox enter ubuntu'
+
+export GDK_SCALE=1.5
+
+. "$HOME/.atuin/bin/env"
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"

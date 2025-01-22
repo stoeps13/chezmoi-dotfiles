@@ -31,6 +31,9 @@
     path = ~/.local/share/calendars-gmail/c_fd4cfc1f048eb6bc12d1ee329a706bc5fa0d5ab805feb175bea1316c691775b7@group.calendar.google.com
   [[Feiertage in Deutschland]]
     path = ~/.local/share/calendars-gmail/chiispr5e9mm2rh3d1nmoqb4c5sk0pridtqn0bjm5phm2r35dpi62shectnmuprcckn66rrd@virtual
+  [[dnug events]]
+    path = ~/.local/share/calendar-dnug/
+    color = dark red
 
 
 [locale]

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo swapon /var/swapfile
+sudo swapon /var/home/stoeps/data/swapfile
 
 # Check if libvirtd service is running
 STATUS="$(sudo systemctl is-active libvirtd.service)"
