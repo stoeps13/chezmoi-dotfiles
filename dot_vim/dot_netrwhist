@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/var/home/stoeps/devel/containers/ublue-stoeps/files/usr/etc/containers'
-let g:netrw_dirhist_2='/var/home/stoeps/devel/silverblue/ublue-stoeps/config/files/etc'
-let g:netrw_dirhist_1='/var/home/stoeps/.ssh'
