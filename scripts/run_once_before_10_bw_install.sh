@@ -15,8 +15,7 @@ Linux)
       chmod +x ~/.local/bin/bw
       rm -rf $dir
     fi
-    bw login christoph.stoettner@stoeps.de --method 2
-    export BW_SESSION=$(bw unlock --raw)
+    export BW_SESSION=$(bw login christoph.stoettner@stoeps.de --method 2 --raw)
     ;;
 *)
     echo "unsupported OS"
