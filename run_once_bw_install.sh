@@ -19,7 +19,7 @@ Linux)
       rm -rf $dir
     fi
     bw login christoph.stoettner@stoeps.de --method 2
-    pause
+    export BW_SESSION=$(bw unlock --raw)
     ;;
 *)
     echo "unsupported OS"
