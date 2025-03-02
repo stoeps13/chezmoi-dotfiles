@@ -16,7 +16,10 @@ Linux)
       fi
       mv $dir/bw/bw ~/.local/bin/
       chmod +x ~/.local/bin/bw
+      rm -rf $dir
     fi
+    bw login christoph.stoettner@stoeps.de --method 2
+    pause
     ;;
 *)
     echo "unsupported OS"
