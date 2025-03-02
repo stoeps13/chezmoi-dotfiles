@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-type flatpak >/dev/null 2>&1 || exit
+# fail with rc 0 when flatpak is not installed
+type flatpak >/dev/null 2>&1 || exit 0
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -u
 flatpak install -u flathub com.bitwarden.desktop -y
 flatpak install -u flathub com.calibre_ebook.calibre -y
