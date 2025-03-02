@@ -15,6 +15,7 @@ Linux)
       chmod +x ~/.local/bin/bw
       rm -rf $dir
     fi
+    export PATH=$PATH:~/.local/bin
     export BW_SESSION=$(bw login christoph.stoettner@stoeps.de --method 2 --raw)
     ;;
 *)
