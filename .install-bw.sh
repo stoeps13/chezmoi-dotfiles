@@ -1,5 +1,7 @@
 #!/bin/sh
 
+type bw >/dev/null 2>&1 && exit
+
 case "$(uname -s)" in
 Linux)
     if [ ! -f ~/.local/bin/bw ];
@@ -15,8 +17,6 @@ Linux)
       chmod +x ~/.local/bin/bw
       rm -rf $dir
     fi
-    export PATH=$PATH:~/.local/bin
-    export BW_SESSION=$(bw login christoph.stoettner@stoeps.de --method 2 --raw)
     ;;
 *)
     echo "unsupported OS"
