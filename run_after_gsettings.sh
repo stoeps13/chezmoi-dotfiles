@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+type gsettings >/dev/null 2>&1 || exit 0
+
 # Disable Nautilus recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
