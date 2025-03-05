@@ -116,6 +116,10 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/go/bin" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
 fi
+if ! [[ "$PATH" =~ "$HOME/.krew" ]]
+then
+  PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
 if [[ -d $HOME/.cargo/bin ]]
 then
   PATH="$HOME/.cargo/bin:$PATH"
@@ -158,6 +162,7 @@ fi
 if [[ -f /usr/bin/fd ]]
 then
     export FZF_DEFAULT_COMMAND="fd --type f"
+    # export FZF_DEFAULT_COMMAND="rg --files --ignore-vcs --hidden"
     export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
 fi
 
@@ -216,6 +221,7 @@ if [ -n "$CONTAINER_ID" ]; then
   if [ $CONTAINER_ID = kali ]; then
     psvar[1]="@%F{green}${(%):-$CONTAINER_ID 👽}"     # show hostname inside docker containers
     # 🤯
+    alias cme='crackmapexec'
   elif [ $CONTAINER_ID = fedora ]; then
     psvar[1]="@%F{cyan}${(%):-$CONTAINER_ID 🧰}"     # show hostname inside docker containers
     export PATH=$PATH:~/Android/Sdk/platform-tools
@@ -256,7 +262,7 @@ source ~/.local/bin/fzf-git.sh
 
 # eval "$(atuin init zsh)"
 # export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_SCREEN_SCALE_FACTORS="1.5;1"
+# export QT_SCREEN_SCALE_FACTORS="1.5;1"
 # # custom theming
 # export QT_QPA_PLATFORMTHEME=qt6ct
 # export CLUTTER_BACKEND=wayland
@@ -297,3 +303,43 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 eval "$(atuin init zsh)"
+
+nmap_scan() {
+    local ip="$1"
+    local output_dir="output"
+    local timestamp=$(date +%Y%m%d-%H%M%S)
+
+    # Run nmap and store output
+    local scan_output
+    # -A contains OS detection, version detection, script scanning and traceroute
+    scan_output=$(sudo nmap -A -p- "$ip")
+
+    mkdir -p "$output_dir"
+    # Extract the hostname from "Nmap scan report for <hostname> (<ip>)"
+    local hostname
+    hostname=$(echo "$scan_output" | awk '/Nmap scan report for/{print $5}' | sed 's/[().]/_/g')
+
+    # Fallback to IP if no hostname is found
+    [[ -z "$hostname" ]] && hostname="$ip"
+
+    # Ensure output directory exists
+    mkdir -p "$output_dir"
+
+    # Save output to file
+    echo "$scan_output" | tee "$output_dir/nmap_${hostname}_${timestamp}.log"
+}
+log_output() {
+    local cmd_name="$1"  # First argument is the command name
+    local timestamp=$(date +"%Y%m%d_%H%M%S")
+    local logfile="output/${cmd_name}_${timestamp}.log"
+
+    mkdir -p output
+    tee "$logfile"
+}
+
+run_with_logging() {
+    local cmd="$1"
+    shift  # Remove first argument, so remaining arguments are passed to the command
+    "$cmd" "$@" | log_output "$cmd"
+}
+

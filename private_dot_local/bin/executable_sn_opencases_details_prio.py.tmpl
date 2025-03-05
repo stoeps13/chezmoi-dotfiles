@@ -3,6 +3,7 @@
 from pysnc import ServiceNowClient
 from time import gmtime, strftime
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 client = ServiceNowClient('https://support.hcl-software.com/', ('{{ (bitwarden "item" "HCL Support (Bosch)").login.username }}', '{{ (bitwarden "item" "HCL Support (Bosch)").login.password}}'))
 
@@ -23,6 +24,7 @@ for r in gr:
 
     created = datetime.strptime(r.get_display_value('sys_created_on'), '%Y-%m-%d %H:%M:%S')
     age = (today - created).days
+    age_in_months = relativedelta(today, created).months + (relativedelta(today, created).years * 12)
     case_no = r.get_display_value('task_effective_number')
     case_title = r.get_display_value('short_description')
     case_created = r.get_display_value('sys_created_on').split(' ')[0]
@@ -34,11 +36,7 @@ for r in gr:
     else:
         case_da = "[" + case_da_no + "](https://support.hcl-software.com/csm?id=kb_article&sysparm_article=" + case_da_no + ")"
 
-    print('''\t - [[%s: %s]]'''
-    % (case_no, case_title))
-    # sn-link:: https://support.hcl-software.com/csm?id=csm_ticket&table=sn_customerservice_case&sys_id=%s&view=csp" % (r.get_display_value('sys_id')))
-    #print("\t\t - #### Status: %s" % (r.get_display_value('u_internal_status_1')))
-    #print("\t\t - #### Created: %s, Last Update: %s, Age: %s days" % (r.get_display_value('sys_created_on'), r.get_display_value('sys_updated_on'), age))
+    print(f'- [{case_no}: {case_title}](../archive/hcl-cases/{case_no}) - age: {age} days or {age_in_months} months')
     i=i+1
 
 

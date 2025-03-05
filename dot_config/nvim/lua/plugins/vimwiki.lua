@@ -31,6 +31,16 @@ return {
         custom_wiki2html = "vimwiki_markdown",
         auto_tags = 1,
         auto_diary_index = 1,
+      },
+      {
+        path = "~/vimwiki/hcl-cases",
+        syntax = "markdown",
+        ext = ".md",
+        links_space_char = "_",
+        path_html = "~/vimwiki/hcl-cases/site_html/",
+        custom_wiki2html = "vimwiki_markdown",
+        auto_tags = 1,
+        auto_diary_index = 1,
       }
     }
     vim.g.vimwiki_global_ext = 0
@@ -60,7 +70,7 @@ return {
       },
     }
     vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki" }
-    vim.g.zettel_format = "%y%m%d-%H%M%S"
+    vim.g.zettel_format = "%y%m%d-%file_no"
     -- vim.g.zettel_default_mappings = 0
     vim.g.zettel_options = {
       {
@@ -73,11 +83,12 @@ return {
     vim.conceallevel = 0
     vim.opt.conceallevel = 0
     vim.cmd([[
-      autocmd BufNewFile ~/vimwiki/diary/*.md
+      autocmd BufNewFile ~/vimwiki/2025/diary/*.md
       \ call append(0,[
       \ "# " . split(expand('%:r'),'/')[-1], "",
       \ "## Meetings", "",
-      \ "## Logbook",  "" ])
+      \ "## Logbook",  "",
+      \ "## Tasks completed today | status:completed end:" . split(expand('%:r'), '/')[-1], ""])
     ]])
     vim.api.nvim_create_autocmd("FileType", { pattern = "vimwiki", command = [[unmap <buffer><silent> <CR>]] })
     vim.keymap.set('n', '<CR>', ':VimwikiFollowLink<CR>', {})

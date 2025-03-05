@@ -3,11 +3,15 @@ Host *.stoeps.internal
   IdentityFile ~/.ssh/cnx6
   UserKnownHostsFile=/dev/null
   StrictHostKeyChecking=no
+  IdentitiesOnly yes
+  IdentityAgent none
   ForwardX11 yes
   ForwardAgent yes
 Host 172.104.228.63
   User root
   IdentityFile ~/.ssh/stoeps_rsa
+  IdentitiesOnly yes
+  IdentityAgent none
 Host stoeps.de
   HostName home26617100.1and1-data.host
   User p7594620
@@ -15,27 +19,39 @@ Host stoeps.de
   ServerAliveInterval 120
   ServerAliveCountMax 15
   IdentityFile ~/.ssh/vit-ed25519-stoeps.de
+  IdentitiesOnly yes
+  IdentityAgent none
 Host gitlab.com
   HostName gitlab.com
   User git
   UpdateHostKeys no
   IdentityFile ~/.ssh/vit-ed25519-gitlab
+  IdentitiesOnly yes
+  IdentityAgent none
 Host github.com
   HostName github.com
   IdentityFile ~/.ssh/vit-ed25519-github
+  IdentitiesOnly yes
+  IdentityAgent none
 Host df.eu
   HostName unverpackt-lorsch.de
   User ssh-531188-stoeps
   IdentityFile ~/.ssh/stoeps_rsa
+  IdentitiesOnly yes
+  IdentityAgent none
 Host git.vegardit.com
   HostName git.vegardit.com
   Port 12005
   User git
   IdentityFile ~/.ssh/vit-ed25519-gitea
+  IdentitiesOnly yes
+  IdentityAgent none
 Host *.stoeps.local
   Port 22
   User ansible
   IdentityFile ~/.ssh/cnx6
+  IdentitiesOnly yes
+  IdentityAgent none
 Host *.stoeps.home
   Port 22
   User ansible
@@ -47,6 +63,8 @@ Host *.stoeps.home
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
   ForwardAgent yes
+  IdentitiesOnly yes
+  IdentityAgent none
   # RemoteCommand TERM=xterm $SHELL
 Host 10.0.22.*
   Port 22
@@ -57,16 +75,65 @@ Host 10.0.22.*
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
   ForwardAgent yes
+  IdentitiesOnly yes
+  IdentityAgent none
   # RemoteCommand TERM=xterm $SHELL
 Host 192.168.1.210
   Port 22
   User ubuntu
-  IdentityFile vit-ed25519-ubuntu
+  IdentityFile ~/.ssh/vit-ed25519-ubuntu
+  IdentitiesOnly yes
+  IdentityAgent none
 Host lnx-stwsh
   Port 22
   ForwardX11 yes
   User stoeps
-  IdentityFile ansible_ed25519
+  IdentityFile ~/.ssh/ansible_ed25519
+  IdentitiesOnly yes
+  IdentityAgent none
+Host clt1
+  HostName 192.168.122.231
+  User stoeps
+  IdentityFile ~/.ssh/iac-ed25519
+  IdentitiesOnly yes
+  IdentityAgent none
+Host pfsense
+   User root
+   Hostname 192.168.1.211
+   Port 22
+   IdentityFile ~/.ssh/vit-ed25519-ubuntu
+   # pfsense
+   LocalForward 8082 192.168.2.2:80
+   IdentitiesOnly yes
+   IdentityAgent none
+Host goadproxmox
+   User root
+   Hostname 192.168.1.211
+   Port 22
+   IdentityFile ~/.ssh/vit-ed25519-ubuntu
+Host goadprovisioning
+   User root
+   Hostname 192.168.2.3
+   Port 22
+   IdentityFile ~/.ssh/vit-ed25519-ubuntu
+   Proxyjump goadproxmox
+Host kali-kvm
+  User stoeps
+  Hostname 10.0.22.240
+  Port 22
+  IdentityFile ~/.ssh/kali-pve-ed25519
+Host kali
+  User stoeps
+  Hostname 192.168.10.109
+  Port 22
+  IdentityFile ~/.ssh/kali-pve-ed25519
+  ForwardX11 yes
+Host kali-root
+  User root
+  Hostname 192.168.10.109
+  Port 22
+  IdentityFile ~/.ssh/kali-pve-ed25519
+  ForwardX11 yes
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/ansible_ed25519
