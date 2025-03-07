@@ -27,7 +27,7 @@ for r in gr:
     age_in_months = relativedelta(today, created).months + (relativedelta(today, created).years * 12)
 
     # Store cases in dictionary grouped by priority
-    cases_by_priority[case_prio].append(f'- [{case_no}: {case_title}](../archive/hcl-cases/{case_no}) - age: {age} days or {age_in_months} months')
+    cases_by_priority[case_prio].append(f'- [{case_no}: {case_title}](../hcl-cases/{case_no}) - age: {age} days or {age_in_months} months')
 
 # Print markdown output grouped by priority
 for prio in sorted(cases_by_priority.keys()):  # Ensure sorted order

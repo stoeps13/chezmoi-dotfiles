@@ -33,11 +33,11 @@ for r in gr:
     else:
         case_da = "[" + case_da_no + "](https://support.hcl-software.com/csm?id=kb_article&sysparm_article=" + case_da_no + ")"
 
-    print(f'''#### {case_no}: {case_title}
+    print(f'''# {case_no}: {case_title}
 ---
 title: {case_title}
 case-no: [{case_no}](https://support.hcl-software.com/csm?id=csm_ticket&table=sn_customerservice_case&sys_id={case_sys_id})
-link: [{case_no}](../archive/hcl-cases/{case_no})
+link: [{case_no}](../hcl-cases/{case_no})
 defect-article: {case_da}
 priority: {case_priority}
 created: {case_created}
