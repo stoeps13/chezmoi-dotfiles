@@ -278,7 +278,7 @@ source ~/.local/bin/fzf-git.sh
 # export _JAVA_AWT_WM_NONREPARENTING=1
 # export ECORE_EVAS_ENGINE=wayland_egl
 # export ELM_ENGINE=wayland_egl
-export GDK_SCALE=2
+# export GDK_SCALE=2
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
