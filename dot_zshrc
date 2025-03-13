@@ -77,7 +77,7 @@ ZSH_CUSTOM='$HOME/.oh-my-zsh-custom'
 plugins=(alias-finder colorize colored-man-pages copyfile copypath git ssh-agent tmux web-search)
 
 # Load ssh keys
-zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github
+zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github vit-ed25519-gitlab
 
 ZSH_TMUX_AUTOSTART_ONCE=true
 

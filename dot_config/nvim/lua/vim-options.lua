@@ -30,3 +30,18 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.opt.ignorecase = true
+
+-- Add this to your Neovim Lua config (init.lua or another loaded config file)
+vim.api.nvim_create_autocmd({"FileType"}, {
+  pattern = "asciidoc",
+  callback = function()
+    -- Set folding method to expr
+    vim.opt_local.foldmethod = "expr"
+    -- Define fold expression that uses AsciiDoc headers (==, ===, etc.) for folding
+    -- vim.opt_local.foldexpr = "getline(v:lnum)=~'^=\\+\\s' ? '>'.matchend(getline(v:lnum), '^=\\+') : '='"
+    vim.opt_local.foldexpr = "getline(v:lnum)=~'^==\\s' ? '>1' : getline(v:lnum)=~'^===\\s' ? '>2' : '='"
+    -- Start with all folds open
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldlevel = 20
+  end
+})
