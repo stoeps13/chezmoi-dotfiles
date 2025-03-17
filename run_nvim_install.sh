@@ -8,3 +8,8 @@ if [ -L ~/.local/bin/nvim ]; then
   rm ~/.local/bin/nvim
 fi
 ln -s ~/.local/share/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
+
+if [ -z /usr/bin/npm ]; then
+  npm install yarn
+fi
+
