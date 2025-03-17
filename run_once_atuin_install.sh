@@ -2,4 +2,4 @@
 
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
-ln -s ~/.local/atuin/bin/atuin ~/.local/bin/
+ln -s ~/.atuin/bin/atuin ~/.local/bin/
