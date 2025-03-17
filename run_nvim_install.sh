@@ -10,8 +10,10 @@ if [ -L ~/.local/bin/nvim ]; then
 fi
 ln -s ~/.local/share/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
 
-if [ -z /usr/bin/npm ]; then
+if [ -f /usr/bin/npm ]; then
   echo "Install yarn!"
+  cd ~
   npm install yarn
+  ln -s ~/node_modules/yarn/bin/yarn ~/.local/bin/
 fi
 
