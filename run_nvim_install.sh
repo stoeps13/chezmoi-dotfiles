@@ -12,8 +12,8 @@ ln -s ~/.local/share/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
 
 if [ -f /usr/bin/npm ]; then
   echo "Install yarn!"
-  cd ~
+  cd "$HOME"
   npm install yarn
-  ln -s ~/node_modules/yarn/bin/yarn ~/.local/bin/
+  ln -s "${HOME}/node_modules/yarn/bin/yarn" "${HOME}/.local/bin/"
 fi
 
