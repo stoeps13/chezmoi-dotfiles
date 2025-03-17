@@ -17,8 +17,9 @@ Linux)
       chmod +x ~/.local/bin/bw
       rm -rf $dir
     fi
-    if [ -z ${BW_SESSION+x} ]; then
+    if [ -z ${BW_SESSION} ]; then
       echo "Login to Bitwarden before running chezmoi apply"
+      exit 1
     fi
     ;;
 *)
