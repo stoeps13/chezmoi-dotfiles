@@ -18,7 +18,11 @@ Linux)
       rm -rf $dir
     fi
     if [ -z "${BW_SESSION+x}" ]; then
-      echo "Login to Bitwarden before running chezmoi apply"
+      echo "\n\t==================================================="
+      echo .
+      echo "\t\tLogin to Bitwarden before running chezmoi apply"
+      echo .
+      echo "\n\t==================================================="
       exit 1
     fi
     ;;
