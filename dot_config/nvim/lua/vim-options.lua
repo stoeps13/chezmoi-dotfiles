@@ -43,5 +43,12 @@ vim.api.nvim_create_autocmd({"FileType"}, {
     -- Start with all folds open
     vim.opt_local.foldenable = true
     vim.opt_local.foldlevel = 20
+
+    -- Define buffer-local fold keymappings that won't interfere with vim-zettel
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fc', '<cmd>foldclose<CR>', {desc = 'Close fold', noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fo', '<cmd>foldopen<CR>', {desc = 'Open fold', noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fa', '<cmd>fold<CR>', {desc = 'Toggle fold', noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fM', 'zM', {desc = 'Close all folds', noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>fR', 'zR', {desc = 'Open all folds', noremap = true, silent = true})
   end
 })
