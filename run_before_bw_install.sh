@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 type bw >/dev/null 2>&1 && exit
 
@@ -18,12 +18,6 @@ Linux)
       rm -rf $dir
     fi
     if [ -z "${BW_SESSION+x}" ]; then
-      HORIZONTAL="─"
-VERTICAL="│"
-TOP_LEFT="┌"
-TOP_RIGHT="┐"
-BOTTOM_LEFT="└"
-BOTTOM_RIGHT="┘"
       printf "\n\t┌────────────────────────────────────────────────────┐\n"
       printf "\t│                                                    │\n"
       printf "\t│  Login to Bitwarden before running chezmoi apply!  │\n"
