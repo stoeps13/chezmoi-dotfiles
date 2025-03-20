@@ -23,7 +23,8 @@ return {
 			},
 
 			asciidoc = {
-				template = 'image::$FILE_PATH[width=80%, alt="$FILE_NAME"]', ---@type string | fun(context: table): string
+			  dir_path = "images", ---@type string | fun(): string
+				template = 'image::$FILE_NAME[width=80%, alt="$FILE_NAME"]', ---@type string | fun(context: table): string
 			},
 		},
 		-- or leave it empty to use the default settings
