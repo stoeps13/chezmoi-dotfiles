@@ -10,3 +10,6 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none', 'eurosi
 
 # Set touchpad tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# Switch workspace on all displays
+gsettings set org.gnome.mutter workspaces-only-on-primary false
