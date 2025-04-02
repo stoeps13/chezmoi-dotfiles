@@ -1,0 +1,15 @@
+[hooks.read-source-state.pre]
+    command = ".local/share/chezmoi/.install-bw.sh"
+
+[edit]
+  apply = true
+
+[diff]
+  command = "difft"
+  args = ["--color", "always", "--missing-as-empty", "--skip-unchanged"]
+  pager = "cat"
+  exclude = ['scripts']
+
+[git]
+  autoCommit = true
+  autoPush = false
