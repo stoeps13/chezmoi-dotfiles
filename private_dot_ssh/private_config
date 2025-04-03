@@ -1,11 +1,25 @@
+Match tagged vit
+  IdentityFile ~/.ssh/vit-ed25519-gitea
+  IdentitiesOnly yes
+  ForwardAgent yes
+
+Match tagged stoeps
+  IdentityFile ~/.ssh/vit-ed25519-stoeps.de
+
+Match tagged iac
+  IdentityFile ~/.ssh/cnx6
+  IdentitiesOnly yes
+  StrictHostKeyChecking=no
+
+Match tagged github
+  IdentityFile ~/.ssh/vit-ed25519-github
+
 Host *.stoeps.internal
   User root
-  IdentityFile ~/.ssh/cnx6
   UserKnownHostsFile=/dev/null
-  StrictHostKeyChecking=no
-  IdentitiesOnly yes
   ForwardX11 yes
   ForwardAgent yes
+  Tag iac
 Host 172.104.228.63
   User root
   IdentityFile ~/.ssh/stoeps_rsa
@@ -16,8 +30,7 @@ Host stoeps.de
   AddKeysToAgent yes
   ServerAliveInterval 120
   ServerAliveCountMax 15
-  IdentityFile ~/.ssh/vit-ed25519-stoeps.de
-  IdentitiesOnly yes
+  Tag stoeps
 Host gitlab.com
   HostName gitlab.com
   User git
@@ -26,48 +39,29 @@ Host gitlab.com
   IdentitiesOnly yes
 Host github.com
   HostName github.com
-  IdentityFile ~/.ssh/vit-ed25519-github
-  IdentitiesOnly yes
-Host df.eu
-  HostName unverpackt-lorsch.de
-  User ssh-531188-stoeps
-  IdentityFile ~/.ssh/stoeps_rsa
-  IdentitiesOnly yes
+  Tag github
 Host git.vegardit.com
   HostName git.vegardit.com
   Port 12005
   User git
-  IdentityFile ~/.ssh/vit-ed25519-gitea
-  IdentitiesOnly yes
-Host *.stoeps.local
-  Port 22
-  User ansible
-  IdentityFile ~/.ssh/cnx6
-  IdentitiesOnly yes
+  Tag vit
 Host *.stoeps.home
   Port 22
   User ansible
-  # RemoteCommand TERM=xterm $SHELL
-  # RequestTTY yes
-  IdentityFile ~/.ssh/cnx6
-  StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
-  ForwardAgent yes
   IdentitiesOnly yes
-  # RemoteCommand TERM=xterm $SHELL
+  StrictHostKeyChecking=no
 Host 10.0.22.*
   Port 22
   User ansible
-  IdentityFile ~/.ssh/cnx6
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
   ForwardAgent yes
-  IdentitiesOnly yes
-  # RemoteCommand TERM=xterm $SHELL
+  Tag iac
 Host 192.168.1.210
   Port 22
   User ubuntu
@@ -78,11 +72,6 @@ Host lnx-stwsh
   ForwardX11 yes
   User stoeps
   IdentityFile ~/.ssh/ansible_ed25519
-  IdentitiesOnly yes
-Host clt1
-  HostName 192.168.122.231
-  User stoeps
-  IdentityFile ~/.ssh/iac-ed25519
   IdentitiesOnly yes
 Host pfsense
    User root
@@ -120,6 +109,10 @@ Host kali-root
   Port 22
   IdentityFile ~/.ssh/kali-pve-ed25519
   ForwardX11 yes
+Host OMV
+  Hostname 192.168.223.3
+  User root
+  Tag vit
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/ansible_ed25519
