@@ -5,4 +5,4 @@ RefuseManualStop=yes
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/mbsync --all'
+ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/vdirsyncer sync'
