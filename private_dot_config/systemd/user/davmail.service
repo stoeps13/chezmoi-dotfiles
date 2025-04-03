@@ -1,0 +1,8 @@
+[Unit]
+Description=Run DavMail
+RefuseManualStart=no
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/davmail'
