@@ -1,0 +1,34 @@
+plugins:
+  GoBack:
+    shortCut: q
+    override: true
+    description: "Go Back"
+    scopes:
+      - all
+    command: xdotool
+    background: true
+    confirm: false
+    args:
+      - key
+      - Escape
+  dive:
+    shortCut: Alt+d
+    confirm: false
+    description: "Dive image"
+    scopes:
+      - containers
+    command: dive
+    background: false
+    args:
+      - $COL-IMAGE
+  helm-values:
+    shortCut: v
+    confirm: false
+    description: Values
+    scopes:
+      - helm
+    command: sh
+    background: false
+    args:
+      - -c
+      - "helm get values $COL-NAME -n $NAMESPACE --kube-context $CONTEXT | less -K"
