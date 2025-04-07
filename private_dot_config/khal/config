@@ -5,26 +5,40 @@
 #    color = dark green
 #    priority = 20
 #
+#Syncing work_calendars/calendar
+#Syncing work_calendars/ZEP
+#Syncing dnug_calendar
+#Syncing nc_calendar/personal
+#Syncing nc_calendar/contact_birthdays
+#Syncing nc_calendar/calendar
+#Syncing nc_calendar/ZEP
+#Syncing nc_calendar/dnug-events
+#Syncing nc_calendar/feiertage-in-hessen-2025
+#Syncing nc_calendar/ferien-in-hessen-2025
+#Syncing nc_calendar/abfuhrtermine
   [[work]]
     path = ~/.local/share/calendars/calendar/
     color = dark blue
   [[zep]]
-    path = ~/.local/share/calendars/ZEP/
+    path = ~/.local/share/zep-calendars/
   [[dnug events]]
     path = ~/.local/share/calendar-dnug/
     color = dark red
-
   [[birthdays]]
     path = ~/.local/share/calendar-nc/contact_birthdays
     color = dark magenta
-  [[feiertage]]
-    path = ~/.local/share/calendar-nc/Feiertage+in+Deutschland+%28Google+Calendar+import%29
   [[personal]]
     path = ~/.local/share/calendar-nc/personal
     color = dark green
-  [[werlestrasse]]
-    path = ~/.local/share/calendar-nc/Werlestra%C3%9Fe+%28Google+Calendar+import%29
-    color = brown
+  [[feiertage]]
+    path = ~/.local/share/calendar-nc/feiertage-in-hessen-2025
+    color = light green
+  [[ferien]]
+    path = ~/.local/share/calendar-nc/ferien-in-hessen-2025
+    color = yellow
+  [[zakb]]
+    path = ~/.local/share/calendar-nc/abfuhrtermine
+    color = light gray
 
 [locale]
 local_timezone= Europe/Berlin
