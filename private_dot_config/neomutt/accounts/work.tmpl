@@ -22,3 +22,16 @@ set date_format = "%Y-%m-%d %H:%M"
 set index_format = "%4C %Z %D %-15.15L (%<l?%4l&%4c>) %s"
 
 macro index / "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py<enter><change-folder-readonly>~/.cache/mutt_results<enter>" "search mail (using notmuch)"
+
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set crypt_replysignencrypted=yes
+set crypt_autoencrypt=no
+
+set pgp_default_key="9536DDCDF669F74E80295E7BD1844AF1CE287870"
+set pgp_check_gpg_decrypt_status_fd
+set pgp_use_gpg_agent = yes
+set pgp_self_encrypt = yes
