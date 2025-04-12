@@ -20,7 +20,7 @@
 
 [".local/share"]
   type = "archive"
-  url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+  url = "https://github.com/neovim/neovim/releases/latest/download/nvim-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
   refreshPeriod = "168h"
 
 {{ $hugo_version := "0.146.2" -}}
