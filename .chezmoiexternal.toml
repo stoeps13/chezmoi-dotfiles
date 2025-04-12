@@ -23,10 +23,10 @@
   url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
   refreshPeriod = "168h"
 
-{{ $hugo_version := "v0.145.2" -}}
+{{ $hugo_version := "0.146.2" -}}
 [".local/bin/hugo"]
     type = "file"
-    url = "https://github.com/gohugoio/hugo/releases/download/{{ $hugo_version }}/hugo_{{ $hugo_version }}_{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+    url = "https://github.com/gohugoio/hugo/releases/download/v{{ $hugo_version }}/hugo_{{ $hugo_version }}_{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
     executable = true
     refreshPeriod = "168h"
     [".local/bin/hugo".filter]
