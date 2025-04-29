@@ -1,0 +1,363 @@
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="agnoster"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+DISABLE_AUTO_UPDATE="true"
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="false"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM='$HOME/.oh-my-zsh-custom'
+[ -f $HOME/.oh-my-zsh-custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ] && source $HOME/.oh-my-zsh-custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+[ -f $HOME/.oh-my-zsh-custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ] && source $HOME/.oh-my-zsh-custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+fpath=(~/.oh-my-zsh-custom/completions $fpath)
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(alias-finder colorize colored-man-pages copyfile copypath git ssh-agent tmux web-search)
+
+# Load ssh keys
+zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github vit-ed25519-gitlab
+
+ZSH_TMUX_AUTOSTART_ONCE=true
+
+source $ZSH/oh-my-zsh.sh
+
+export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Export user specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/go/bin" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
+fi
+if ! [[ "$PATH" =~ "$HOME/.krew" ]]
+then
+  PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+if [[ -d $HOME/.cargo/bin ]]
+then
+  PATH="$HOME/.cargo/bin:$PATH"
+fi
+export PATH
+
+alias gst='git status'
+alias gcm='git commit -m'
+alias ga='git add'
+alias gpl='git pull'
+alias gps='git push'
+alias til='cd ~/logseq-til'
+
+alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
+
+# FZF if available
+if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]
+then
+	source /usr/share/fzf/shell/key-bindings.zsh
+elif [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]
+then
+        source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
+
+# Hugo completion
+if [[ -f ~/.oh-my-zsh-custom/plugins/zsh-hugo.zsh ]]
+then
+    source ~/.oh-my-zsh-custom/plugins/zsh-hugo.zsh
+fi
+# Chezmoi completion
+if [[ -f ~/.oh-my-zsh-custom/plugins/zsh-chezmoi.zsh ]]
+then
+    source ~/.oh-my-zsh-custom/plugins/zsh-chezmoi.zsh
+fi
+
+# Load fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# if fd is installed
+if [[ -f /usr/bin/fd ]]
+then
+    export FZF_DEFAULT_COMMAND="fd --type f"
+    # export FZF_DEFAULT_COMMAND="rg --files --ignore-vcs --hidden"
+    export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+fi
+
+if [[ -f /usr/bin/fdfind ]]
+then
+	alias fd='fdfind'
+fi
+
+# Some aliases depending on installed software
+[ -f /usr/bin/bat ] && alias cat='bat --color=always'
+[ -f /usr/bin/batcat ] && alias cat='batcat --color=always'
+[ -f /usr/bin/rg ] && alias grep='rg'
+if [[ -f /usr/bin/nvim ]]
+then
+  alias vim='nvim'
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
+
+if [[ -f /home/stoeps/.fly ]]
+then
+  export FLYCTL_INSTALL="/home/stoeps/.fly"
+  export PATH="$FLYCTL_INSTALL/bin:$PATH"
+fi
+
+alias ssh='TERM=xterm ssh'
+alias today='khal list -o $(date +"%d.%m.%Y") 1d'
+alias tomorrow='khal list -o $(date -d "+1 days" +"%d.%m.%Y") 1d'
+alias 3days='khal list -o $(date +"%d.%m.%Y") 3d'
+alias nextweek='khal list -o $(date -dnext-monday +%d.%m.%Y) 7d'
+alias 4k='gnome-monitor-config set -LpM DP-2 -m "3840x2160@59.997" -s 1.25'
+alias fullhd='gnome-monitor-config set -LpM DP-2 -s 1.0 -m "1920x1080@60.000"'
+alias gmail='neomutt -F ~/.config/neomutt/neomuttrc_gmail'
+alias fedora='distrobox-enter fedora'
+alias ubuntu='distrobox-enter ubuntu'
+alias kali='distrobox-enter kali'
+alias tmux_work='tmuxp load ~/.config/tmux/tmuxp-work.yml'
+alias external-ip='curl https://ipinfo.io/'
+alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
+alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
+
+
+# if $(distrobox-host-exec ls > /dev/null)
+# then
+#   alias podman='distrobox-host-exec podman'
+#   alias buildah='distrobox-host-exec buildah'
+#   alias docker='distrobox-host-exec podman'
+#   alias journalctl='distrobox-host-exec journalctl'
+#   alias rpm-ostree='distrobox-host-exec rpm-ostree'
+#   alias flatpak='distrobox-host-exec flatpak'
+# fi
+export DISABLE_AUTO_TITLE='true'
+
+if [ -n "$CONTAINER_ID" ]; then
+  if [ $CONTAINER_ID = kali ]; then
+    psvar[1]="@%F{green}${(%):-$CONTAINER_ID 👽}"     # show hostname inside docker containers
+    # 🤯
+    alias cme='crackmapexec'
+  elif [ $CONTAINER_ID = fedora ]; then
+    psvar[1]="@%F{cyan}${(%):-$CONTAINER_ID 🧰}"     # show hostname inside docker containers
+    export PATH=$PATH:~/Android/Sdk/platform-tools
+  else
+    psvar[1]="@%F{yellow}${(%):-$CONTAINER_ID 📦}"     # show hostname inside docker containers
+  fi
+else
+    psvar[1]="@%F{blue}${(%):-$(hostname)}"     # show hostname inside podman containers
+fi
+
+# Context: user@hostname (who am I and where am I)
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER$psvar"
+  fi
+}
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+
+alias pkm='nvim "$HOME/logseq-til/journals/$(date +%Y-%m-%d).md"'
+alias pkmj='cd $HOME/logseq-til/journals/'
+alias pkmp='cd $HOME/logseq-til/pages/'
+alias pkmu='nvim "$(find $HOME/logseq-til/ -type f -name '\''*.md'\'' -printf '\''%T@ %p\n'\'' | sort -n | tail -1 | cut -d'\'' '\'' -f2-)"'
+if [[ -f /usr/bin/eza ]]; then
+  alias ll="eza -l --icons=always"
+  alias la="eza -la --icons=always"
+fi
+# if [[ -f /usr/bin/zoxide ]]; then
+#   eval "$(zoxide init zsh)"
+#   eval "$(zoxide init --cmd cd zsh)"
+#   #alias cd = "z"
+# fi
+# export BW_SESSION=$(bw unlock --raw)
+#
+# Source additional files
+source ~/.local/bin/fzf-git.sh
+
+# export QT_AUTO_SCREEN_SCALE_FACTOR=0
+# export QT_SCREEN_SCALE_FACTORS="1.5;1"
+# # custom theming
+# export QT_QPA_PLATFORMTHEME=qt6ct
+# export CLUTTER_BACKEND=wayland
+# export SDL_VIDEODRIVER=wayland
+# export XDG_SESSION_TYPE=wayland
+# export XDG_CURRENT_DESKTOP=sway
+# export QT_QPA_PLATFORM=wayland
+# # removes window outlines and stuff
+# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# # Firefox fix just in case
+# export MOZ_ENABLE_WAYLAND=1
+# # java fix
+# export _JAVA_AWT_WM_NONREPARENTING=1
+# export ECORE_EVAS_ENGINE=wayland_egl
+# export ELM_ENGINE=wayland_egl
+# export GDK_SCALE=2
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+# Shell function for more flexibility
+function set_tmux_title() {
+    if [ -n "$TMUX" ]; then
+        tmux rename-window "$1"
+    fi
+}
+
+# Usage example
+if [ -n $CONTAINER_ID ]; then
+  set_tmux_title "$CONTAINER_ID"
+fi
+
+### End of Zinit's installer chunk
+eval "$(atuin init zsh)"
+
+nmap_scan() {
+    local ip="$1"
+    local output_dir="output"
+    local timestamp=$(date +%Y%m%d-%H%M%S)
+
+    # Run nmap and store output
+    local scan_output
+    # -A contains OS detection, version detection, script scanning and traceroute
+    scan_output=$(sudo nmap -A -p- "$ip")
+
+    mkdir -p "$output_dir"
+    # Extract the hostname from "Nmap scan report for <hostname> (<ip>)"
+    local hostname
+    hostname=$(echo "$scan_output" | awk '/Nmap scan report for/{print $5}' | sed 's/[().]/_/g')
+
+    # Fallback to IP if no hostname is found
+    [[ -z "$hostname" ]] && hostname="$ip"
+
+    # Ensure output directory exists
+    mkdir -p "$output_dir"
+
+    # Save output to file
+    echo "$scan_output" | tee "$output_dir/nmap_${hostname}_${timestamp}.log"
+}
+log_output() {
+    local cmd_name="$1"  # First argument is the command name
+    local timestamp=$(date +"%Y%m%d_%H%M%S")
+    local logfile="output/${cmd_name}_${timestamp}.log"
+
+    mkdir -p output
+    tee "$logfile"
+}
+
+run_with_logging() {
+    local cmd="$1"
+    shift  # Remove first argument, so remaining arguments are passed to the command
+    "$cmd" "$@" | log_output "$cmd"
+}
+
+export PNPM_HOME="/var/home/stoeps/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'

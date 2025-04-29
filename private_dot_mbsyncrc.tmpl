@@ -1,0 +1,46 @@
+IMAPAccount work
+Host 127.0.0.1
+Port 1143
+User {{ (bitwarden "item" "Microsoft-Mail").login.username }}
+Pass {{ (bitwarden "item" "Microsoft-Mail").login.password }}
+SSLType None
+AuthMechs LOGIN
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-local
+Subfolders Verbatim
+Path ~/.local/share/mail/work/
+Inbox ~/.local/share/mail/work/Inbox
+
+Channel work
+Far :work-remote:
+Near :work-local:
+SyncState *
+Patterns *
+Create Both
+Sync All
+Expunge Both
+
+IMAPStore gmail-remote
+Host imap.gmail.com
+SSLType IMAPS
+AuthMechs LOGIN
+User {{ (bitwarden "item" "Googlemail SMTP").login.username }}
+Pass {{ (bitwarden "item" "Googlemail SMTP").login.password }}
+
+MaildirStore gmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/gmail/
+Inbox ~/.local/share/mail/gmail/Inbox
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+SyncState *
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Create Both
+Sync All
+Expunge Both
+

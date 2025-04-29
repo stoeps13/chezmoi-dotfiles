@@ -1,0 +1,22 @@
+[user]
+	name = Christoph Stoettner
+	email = christoph.stoettner@stoeps.de
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[ghq]
+  vcs = git
+  root = ~/repos
+[diff]
+        tool = difftastic
+[difftool]
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+        difftool = true
+[alias]
+  dft = difftool
+[safe]
+	directory = /var/mnt/stoeps-customizer-css

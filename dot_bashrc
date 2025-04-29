@@ -1,0 +1,79 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+# eval "$(atuin init bash)"
+export QT_SCREEN_SCALE_FACTORS="1.5;1"
+
+if [ -n "$CONTAINER_ID" ]; then
+  # Only trigger if:
+  # - 'zsh' is not the parent process of this shell
+  # - We did not call: bash -c '...'
+  # - The fish binary exists and is executable
+  if [[ $(ps --no-header --pid=$PPID --format=comm) != "zsh" && -z ${BASH_EXECUTION_STRING} && -x "/usr/bin/zsh" ]]; then
+    #shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+    exec zsh $LOGIN_OPTION
+  fi
+fi
+
+# if [[ -x "/usr/bin/zsh" ]]; then
+#   exec zsh $LOGIN_OPTION
+# fi
+export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
+alias fedora='distrobox enter fedora'
+alias kali='distrobox enter --root kali'
+alias ubuntu='distrobox enter ubuntu'
+
+export GDK_SCALE=1.5
+
+# Shell function for more flexibility
+function set_tmux_title() {
+    if [ -n "$TMUX" ]; then
+        tmux rename-window "$1"
+    fi
+}
+
+# Usage example
+if [ -n $CONTAINER_ID ]; then
+  set_tmux_title "$CONTAINER_ID"
+fi
+
+. "$HOME/.atuin/bin/env"
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+
+
+# add Pulumi to the PATH
+export PATH=$PATH:/var/home/stoeps/.pulumi/bin
+
+# pnpm
+export PNPM_HOME="/var/home/stoeps/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

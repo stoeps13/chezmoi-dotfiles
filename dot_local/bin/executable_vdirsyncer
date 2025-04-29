@@ -1,0 +1,10 @@
+#!/bin/sh
+# distrobox_binary
+# name: fedora
+if [ -z "${CONTAINER_ID}" ]; then
+	exec "/usr/bin/distrobox-enter"  -n fedora  --  '/usr/bin/vdirsyncer'  "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "fedora" ]; then
+	exec distrobox-host-exec '/var/home/stoeps/.local/bin/vdirsyncer' "$@"
+else
+	exec '/usr/bin/vdirsyncer' "$@"
+fi

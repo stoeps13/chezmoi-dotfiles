@@ -1,0 +1,3 @@
+font-family = SauceCodePro Nerd Font Mono font-size = 20
+theme = MaterialDesignColors
+shell-integration-features = sudo

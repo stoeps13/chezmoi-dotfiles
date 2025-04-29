@@ -1,0 +1,151 @@
+# -----------------------------------------------------------------------------
+# Asciidoctor PDF Theme for technical documentation and tutorials.
+# -----------------------------------------------------------------------------
+page:
+  layout: portrait
+  margin: 20mm
+  margin-inner: 25mm
+  margin-outer: 20mm
+  size: a4
+base:
+  font-color: #333333
+  # font-family: Clear Sans
+  font-style: normal
+  font-size: 12
+  line_height_length: 14
+  line_height: $base_line_height_length / $base_font-size
+vertical-spacing: $base_line_height_length
+admonition:
+  border-radius: 4
+  background-color: #cccccc
+  padding: [8, 8, 8, 8]
+quote:
+  border-color: #E6E8FA
+  font-color: #333333
+  border-left-width: 5
+  padding: [3, 0, 3, 20]
+heading:
+  font-color: #1d4e89
+  # font-family: Clear Sans
+  font-size: 16
+  font-style: normal
+  line-height: 1
+  margin-bottom: $vertical-spacing / 1.5
+  margin-top: $vertical-spacing / 1.2
+caption:
+  font-style: bold
+  font-size: 10
+  margin-inside: 1mm
+  margin-outside: 3mm
+code:
+  font-color: #333333
+  # font-family: Courier Prime Sans
+  font-style: normal
+  font-size: 9
+  background-color: #f6f6f6
+  border-color: #0f80aa
+  border-radius: 2
+  padding: 2mm
+codespan:
+  font-family: Courier
+  font-style: normal
+link:
+  font-color: #002FA7
+description_list:
+  description_indent: $base_font-size * 2.5
+list:
+  indent: $base_font-size * 2.5
+title-page:
+  # font-family: Clear Sans Thin
+  font-color: ffffff
+  background-color: #1d4e89
+  align: center
+  logo:
+    top: 10%
+    image: image:images/{logo-image-name}[width=30%, align=center]
+  title:
+    top: 30%
+    font-size: $base_font-size * 4.25
+    # font-family: Clear Sans
+    font-style: bold
+    line-height: 0.9
+  subtitle:
+    font-size: $base_font-size * 2.00
+    line-height: 1
+  authors:
+    margin-top: $base_font-size * 29.25
+    font-size: $base_font-size * 1.5
+  revision:
+    margin-top: $base_font-size * 0.5
+table:
+  # border-width: 0
+  font-size: 9
+  cell:
+    padding: 3
+  head:
+    font-size: 10
+    font-style: bold
+    # font-family: Clear Sans
+    background-color: #F0F0F0
+conum:
+  # font-family: M+ 1mn
+  font-color: #0f80aa
+  line-height: 4 / 3
+  glyphs: filled
+kbd:
+  background-color: #f5f5f5
+  border-color: #cccccc
+  border-offset: 2
+  border-radius: 2
+  border-width: 0.5
+  # font-family: M+ 1mn
+  font-style: bold
+  separator: "\u202f+\u202f"
+
+header:
+  font-color: #c0c0c0
+  font-size: 10
+  border-color: #c0c0c0
+  border-width: 0.5
+  padding: [$base_line_height_length / 2, 1, 0, 1]
+  vertical-align: bottom
+  height: 1.5cm
+  recto:
+    right:
+      content: '{section-or-chapter-title}'
+    left:
+      content: '{document-title}'
+  verso:
+    right:
+      content: $header-recto-left-content
+    left:
+      content: $header-recto-right-content
+footer:
+  font-color: #c0c0c0
+  font-size: 10
+  border-color: #c0c0c0
+  border-width: 0.5
+  vertical-align: top
+  padding: [$base_line_height_length / 2, 1, 0, 1]
+  height: 1.5cm
+  recto:
+    right:
+      content: '{page-number}'
+    left:
+      content: '© {copyright-name}'
+    center:
+      content: 'Version {revnumber}, {revdate}'
+  verso:
+    left:
+      content: $footer-recto-right-content
+    right:
+      content: $footer-recto-left-content
+    center:
+      content: $footer-recto-center-content
+thematic-break:
+  font-color: #c0c0c0
+  font-size: 10
+  border-color: #c0c0c0
+  border-width: 0.5
+toc:
+  line-height: 1.5
