@@ -1,0 +1,63 @@
+[calendars]
+
+#  [[home]]
+#    path = ~/.calendars/home/
+#    color = dark green
+#    priority = 20
+#
+#Syncing work_calendars/calendar
+#Syncing work_calendars/ZEP
+#Syncing dnug_calendar
+#Syncing nc_calendar/personal
+#Syncing nc_calendar/contact_birthdays
+#Syncing nc_calendar/calendar
+#Syncing nc_calendar/ZEP
+#Syncing nc_calendar/dnug-events
+#Syncing nc_calendar/feiertage-in-hessen-2025
+#Syncing nc_calendar/ferien-in-hessen-2025
+#Syncing nc_calendar/abfuhrtermine
+  [[work]]
+    path = ~/.local/share/calendars/calendar/
+    color = dark blue
+  [[zep]]
+    path = ~/.local/share/zep-calendars/
+  [[dnug events]]
+    path = ~/.local/share/calendar-dnug/
+    color = dark red
+  [[birthdays]]
+    path = ~/.local/share/calendar-nc/contact_birthdays
+    color = dark magenta
+  [[personal]]
+    path = ~/.local/share/calendar-nc/personal
+    color = dark green
+  [[feiertage]]
+    path = ~/.local/share/calendar-nc/feiertage-in-hessen-2025
+    color = light green
+  [[ferien]]
+    path = ~/.local/share/calendar-nc/ferien-in-hessen-2025
+    color = yellow
+  [[zakb]]
+    path = ~/.local/share/calendar-nc/abfuhrtermine
+    color = light gray
+  [[corinna]]
+    path = ~/.local/share/calendars-gmail/corinna.stoettner@stoeps.de
+    color = light red
+  [[paula]]
+    path = ~/.local/share/calendars-gmail/paula@stoeps.de
+    color = light magenta
+  [[ida]]
+    path = ~/.local/share/calendars-gmail/ida@stoeps.de
+    color = light cyan
+
+[locale]
+local_timezone= Europe/Berlin
+default_timezone= Europe/Berlin
+timeformat= %H:%M
+dateformat= %d.%m.
+longdateformat= %d.%m.%Y
+datetimeformat= %d.%m. %H:%M
+longdatetimeformat= %d.%m.%Y %H:%M
+
+[view]
+event_format={calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
+agenda_event_format={calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}

@@ -1,0 +1,119 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+# M365 Calendars
+[pair work_calendars]
+a = "work_calendars_local"
+b = "work_calendars_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+[storage work_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars/"
+fileext = ".ics"
+
+[storage work_calendars_remote]
+type = "caldav"
+url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/"
+username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
+password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+
+# ZEP calendars
+[storage zep_calendars_local]
+type = "filesystem"
+path = "~/.local/share/zep-calendars/"
+fileext = ".ics"
+
+[storage zep_calendars_remote]
+type = "caldav"
+url = "https://www.zep-online.de/zepvegard/sync/dav.php/calendars/stoeps/absences/"
+username = "{{ (bitwarden "item" "www.zep-online.de").login.username }}"
+password = "{{ (bitwarden "item" "www.zep-online.de").login.password }}"
+
+[pair zep_calendars]
+a = "zep_calendars_local"
+b = "zep_calendars_remote"
+collections = ["from a", "from b"]
+
+# DNUG / Import only
+[pair dnug_calendar]
+a = "dnug_calendar_local"
+b = "dnug_calendar_remote"
+collections = null
+
+[storage dnug_calendar_local]
+type = "filesystem"
+path = "~/.local/share/calendar-dnug/"
+fileext = ".ics"
+
+[storage dnug_calendar_remote]
+type = "http"
+url = "https://dnug.de/ical-de.ics"
+
+# NextCloud
+[storage nc_cal_remote]
+type = "caldav"
+url = "{{ (bitwardenFields "item" "nextcloud").URL.value }}"
+username = "{{ (bitwarden "item" "nextcloud").login.username }}"
+password = "{{ (bitwarden "item" "nextcloud").login.password }}"
+
+[storage nc_cal_local]
+type = "filesystem"
+path = "~/.local/share/calendar-nc/"
+fileext = ".ics"
+
+[pair nc_calendar]
+a = "nc_cal_local"
+b = "nc_cal_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+[pair work_nc_calendar]
+a = "work_calendars_local"
+b = "nc_cal_remote"
+collections = ["from a"]
+metadata = ["color"]
+
+# ZEP to NC
+[pair zep_nc_calendar]
+a = "zep_calendars_local"
+b = "nc_cal_remote"
+collections = ["from a"]
+
+# Upload to GCAL
+[storage google_calendars_remote]
+type = "google_calendar"
+token_file = "~/.config/vdirsyncer/google_token"
+client_id = "{{- (bitwardenFields "item" "Stoeps Mail").client_id.value -}}"
+client_secret = "{{- (bitwardenFields "item" "Stoeps Mail").client_secret.value -}}"
+
+[storage google_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars-gmail/"
+fileext = ".ics"
+
+[pair gmail_calendars]
+a = "google_calendars_remote"
+b = "google_calendars_local"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+# Card DAV
+[pair work_addressbook]
+a = "work_addressbook_local"
+b = "work_addressbook_remote"
+conflict_resolution = "b wins"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+[storage work_addressbook_local]
+type = "filesystem"
+path = "~/.local/share/contacts/work"
+fileext = ".vcf"
+
+[storage work_addressbook_remote]
+type = "carddav"
+url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/contacts"
+username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
+password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"

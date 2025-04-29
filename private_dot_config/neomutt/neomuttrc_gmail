@@ -1,0 +1,17 @@
+# vim: filetype=muttrc
+unmailboxes *
+
+source ~/.config/neomutt/settings
+source ~/.config/neomutt/colors
+source ~/.config/neomutt/mappings
+
+# Accounts
+
+source ~/.config/neomutt/accounts/gmail
+folder-hook ~/.local/share/mail/gmail 'source ~/.config/neomutt/accounts/gmail'
+
+# source ~/.config/neomutt/accounts/work
+# folder-hook ~/.local/share/mail/work  'source ~/.config/neomutt/accounts/work'
+
+# macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/gmail<enter><change-folder>!<enter>'
+# macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/work<enter><change-folder>!<enter>'

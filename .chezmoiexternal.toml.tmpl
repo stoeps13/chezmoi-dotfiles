@@ -1,0 +1,67 @@
+[".oh-my-zsh"]
+  type = "git-repo"
+  url = "https://github.com/ohmyzsh/ohmyzsh.git"
+  refreshPeriod = "168h"
+
+[".oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+  type = "git-repo"
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+  refreshPeriod = "168h"
+
+[".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
+  type = "git-repo"
+  url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+  refreshPeriod = "168h"
+
+[".fzf"]
+  type = "git-repo"
+  url = "https://github.com/junegunn/fzf.git"
+  refreshPeriod = "168h"
+
+[".local/share"]
+  type = "archive"
+  url = "https://github.com/neovim/neovim/releases/latest/download/nvim-{{ .chezmoi.os }}-x86_64.tar.gz"
+  refreshPeriod = "168h"
+
+[".local/bin/hugo"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_*_%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+  executable = true
+  refreshPeriod = "168h"
+  path = "hugo"
+
+[".local/bin/eza"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" "eza_x86_64-unknown-linux-gnu.tar.gz" | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "./eza"
+
+[".oh-my-zsh-custom/completions/_eza"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" "completions-*.tar.gz" | quote }}
+  refreshPeriod = "168h"
+  stripComponents = 3
+  path = "_eza"
+
+[".local/bin/atuin"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "atuinsh/atuin" "atuin-x86_64-unknown-linux-gnu.tar.gz" | quote }}
+  refreshPeriod = "168h"
+  stripComponents = 1
+  path = "atuin"
+
+[".local/bin/nerdctl"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "containerd/nerdctl" (printf "nerdctl-*-linux-amd64.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "nerdctl"
+
+{{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
+
+[".local/bin"]
+  type = "archive"
+  refreshPeriod = "168h"
+  url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
+

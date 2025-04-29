@@ -1,0 +1,37 @@
+set mbox_type = Maildir
+set folder = "~/.local/share/mail/work/"
+
+set spoolfile = "+Inbox"
+set record = "+Sent"
+set postponed = "+Drafts"
+
+set realname = 'Christoph Stoettner'
+set from = '{{ (bitwarden "item" "Microsoft-Mail").login.username }}'
+set use_from = yes
+mailboxes "+Inbox" "+Sent" "+Drafts" "+Archive" "+Archive/2023" "+Archive/2024" "+Archive/2025"
+
+# Yearly archives
+save-hook ~r01/01/2023-31/12/2023 +Archive/2023
+save-hook ~r01/01/2024-31/12/2024 +Archive/2024
+save-hook ~r01/01/2025-31/12/2025 +Archive/2025
+
+set sendmail = "msmtp -a work"
+set signature = "$XDG_CONFIG_HOME/neomutt/sigs/work.signature"
+
+set date_format = "%Y-%m-%d %H:%M"
+set index_format = "%4C %Z %D %-15.15L (%<l?%4l&%4c>) %s"
+
+macro index / "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py<enter><change-folder-readonly>~/.cache/mutt_results<enter>" "search mail (using notmuch)"
+
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set crypt_replysignencrypted=yes
+set crypt_autoencrypt=no
+
+set pgp_default_key="9536DDCDF669F74E80295E7BD1844AF1CE287870"
+set pgp_check_gpg_decrypt_status_fd
+set pgp_use_gpg_agent = yes
+set pgp_self_encrypt = yes

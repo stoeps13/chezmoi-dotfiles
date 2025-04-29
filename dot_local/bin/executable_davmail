@@ -1,0 +1,10 @@
+#!/bin/sh
+# distrobox_binary
+# name: ubuntu
+if [ -z "${CONTAINER_ID}" ]; then
+	exec "/usr/bin/distrobox-enter"  -n ubuntu  --  '/usr/bin/davmail'  "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "ubuntu" ]; then
+	exec distrobox-host-exec '/var/home/stoeps/.local/bin/davmail' "$@"
+else
+	exec '/usr/bin/davmail' "$@"
+fi

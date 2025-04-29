@@ -1,0 +1,12 @@
+[Desktop Entry]
+Comment=Access m365 mail and calendar
+Exec=distrobox-enter -n ubuntu -- bash -cl "/home/stoeps/.local/bin/davmail"
+GenericName=Davmail
+Name[en_US]=Davmail
+Name=Davmail
+Icon=/var/home/stoeps/Pictures/davmail.png
+Path=/var/home/stoeps
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.0

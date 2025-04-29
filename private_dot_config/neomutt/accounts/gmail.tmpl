@@ -1,0 +1,40 @@
+set realname="Christoph Stoettner"
+set from="{{ (bitwarden "item" "Googlemail SMTP").login.username }}"
+set use_from=yes
+
+set sendmail='msmtp -a gmail'
+
+set mbox_type = Maildir
+set folder = "~/.local/share/mail/gmail/"
+
+set spoolfile=+Inbox
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+
+set signature = "$XDG_CONFIG_HOME/neomutt/sigs/gmail.signature"
+
+set mail_check_stats
+# You can use any gmail imap mailboxes
+
+mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Archive =[Gmail]/Archive/2023 =[Gmail]/Archive/2024 =[Gmail]/Archive/2025
+
+# Yearly archives
+save-hook ~r01/01/2023-31/12/2023 =/[Gmail]/Archive/2023
+save-hook ~r01/01/2024-31/12/2024 =/[Gmail]/Archive/2024
+save-hook ~r01/01/2025-31/12/2025 =/[Gmail]/Archive/2025
+
+set date_format = "%Y-%m-%d %H:%M"
+set index_format = "%4C %Z %D %-15.15L (%<l?%4l&%4c>) %s"
+
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set crypt_replysignencrypted=yes
+set crypt_autoencrypt=no
+
+set pgp_default_key="641CD2C74596010D584348637704D09CE99650FC"
+set pgp_check_gpg_decrypt_status_fd
+set pgp_use_gpg_agent = yes
+set pgp_self_encrypt = yes
