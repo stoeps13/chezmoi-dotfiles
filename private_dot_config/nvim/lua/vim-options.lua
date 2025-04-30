@@ -91,4 +91,17 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
     end
   end
 })
+-- Create the mapping
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>sf',                 -- the key combination
+  ':r ! update_frontmatter.py %<CR>', -- the command to execute
+  { desc = 'Update frontmatter', noremap = true, silent = false } -- options
+)
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>sc',                 -- the key combination
+  ':r! sn_case_with_comments.py -n %:t:r -f ', -- the command to execute
+  { desc = "Get new comments",noremap = true, silent = false } -- options
+)
 
