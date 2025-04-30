@@ -15,17 +15,15 @@ username, password, base_url = load_config()
 
 lastupdate=strftime("%Y-%m-%d %H:%M:%S", gmtime())
 date=strftime("%Y-%m-%d", gmtime())
-
 client = ServiceNowClient(base_url, (username, password))
 
-# week_ago = datetime.now() + timedelta(days=-7)
-last_24_months = datetime.now() + timedelta(days=-730)
+ago = datetime.now() + timedelta(hours=-480)
 
 gr = client.GlideRecord('sn_customerservice_case')
 gr.add_query("active", "false")
-gr.add_query("closed_at", ">", last_24_months)
+gr.add_query("closed_at", ">", ago)
 
-gr.order_by("task_effective_number")
+gr.order_by("closed_at")
 # gr.fields = ['sys_id', 'short_description','sys_updated_on','u_external_action_status_2','task_effective_number','priority','u_external_action_status_2','u_internal_status_1']
 gr.query()
 
