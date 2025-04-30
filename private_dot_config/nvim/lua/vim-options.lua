@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
 vim.api.nvim_set_keymap(
   'n',                               -- normal mode
   '<localleader>sf',                 -- the key combination
-  ':r ! update_frontmatter.py %<CR>', -- the command to execute
+  ':r ! update_frontmatter.py %<CR>:e!<CR>', -- the command to execute
   { desc = 'Update frontmatter', noremap = true, silent = false } -- options
 )
 vim.api.nvim_set_keymap(
@@ -103,5 +103,12 @@ vim.api.nvim_set_keymap(
   '<localleader>sc',                 -- the key combination
   ':r! sn_case_with_comments.py -n %:t:r -f ', -- the command to execute
   { desc = "Get new comments",noremap = true, silent = false } -- options
+)
+
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>si',                 -- the key combination
+  ':r! sn_interloc_overview.py<CR>', -- the command to execute
+  { desc = "Get open case list",noremap = true, silent = false } -- options
 )
 
