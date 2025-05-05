@@ -59,9 +59,71 @@
   path = "nerdctl"
 
 {{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
-
 [".local/bin"]
   type = "archive"
   refreshPeriod = "168h"
   url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
+
+[".local/bin/lazygit"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_Linux_x86_64.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "lazygit"
+
+[".local/bin/talosctl"]
+  type = "file"
+  url = {{ gitHubLatestReleaseAssetURL "siderolabs/talos" "talosctl-linux-amd64" | quote }}
+  refreshPeriod = "168h"
+  executable = true
+
+[".local/bin/k9s"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "derailed/k9s" "k9s_Linux_amd64.tar.gz" | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "k9s"
+
+[".local/bin/kubens"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "ahmetb/kubectx" (printf "kubens_*_linux_x86_64.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "kubens"
+
+[".local/bin/kubectx"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "ahmetb/kubectx" (printf "kubectx_*_linux_x86_64.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "kubectx"
+
+[".local/bin/trivy"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "aquasecurity/trivy" (printf "trivy_*_Linux-64bit.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "trivy"
+
+[".local/bin/dive"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "wagoodman/dive" (printf "dive_*_linux_amd64.tar.gz") | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "dive"
+
+[".local/bin/stylua"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "JohnnyMorganz/StyLua" "stylua-linux-x86_64.zip" | quote }}
+  refreshPeriod = "168h"
+  executable = true
+  path = "stylua"
+
+{{- $helmVersion := ((gitHubLatestRelease "helm/helm").TagName) | replaceAllRegex "v" "" }}
+[".local/bin/helm"]
+  type = "archive-file"
+  refreshPeriod = "168h"
+  url = "https://get.helm.sh/helm-v{{ $helmVersion }}-linux-amd64.tar.gz"
+  stripComponents = 1
+  path = "helm"
 
