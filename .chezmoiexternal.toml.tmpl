@@ -127,3 +127,8 @@
   stripComponents = 1
   path = "helm"
 
+[".local/bin/kubectl"]
+type = "file"
+executable = true
+refreshPeriod = "720h"
+url = 'https://dl.k8s.io/release/{{ output "curl" "-L" "-s" "https://dl.k8s.io/release/stable.txt" | trim }}/bin/linux/amd64/kubectl'
