@@ -69,7 +69,7 @@ return {
         ["```sql"] = { parser = "sql" },
       },
     }
-    vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki" }
+    vim.g.nv_search_paths = { "/var/home/stoeps/vimwiki/2025", "/var/home/stoeps/vimwiki/hcl-cases", "/var/home/stoeps/vimwiki/archive" }
     vim.g.zettel_format = "%y%m%d-%file_no"
     -- vim.g.zettel_default_mappings = 0
     vim.g.zettel_options = {
