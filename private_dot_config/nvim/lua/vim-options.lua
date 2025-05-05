@@ -108,7 +108,19 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   'n',                               -- normal mode
   '<localleader>si',                 -- the key combination
-  ':r! sn_interloc_overview.py<CR>', -- the command to execute
-  { desc = "Get open case list",noremap = true, silent = false } -- options
+  'dG:r! sn_interloc_overview.py<CR>:put =\'Last updated: \'.strftime(\'%Y-%m-%d %H:%M:%S\')<CR>', -- the command to execute
+  { desc = "Get open case list", noremap = true, silent = false } -- options
+)
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>st',                 -- the key combination
+  ':r ! vimwiki-cal.sh -d %:t:r -n 1 | /usr/bin/grep -v "2025-" <CR>',
+  { desc = "Add today appointments", noremap = true, silent = false } -- options
+)
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>sw',                 -- the key combination
+  ':r ! vimwiki-cal.sh -n 7 -d 2025-',
+  { desc = "Add appointments for calendar week", noremap = true, silent = false } -- options
 )
 
