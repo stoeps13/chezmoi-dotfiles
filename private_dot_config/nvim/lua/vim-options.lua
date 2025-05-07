@@ -104,7 +104,12 @@ vim.api.nvim_set_keymap(
   ':r! sn_case_with_comments.py -n %:t:r -f ', -- the command to execute
   { desc = "Get new comments",noremap = true, silent = false } -- options
 )
-
+vim.api.nvim_set_keymap(
+  'n',                               -- normal mode
+  '<localleader>sa',                 -- the key combination
+  ':r! sn_case_with_comments.py -n %:t:r -a<CR>', -- the command to execute
+  { desc = "Get all comments for this case",noremap = true, silent = false } -- options
+)
 vim.api.nvim_set_keymap(
   'n',                               -- normal mode
   '<localleader>si',                 -- the key combination

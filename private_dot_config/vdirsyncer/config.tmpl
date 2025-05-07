@@ -7,6 +7,7 @@ a = "work_calendars_local"
 b = "work_calendars_remote"
 collections = ["from a", "from b"]
 metadata = ["color"]
+conflict_resolution = "b wins"
 
 [storage work_calendars_local]
 type = "filesystem"
@@ -18,6 +19,7 @@ type = "caldav"
 url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/"
 username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
 password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+read_only = true
 
 # ZEP calendars
 [storage zep_calendars_local]
@@ -30,6 +32,7 @@ type = "caldav"
 url = "https://www.zep-online.de/zepvegard/sync/dav.php/calendars/stoeps/absences/"
 username = "{{ (bitwarden "item" "www.zep-online.de").login.username }}"
 password = "{{ (bitwarden "item" "www.zep-online.de").login.password }}"
+read_only = true
 
 [pair zep_calendars]
 a = "zep_calendars_local"
@@ -50,6 +53,7 @@ fileext = ".ics"
 [storage dnug_calendar_remote]
 type = "http"
 url = "https://dnug.de/ical-de.ics"
+read_only = true
 
 # NextCloud
 [storage nc_cal_remote]

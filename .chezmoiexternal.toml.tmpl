@@ -141,7 +141,7 @@ url = {{ gitHubLatestReleaseAssetURL "cilium/hubble" "hubble-linux-amd64.tar.gz"
 path = "hubble"
 
 [".local/bin/cilium"]
-type = "file"
+type = "archive-file"
 executable = true
 refreshPeriod = "720h"
 url = {{ gitHubLatestReleaseAssetURL "cilium/cilium-cli" "cilium-linux-amd64.tar.gz" | quote }}
