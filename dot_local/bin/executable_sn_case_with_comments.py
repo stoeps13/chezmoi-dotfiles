@@ -117,7 +117,8 @@ username, password, base_url = load_config()
 
 if vars(args)['casenumber']:
     case_number = str(args.casenumber)
-    url = base_url + '/sn_customerservice_case_list.do?sysparm_query=u_external_action_status_2%3E%3Dhcl%20working%5EnumberSTARTSWITH' + case_number + '&sysparm_first_row=1&sysparm_view=csp&sysparm_choice_query_raw=&sysparm_list_header_search=true&EXCEL'
+    url = base_url + '/sn_customerservice_case_list.do?sysparm_query=numberSTARTSWITH' + case_number + '%5EGROUPBYu_external_action_status_2&sysparm_first_row=1&sysparm_view=csp&sysparm_choice_query_raw=&sysparm_list_header_search=true&EXCEL'
+    # url = base_url + '/sn_customerservice_case_list.do?sysparm_query=u_external_action_status_2%3E%3Dhcl%20working%5EnumberSTARTSWITH' + case_number + '&sysparm_first_row=1&sysparm_view=csp&sysparm_choice_query_raw=&sysparm_list_header_search=true&EXCEL'
 else:
     url = base_url + '/sn_customerservice_case_list.do?sysparm_nostack=true&sysparm_query=GOTOu_external_action_status_2%3E%3Dhcl%20working&sysparm_first_row=1&sysparm_view=csp&EXCEL'
 
@@ -211,11 +212,11 @@ try:
                         # Join the wrapped lines with line feeds
                         final_output = "\n".join(wrapped_lines)
 
-                        comment_output.append('##### ' + comment[0] + '\n')
+                        comment_output.append('### ' + comment[0] + '\n')
                         comment_output.append(convert_code_html_to_markdown(final_output) + '\n')
 
                 if len(comment_output) > 0:
-                    print("#### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, case_id, case_id, internal_status, case_updated))
+                    print("### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, case_id, case_id, internal_status, case_updated))
                     for output in comment_output:
                         print(output)
             else:
@@ -225,7 +226,7 @@ try:
             i = 1
             comment_output = []
 
-            for comment in comments[:10]:
+            for comment in comments:
                 comment = comment.split('(Additional comments)')
 
                 # Check the timestamp of the comment
@@ -242,11 +243,11 @@ try:
                 # Join the wrapped lines with line feeds
                 final_output = "\n".join(wrapped_lines)
 
-                comment_output.append('##### ' + comment[0] + '\n')
+                comment_output.append('#### ' + comment[0] + '\n')
                 comment_output.append(convert_code_html_to_markdown(final_output) + '\n')
 
             if len(comment_output) > 0:
-                print("#### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, case_id, case_id, internal_status, case_updated))
+                print("### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n" % (case_id, case_title, case_id, case_id, case_id, internal_status, case_updated))
                 for output in comment_output:
                     print(output)
 finally:
