@@ -198,7 +198,7 @@ try:
                 i = 1
                 comment_output = []
 
-                for comment in comments[:10]:
+                for comment in comments:
                     comment = comment.split('(Additional comments)')
 
                     # Check the timestamp of the comment
