@@ -20,7 +20,7 @@ refreshPeriod = "168h"
 
 [".config/nvim"]
 type = "git-repo"
-url = "https://github.com/stoeps13/kickstart.nvim"
+url = "git@github.com:stoeps13/kickstart.nvim.git"
 refreshPeriod = "168h"
 
 [".local/share"]
@@ -151,3 +151,11 @@ executable = true
 refreshPeriod = "720h"
 url = {{ gitHubLatestReleaseAssetURL "cilium/cilium-cli" "cilium-linux-amd64.tar.gz" | quote }}
 path = "cilium"
+
+[".local/bin/ltrs"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "jeertmans/languagetool-rust" (printf "ltrs-v*-x86_64-unknown-linux-musl.tar.gz") | quote }}
+refreshPeriod = "168h"
+executable = true
+stripComponents = 1
+path = "ltrs"
