@@ -1,3 +1,10 @@
+[".local/bin/chezmoi"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "twpayne/chezmoi" (printf "chezmoi_*_linux_amd64.tar.gz") | quote }}
+executable = true
+refreshPeriod = "168h"
+path = "chezmoi"
+
 [".oh-my-zsh"]
 type = "git-repo"
 url = "https://github.com/ohmyzsh/ohmyzsh.git"
