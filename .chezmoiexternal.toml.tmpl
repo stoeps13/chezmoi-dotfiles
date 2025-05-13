@@ -159,3 +159,10 @@ refreshPeriod = "168h"
 executable = true
 stripComponents = 1
 path = "ltrs"
+
+[".local/bin/vale"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "errata-ai/vale" (printf "vale_*_Linux_64-bit.tar.gz") | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "vale"
