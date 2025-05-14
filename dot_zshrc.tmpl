@@ -361,3 +361,5 @@ case ":$PATH:" in
 esac
 
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
+export BW_CLIENTID='{{ (bitwarden "item" "BwAPI").login.username}}'
+export BW_CLIENTSECRET='{{ (bitwarden "item" "BwAPI").login.password}}'

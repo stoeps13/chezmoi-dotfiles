@@ -27,6 +27,9 @@
   [[birthdays]]
     path = ~/.local/share/calendar-nc/contact_birthdays
     color = dark magenta
+#  [[work-nc]]
+#    path = ~/.local/share/calendar-nc/calendar
+#    color = dark blue
   [[personal]]
     path = ~/.local/share/calendar-nc/personal
     color = dark green
