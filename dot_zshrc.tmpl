@@ -207,39 +207,6 @@ alias external-ip='curl https://ipinfo.io/'
 alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
 alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
 
-
-# if $(distrobox-host-exec ls > /dev/null)
-# then
-#   alias podman='distrobox-host-exec podman'
-#   alias buildah='distrobox-host-exec buildah'
-#   alias docker='distrobox-host-exec podman'
-#   alias journalctl='distrobox-host-exec journalctl'
-#   alias rpm-ostree='distrobox-host-exec rpm-ostree'
-#   alias flatpak='distrobox-host-exec flatpak'
-# fi
-export DISABLE_AUTO_TITLE='true'
-
-if [ -n "$CONTAINER_ID" ]; then
-  if [ $CONTAINER_ID = kali ]; then
-    psvar[1]="@%F{green}${(%):-$CONTAINER_ID 👽}"     # show hostname inside docker containers
-    # 🤯
-    alias cme='crackmapexec'
-  elif [ $CONTAINER_ID = fedora ]; then
-    psvar[1]="@%F{cyan}${(%):-$CONTAINER_ID 🧰}"     # show hostname inside docker containers
-    export PATH=$PATH:~/Android/Sdk/platform-tools
-  else
-    psvar[1]="@%F{yellow}${(%):-$CONTAINER_ID 📦}"     # show hostname inside docker containers
-  fi
-else
-    psvar[1]="@%F{blue}${(%):-$(hostname)}"     # show hostname inside podman containers
-fi
-
-# Context: user@hostname (who am I and where am I)
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER$psvar"
-  fi
-}
 export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 alias pkm='nvim "$HOME/logseq-til/journals/$(date +%Y-%m-%d).md"'
@@ -250,34 +217,7 @@ if [[ -f /usr/bin/eza ]]; then
   alias ll="eza -l --icons=always"
   alias la="eza -la --icons=always"
 fi
-# if [[ -f /usr/bin/zoxide ]]; then
-#   eval "$(zoxide init zsh)"
-#   eval "$(zoxide init --cmd cd zsh)"
-#   #alias cd = "z"
-# fi
-# export BW_SESSION=$(bw unlock --raw)
-#
-# Source additional files
 source ~/.local/bin/fzf-git.sh
-
-# export QT_AUTO_SCREEN_SCALE_FACTOR=0
-# export QT_SCREEN_SCALE_FACTORS="1.5;1"
-# # custom theming
-# export QT_QPA_PLATFORMTHEME=qt6ct
-# export CLUTTER_BACKEND=wayland
-# export SDL_VIDEODRIVER=wayland
-# export XDG_SESSION_TYPE=wayland
-# export XDG_CURRENT_DESKTOP=sway
-# export QT_QPA_PLATFORM=wayland
-# # removes window outlines and stuff
-# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-# # Firefox fix just in case
-# export MOZ_ENABLE_WAYLAND=1
-# # java fix
-# export _JAVA_AWT_WM_NONREPARENTING=1
-# export ECORE_EVAS_ENGINE=wayland_egl
-# export ELM_ENGINE=wayland_egl
-# export GDK_SCALE=2
 
 if [[ -f /usr/bin/batcat]]; then
   alias bat=`batcat`
