@@ -14,6 +14,14 @@ Match tagged iac
 Match tagged github
   IdentityFile ~/.ssh/vit-ed25519-github
 
+Match tagged kali
+  IdentityFile ~/.ssh/id_ed25519
+
+Host kali
+  HostName 10.0.22.241
+  Tag kali
+  User stoeps
+
 Host *.stoeps.internal
   User root
   UserKnownHostsFile=/dev/null
