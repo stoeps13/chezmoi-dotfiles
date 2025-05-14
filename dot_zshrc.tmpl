@@ -174,9 +174,11 @@ then
 fi
 
 # Some aliases depending on installed software
-[ -f /usr/bin/bat ] && alias cat='bat --color=always'
-[ -f /usr/bin/batcat ] && alias cat='batcat --color=always'
-[ -f /usr/bin/rg ] && alias grep='rg'
+# [ -f /usr/bin/bat ] && alias cat='bat --color=always'
+# [ -f /usr/bin/batcat ] && alias cat='batcat --color=always'
+# [ -f /usr/bin/rg ] && alias grep='rg'
+[ -f /usr/bin/batcat ] && alias bat='batcat --color=always'
+
 if [[ -f /usr/bin/nvim ]]
 then
   alias vim='nvim'
@@ -219,7 +221,7 @@ if [[ -f /usr/bin/eza ]]; then
 fi
 source ~/.local/bin/fzf-git.sh
 
-if [[ -f /usr/bin/batcat]]; then
+if [[ -f /usr/bin/batcat ]]; then
   alias bat=`batcat`
 fi
 ### Added by Zinit's installer
