@@ -312,9 +312,6 @@ if [ -n $CONTAINER_ID ]; then
   set_tmux_title "$CONTAINER_ID"
 fi
 
-### End of Zinit's installer chunk
-eval "$(atuin init zsh)"
-
 nmap_scan() {
     local ip="$1"
     local output_dir="output"
@@ -363,3 +360,7 @@ esac
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 export BW_CLIENTID='{{ (bitwarden "item" "BwAPI").login.username}}'
 export BW_CLIENTSECRET='{{ (bitwarden "item" "BwAPI").login.password}}'
+
+### End of Zinit's installer chunk
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
