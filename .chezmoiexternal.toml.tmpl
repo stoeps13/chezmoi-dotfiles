@@ -173,3 +173,10 @@ url = {{ gitHubLatestReleaseAssetURL "errata-ai/vale" (printf "vale_*_Linux_64-b
 refreshPeriod = "168h"
 executable = true
 path = "vale"
+
+[".local/bin/starship"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "starship/starship" "starship-i686-unknown-linux-musl.tar.gz" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "starship"
