@@ -16,6 +16,7 @@ Match tagged github
 
 Match tagged kali
   IdentityFile ~/.ssh/id_ed25519
+  ForwardX11 yes
 
 Host kali
   HostName 10.0.22.241
