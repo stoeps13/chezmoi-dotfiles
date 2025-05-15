@@ -180,3 +180,11 @@ url = {{ gitHubLatestReleaseAssetURL "starship/starship" "starship-i686-unknown-
 refreshPeriod = "168h"
 executable = true
 path = "starship"
+
+[".local/bin/typst"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "typst/typst" "typst-x86_64-unknown-linux-musl.tar.xz" | quote }}
+refreshPeriod = "168h"
+executable = true
+stripComponents = 1
+path = "typst"
