@@ -110,6 +110,13 @@ refreshPeriod = "168h"
 executable = true
 path = "kubectx"
 
+[".local/bin/kubetail"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "kubetail-org/kubetail" "kubetail-linux-amd64" | quote }}
+refreshPeriod = "168h"
+executable = true
+
+
 [".local/bin/trivy"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "aquasecurity/trivy" (printf "trivy_*_Linux-64bit.tar.gz") | quote }}
