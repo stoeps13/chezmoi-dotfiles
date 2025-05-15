@@ -3,7 +3,6 @@
 format = """
 [](nord0)\
 $username\
-[@](bg:nord0 fg:nord4)\
 $hostname\
 $container\
 $os\
@@ -27,6 +26,8 @@ $nodejs\
 $nim\
 $rust\
 $scala\
+[](fg:nord3)
+$kubernetes\
 [](fg:nord3)
 $status
 """
@@ -55,16 +56,17 @@ show_always = true
 disabled = false
 
 [hostname]
-ssh_only = false
+ssh_only = true
 ssh_symbol = ' '
 trim_at = '.'
-format = '[$hostname$ssh_symbol]($style)'
+format = '[@$hostname$ssh_symbol]($style)'
 style = 'bg:nord0 fg:nord4'
+detect_env_vars = ['!CONTAINER_ID']
 disabled = false
 
 [container]
 format = '[ $name ]($style)'
-style = 'bg:nord0 fg:nord4'
+style = 'bg:nord0 fg:nord13'
 
 [os]
 format = '[ $symbol ]($style)'
@@ -74,14 +76,14 @@ disabled = false
 
 # directory
 [directory]
-truncation_length = 1
-truncate_to_repo = true
+truncation_length = 6
+truncate_to_repo = false
 format = '[ $path ]($style)[$read_only]($read_only_style)'
 style = 'bg:nord1 fg:nord4'
 disabled = false
 read_only = ' 󰌾 '
 read_only_style = 'bg:nord1 fg:nord11'
-truncation_symbol = ''
+truncation_symbol = '…/'
 
 [directory.substitutions]
 'Documents' = '󰈙'
@@ -228,3 +230,10 @@ SUSE = ' '
 Ubuntu = ' '
 Unknown = ' '
 Windows = '󰍲 '
+
+[kubernetes]
+format = 'on [⛵ ($user on )$context \($namespace\)](dimmed green) '
+disabled = true
+contexts = [
+  { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },
+]
