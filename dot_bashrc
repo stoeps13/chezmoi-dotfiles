@@ -56,16 +56,9 @@ function set_tmux_title() {
     fi
 }
 
-# Usage example
-if [ -n $CONTAINER_ID ]; then
-  set_tmux_title "$CONTAINER_ID"
-fi
-
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
-
-
 
 # add Pulumi to the PATH
 export PATH=$PATH:/var/home/stoeps/.pulumi/bin
