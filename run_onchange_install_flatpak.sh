@@ -2,7 +2,7 @@
 # fail with rc 0 when flatpak is not installed
 type flatpak >/dev/null 2>&1 || exit 0
 
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -u
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -u
 flatpak install org.keystore_explorer.KeyStoreExplorer -y
 # flatpak install -u flathub com.bitwarden.desktop -y
 # flatpak install -u flathub com.calibre_ebook.calibre -y
