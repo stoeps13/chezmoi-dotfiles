@@ -1,8 +1,11 @@
 [Unit]
-Description=Run DavMail
-RefuseManualStart=no
-RefuseManualStop=yes
+Description=DavMail Exchange Gateway
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/davmail'
+Type=forking
+RemainAfterExit=yes
+ExecStart=/var/home/stoeps/.local/bin/davmail /var/home/stoeps/.davmail.properties -notray
+ExecStop=killall davmail
+
+[Install]
+WantedBy=multi-user.target
