@@ -41,7 +41,7 @@ include ~/.config/task/nord.theme
 #include no-color.theme
 include ~/.config/task/holidays.de-DE.rc
 
-news.version=3.3.0
+news.version=3.4.1
 uda.priority.values = H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
