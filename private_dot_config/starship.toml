@@ -28,9 +28,9 @@ $rust\
 $scala\
 [](fg:nord3)
 $kubernetes\
-[](fg:nord3)
 $status
 """
+#[](fg:nord3)
 
 scan_timeout = 50
 command_timeout = 1000
