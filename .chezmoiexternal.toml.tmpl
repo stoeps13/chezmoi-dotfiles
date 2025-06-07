@@ -197,9 +197,9 @@ stripComponents = 1
 path = "typst"
 
 [".local/share/fonts"]
-    type = "archive"
-    url = {{ gitHubLatestReleaseAssetURL "FortAwesome/Font-Awesome" (printf "fontawesome-free-*-desktop.zip") | quote }} 
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-    include = ["otfs/Font*.otf"]
+type = "archive"
+url = {{ gitHubLatestReleaseAssetURL "FortAwesome/Font-Awesome" (printf "fontawesome-free-*-desktop.zip") | quote }} 
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+include = ["otfs/Font*.otf"]
