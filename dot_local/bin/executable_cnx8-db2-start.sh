@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo swapon /var/home/stoeps/data/swapfile
+# sudo swapon /var/home/stoeps/data/swapfile
 
 # Check if libvirtd service is running
 STATUS="$(sudo systemctl is-active libvirtd.service)"
@@ -17,7 +17,7 @@ if sudo virsh net-list --all | grep vm_network | grep inactive ; then
 	sudo virsh net-start vm_network
 fi
 
-for i in $(sudo virsh list --all | grep -e 'cnx-' | awk '/shut off/{print $2}')
+for i in $(sudo virsh list --all | grep -e 'cnx-' | grep -v 'cnx-keycloak' | awk '/shut off/{print $2}')
 do
   sudo virsh start $i
 done
