@@ -203,3 +203,13 @@ exact = true
 stripComponents = 2
 refreshPeriod = "168h"
 include = ["**/otfs/Font*.otf"]
+
+[".local/bin/todo.sh"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "todotxt/todo.txt-cli" "todo.txt_cli-*.tar.gz" | quote }}
+refreshPeriod = "168h"
+executable = true
+stripComponents = 1
+path = "todo.sh"
+
+

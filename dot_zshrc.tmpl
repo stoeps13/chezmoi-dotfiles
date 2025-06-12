@@ -112,6 +112,7 @@ export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 
 # Export user specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/go/bin" ]]
