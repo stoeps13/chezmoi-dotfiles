@@ -127,6 +127,10 @@ if [[ -d $HOME/.cargo/bin ]]
 then
   PATH="$HOME/.cargo/bin:$PATH"
 fi
+if [[ -d $HOME/.claude/local ]]
+then
+   PATH="$HOME/.claude/local:$PATH"
+fi
 export PATH
 
 alias gst='git status'
@@ -181,7 +185,7 @@ fi
 # [ -f /usr/bin/rg ] && alias grep='rg'
 [ -f /usr/bin/batcat ] && alias bat='batcat --color=always'
 
-if [[ -f /usr/bin/nvim ]]
+if [[ -f ~/.local/bin/nvim ]]
 then
   alias vim='nvim'
   export EDITOR=nvim
@@ -194,6 +198,8 @@ then
   export FLYCTL_INSTALL="/home/stoeps/.fly"
   export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
+
+
 
 alias ssh='TERM=xterm ssh'
 alias today='khal list -o $(date +"%d.%m.%Y") 1d'
@@ -255,45 +261,6 @@ function set_tmux_title() {
 if [ -n $CONTAINER_ID ]; then
   set_tmux_title "$CONTAINER_ID"
 fi
-
-nmap_scan() {
-    local ip="$1"
-    local output_dir="output"
-    local timestamp=$(date +%Y%m%d-%H%M%S)
-
-    # Run nmap and store output
-    local scan_output
-    # -A contains OS detection, version detection, script scanning and traceroute
-    scan_output=$(sudo nmap -A -p- "$ip")
-
-    mkdir -p "$output_dir"
-    # Extract the hostname from "Nmap scan report for <hostname> (<ip>)"
-    local hostname
-    hostname=$(echo "$scan_output" | awk '/Nmap scan report for/{print $5}' | sed 's/[().]/_/g')
-
-    # Fallback to IP if no hostname is found
-    [[ -z "$hostname" ]] && hostname="$ip"
-
-    # Ensure output directory exists
-    mkdir -p "$output_dir"
-
-    # Save output to file
-    echo "$scan_output" | tee "$output_dir/nmap_${hostname}_${timestamp}.log"
-}
-log_output() {
-    local cmd_name="$1"  # First argument is the command name
-    local timestamp=$(date +"%Y%m%d_%H%M%S")
-    local logfile="output/${cmd_name}_${timestamp}.log"
-
-    mkdir -p output
-    tee "$logfile"
-}
-
-run_with_logging() {
-    local cmd="$1"
-    shift  # Remove first argument, so remaining arguments are passed to the command
-    "$cmd" "$@" | log_output "$cmd"
-}
 
 export PNPM_HOME="/var/home/stoeps/.local/share/pnpm"
 case ":$PATH:" in
