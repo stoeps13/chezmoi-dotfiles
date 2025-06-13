@@ -272,6 +272,11 @@ export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login
 export BW_CLIENTID='{{ (bitwarden "item" "BwAPI").login.username}}'
 export BW_CLIENTSECRET='{{ (bitwarden "item" "BwAPI").login.password}}'
 
+{{- if eq .chezmoi.hostname "FE-C-009MM" }}
+export HTTP_PROXY=http://rb-proxy-de.bosch.com:8080
+export HTTPS_PROXY=http://rb-proxy-de.bosch.com:8080
+{{- end }}
+
 ### End of Zinit's installer chunk
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
