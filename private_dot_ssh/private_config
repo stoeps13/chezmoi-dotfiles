@@ -2,27 +2,37 @@ Match tagged vit
   IdentityFile ~/.ssh/vit-ed25519-gitea
   IdentitiesOnly yes
   ForwardAgent yes
-  AddKeysToAgent yes
 
 Match tagged stoeps
   IdentityFile ~/.ssh/vit-ed25519-stoeps.de
-  AddKeysToAgent yes
 
 Match tagged iac
   IdentityFile ~/.ssh/cnx6
   IdentitiesOnly yes
   StrictHostKeyChecking=no
-  AddKeysToAgent yes
 
 Match tagged github
+  IdentitiesOnly yes
   IdentityFile ~/.ssh/vit-ed25519-github
-  AddKeysToAgent yes
+
+Match tagged gitlab
+  IdentitiesOnly yes
+        IdentityFile ~/.ssh/gitlab-ed25519
 
 Match tagged kali
   IdentityFile ~/.ssh/id_ed25519
   ForwardX11 yes
-  AddKeysToAgent yes
 
+# DevPod Start presentations.devpod
+Host presentations.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/home/stoeps/.local/bin/devpod-cli" ssh --stdio --context default --user vscode presentations
+  User vscode
+# DevPod End presentations.devpod
 Host kali
   HostName 10.0.22.241
   Tag kali
@@ -49,9 +59,14 @@ Host gitlab.com
   HostName gitlab.com
   User git
   UpdateHostKeys no
-  IdentityFile ~/.ssh/vit-ed25519-gitlab
-  IdentitiesOnly yes
-  AddKeysToAgent yes
+  Tag gitlab
+
+Host codeberg.org
+  HostName codeberg.org
+  User git
+  UpdateHostKeys no
+  Tag gitlab
+
 Host github.com
   HostName github.com
   Tag github
@@ -82,14 +97,12 @@ Host 192.168.1.210
   User ubuntu
   IdentityFile ~/.ssh/vit-ed25519-ubuntu
   IdentitiesOnly yes
-  AddKeysToAgent yes
 Host lnx-stwsh
   Port 22
   ForwardX11 yes
   User stoeps
   IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
-  AddKeysToAgent yes
 Host pfsense
    User root
    Hostname 192.168.1.211
@@ -114,17 +127,14 @@ Host kali-kvm
   Hostname 10.0.22.240
   Port 22
   IdentityFile ~/.ssh/kali-pve-ed25519
-  AddKeysToAgent yes
 Host kali
   User stoeps
   Hostname 192.168.10.109
   Port 22
-  AddKeysToAgent yes
   IdentityFile ~/.ssh/kali-pve-ed25519
   ForwardX11 yes
 Host kali-root
   User root
-  AddKeysToAgent yes
   Hostname 192.168.10.109
   Port 22
   IdentityFile ~/.ssh/kali-pve-ed25519
@@ -136,4 +146,3 @@ Host OMV
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/ansible_ed25519
-  AddKeysToAgent yes
