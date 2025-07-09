@@ -37,7 +37,11 @@ refreshPeriod = "168h"
 
 [".local/bin/hugo"]
 type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_*_%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+url = {{ gitHubLatestReleaseAssetURL 
+         "gohugoio/hugo" 
+         (printf "hugo_extended_*_%s-%s.tar.gz" 
+         .chezmoi.os .chezmoi.arch) | 
+         quote }}
 executable = true
 refreshPeriod = "168h"
 path = "hugo"
