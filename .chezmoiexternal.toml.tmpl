@@ -212,4 +212,18 @@ executable = true
 stripComponents = 1
 path = "todo.sh"
 
+[".local/bin/uv"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "astral-sh/uv" "uv-x86_64-unknown-linux-gnu.tar.gz" | quote }}
+refreshPeriod = "168h"
+stripComponents = 1
+executable = true
+exact = true
+path = "uv"
 
+[".local/bin/direnv"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" "direnv.linux-amd64" | quote }}
+refreshPeriod = "168h"
+stripComponents = 1
+executable = true

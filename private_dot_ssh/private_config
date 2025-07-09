@@ -97,6 +97,11 @@ Host 192.168.1.210
   User ubuntu
   IdentityFile ~/.ssh/vit-ed25519-ubuntu
   IdentitiesOnly yes
+Host 192.168.1.211
+  Port 22
+  User ubuntu
+  IdentityFile ~/.ssh/vit-ed25519-ubuntu
+  IdentitiesOnly yes
 Host lnx-stwsh
   Port 22
   ForwardX11 yes
