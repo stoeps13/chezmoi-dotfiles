@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 from pysnc import ServiceNowClient
-from time import gmtime, strftime
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from collections import defaultdict
+import sys
 
 try:
     from sn_config import load_config, get_auth_basic, get_base_url
@@ -43,8 +43,13 @@ for r in gr:
         f"- [{case_no}: {case_title}](../hcl-cases/{case_no}) - age: {age} days or {age_in_months} months"
     )
 
+total_cases = sum(len(cases) for cases in cases_by_priority.values())
+print(f"Total open cases: {total_cases}\n")
+
 # Print markdown output grouped by priority
 for prio in sorted(cases_by_priority.keys()):  # Ensure sorted order
-    print(f"## Cases prio {prio.lower()}\n")
+    print(
+        f"## Cases prio {prio.lower()} (Open cases: {len(cases_by_priority[prio])})\n"
+    )
     print("\n".join(cases_by_priority[prio]))
     print()  # Extra newline for spacing
