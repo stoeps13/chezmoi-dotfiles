@@ -229,5 +229,10 @@ path = "uv"
 type = "file"
 url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" "direnv.linux-amd64" | quote }}
 refreshPeriod = "168h"
-stripComponents = 1
+executable = true
+
+[".local/bin/youtube-dl"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "yt-dlp/yt-dlp" "yt-dlp_linux"  | quote }}
+refreshPeriod = "168h"
 executable = true
