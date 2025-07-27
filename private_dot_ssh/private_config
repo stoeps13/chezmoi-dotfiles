@@ -148,6 +148,9 @@ Host OMV
   Hostname 192.168.223.3
   User root
   Tag vit
+Host www7.your-server.de
+  Hostname www7.your-server.de
+  User stoepsa
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/ansible_ed25519
