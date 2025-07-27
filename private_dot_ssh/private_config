@@ -93,10 +93,11 @@ Host 10.0.22.*
   AddKeysToAgent yes
   ForwardAgent yes
   Tag iac
-Host 192.168.1.210
+Host pi2
   Port 22
-  User ubuntu
-  IdentityFile ~/.ssh/vit-ed25519-ubuntu
+  User stoeps
+  Hostname 192.168.11.210
+        IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 Host 192.168.1.211
   Port 22
