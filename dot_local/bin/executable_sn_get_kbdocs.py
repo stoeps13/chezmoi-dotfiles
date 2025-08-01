@@ -14,6 +14,7 @@ import html2text
 import os
 import re
 import sys
+import argparse
 
 try:
     from sn_config import load_config, get_auth_basic, get_base_url
@@ -329,7 +330,7 @@ async def scrape_kb_article_markdown(
                         # Check if title is already in the markdown content
                         if result["title"] not in result["markdown_content"][:100]:
                             result["markdown_content"] = (
-                                f"# {result['kb_number']}: {result['title']}\n---{frontmatter}\n---\n\n{result['markdown_content']}"
+                                f"# {result['kb_number']}: {result['title']}\n---{frontmatter}---\n\n{result['markdown_content']}"
                             )
 
                     # Add internal comments
@@ -348,7 +349,7 @@ async def scrape_kb_article_markdown(
         return {"url": url, "error": str(e), "success": False}
 
 
-async def process_kb_articles():
+async def process_kb_articles(limit=5, kb_number=None):
     """Main async function to process KB articles"""
     client = ServiceNowClient(base_url, (username, password))
 
@@ -357,18 +358,35 @@ async def process_kb_articles():
     gr.add_query("u_document_type", "Defect Article")
     gr.add_query("u_product_family", "Connections")
     # gr.add_query("kb_category", "4edd9e781b49001483cb86e9cd4bcbfd")
-    # gr.add_query("number","KB0120376")
+
+    # Add specific KB number query if provided
+    if kb_number:
+        gr.add_query("number", kb_number)
+        print(f"Searching for specific KB article: {kb_number}")
+
     gr.add_query("active", "true")
     gr.add_query("language", "en")
     gr.add_query("latest", "true")
-    # gr.add_query("","")
 
     gr.order_by_desc("sys_updated_on")
-    # Limit result during testing
-    gr.limit = 5
+
+    # Set limit (only applies when not searching for specific KB)
+    if not kb_number:
+        gr.limit = limit
+        print(f"Limiting results to {limit} articles")
 
     # Basic query to get all published knowledge articles
     gr.query()
+
+    # Check if we found any results
+    if gr.get_row_count() == 0:
+        if kb_number:
+            print(f"No KB article found with number: {kb_number}")
+        else:
+            print("No KB articles found matching the criteria")
+        return
+
+    print(f"Found {gr.get_row_count()} article(s) to process")
 
     lastupdate = strftime("%Y-%m-%d %H:%M:%S", gmtime())
     date = strftime("%Y-%m-%d", gmtime())
@@ -406,11 +424,11 @@ Link: [{kb_no}]({kb_link})
 
         # Now this await call is inside an async function
         result = await scrape_kb_article_markdown(
-            kb_link, 
-            download_images=True, 
-            images_subfolder="images",
+            kb_link,
+            download_images=download_images_global,
+            images_subfolder=images_folder_global,
             frontmatter=frontmatter,
-            kb_internal=kb_internal
+            kb_internal=kb_internal,
         )
 
         if result["success"]:
@@ -429,6 +447,84 @@ Link: [{kb_no}]({kb_link})
             print(f"Failed to scrape article: {result.get('error', 'Unknown error')}")
 
 
+def parse_arguments():
+    """Parse command line arguments"""
+    parser = argparse.ArgumentParser(
+        description="Download ServiceNow KB articles as Markdown files",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s                          # Download 5 articles (default)
+  %(prog)s --limit 10               # Download 10 articles
+  %(prog)s --kb KB0120376           # Download specific KB article
+  %(prog)s --kb KB0120376 --no-images  # Download KB without images
+        """,
+    )
+
+    parser.add_argument(
+        "--limit",
+        "-l",
+        type=int,
+        default=5,
+        help="Number of articles to download (default: 5, ignored when --kb is used)",
+    )
+
+    parser.add_argument(
+        "--kb",
+        "-k",
+        type=str,
+        help="Download a specific KB article by number (e.g., KB0120376)",
+    )
+
+    parser.add_argument(
+        "--no-images", action="store_true", help="Skip downloading images"
+    )
+
+    parser.add_argument(
+        "--images-folder",
+        type=str,
+        default="images",
+        help="Folder name for downloaded images (default: images)",
+    )
+
+    return parser.parse_args()
+
+
 # Main entry point
 if __name__ == "__main__":
-    asyncio.run(process_kb_articles())
+    args = parse_arguments()
+
+    # Validate KB number format if provided
+    if args.kb:
+        if not re.match(r"^KB\d+", args.kb.upper()):
+            print(
+                "Error: KB number must be in format KB followed by digits (e.g., KB0120376)"
+            )
+            sys.exit(1)
+        args.kb = args.kb.upper()  # Ensure uppercase
+
+    print("ServiceNow KB Article Downloader")
+    print("=" * 40)
+
+    if args.kb:
+        print(f"Mode: Single article download ({args.kb})")
+    else:
+        print(f"Mode: Multiple articles download (limit: {args.limit})")
+
+    print(f"Download images: {'No' if args.no_images else 'Yes'}")
+    if not args.no_images:
+        print(f"Images folder: {args.images_folder}")
+    print()
+
+    # Set global variables for the scraping function
+    download_images_global = not args.no_images
+    images_folder_global = args.images_folder
+
+    try:
+        asyncio.run(process_kb_articles(limit=args.limit, kb_number=args.kb))
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
