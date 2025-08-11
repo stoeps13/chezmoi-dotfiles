@@ -49,12 +49,13 @@ Host 172.104.228.63
   IdentityFile ~/.ssh/stoeps_rsa
   IdentitiesOnly yes
 Host stoeps.de
-  HostName home26617100.1and1-data.host
-  User p7594620
+  HostName www7.your-server.de
+  User stoepsa
   AddKeysToAgent yes
   ServerAliveInterval 120
   ServerAliveCountMax 15
-  Tag stoeps
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/ionos-ed25519
 Host gitlab.com
   HostName gitlab.com
   User git
@@ -92,10 +93,11 @@ Host 10.0.22.*
   AddKeysToAgent yes
   ForwardAgent yes
   Tag iac
-Host 192.168.1.210
+Host pi2
   Port 22
-  User ubuntu
-  IdentityFile ~/.ssh/vit-ed25519-ubuntu
+  User stoeps
+  Hostname 192.168.11.210
+  IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 Host 192.168.1.211
   Port 22
