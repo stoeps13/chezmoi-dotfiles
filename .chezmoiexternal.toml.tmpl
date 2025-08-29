@@ -82,7 +82,7 @@ url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVers
 
 [".local/bin/lazygit"]
 type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_Linux_x86_64.tar.gz") | quote }}
+url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_linux_x86_64.tar.gz") | quote }}
 refreshPeriod = "168h"
 executable = true
 path = "lazygit"
@@ -236,3 +236,9 @@ type = "file"
 url = {{ gitHubLatestReleaseAssetURL "yt-dlp/yt-dlp" "yt-dlp_linux"  | quote }}
 refreshPeriod = "168h"
 executable = true
+
+[".local/bin/bookmarks"]
+type = "file"
+url = "https://raw.githubusercontent.com/soulim/bookmarks.txt/refs/heads/main/bin/bookmarks"
+executable = true
+refreshPeriod = "168h"
