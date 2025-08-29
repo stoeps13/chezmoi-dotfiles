@@ -321,7 +321,7 @@ async def scrape_kb_article_markdown(
                                 break
 
                     # KB number extraction
-                    kb_match = re.search(r"KB\d+", html_content)
+                    kb_match = re.search(r"KB\d{7}", html_content)
                     if kb_match:
                         result["kb_number"] = kb_match.group()
 
@@ -355,7 +355,7 @@ async def process_kb_articles(limit=5, kb_number=None):
 
     # Query knowledge base entries
     gr = client.GlideRecord("kb_knowledge")
-    gr.add_query("u_document_type", "Defect Article")
+    # gr.add_query("u_document_type", "Defect Article")
     gr.add_query("u_product_family", "Connections")
     # gr.add_query("kb_category", "4edd9e781b49001483cb86e9cd4bcbfd")
 
@@ -496,7 +496,7 @@ if __name__ == "__main__":
 
     # Validate KB number format if provided
     if args.kb:
-        if not re.match(r"^KB\d+", args.kb.upper()):
+        if not re.match(r"^KB\d{7}", args.kb.upper()):
             print(
                 "Error: KB number must be in format KB followed by digits (e.g., KB0120376)"
             )
