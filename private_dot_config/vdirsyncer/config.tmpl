@@ -1,61 +1,71 @@
 [general]
-status_path = "~/.vdirsyncer/status/"
+status_path = "~/.local/share/vdirsyncer/"
 
+# Calendar Synchronisation
+# --------------------------------------------------------------------------------------
 # M365 Calendars
-[pair work_calendars]
-a = "work_calendars_local"
-b = "work_calendars_remote"
+# --------------------------------------------------------------------------------------
+[storage o365_vit_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars/o365-vit/"
+fileext = ".ics"
+
+[storage o365_vit_calendars_remote]
+type = "caldav"
+read_only = true
+url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/"
+username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
+password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+
+[pair o365_calendars]
+a = "o365_vit_calendars_local"
+b = "o365_vit_calendars_remote"
 collections = ["from a", "from b"]
 metadata = ["color"]
 conflict_resolution = "b wins"
 
-[storage work_calendars_local]
-type = "filesystem"
-path = "~/.local/share/calendars/"
-fileext = ".ics"
-
-[storage work_calendars_remote]
-type = "caldav"
-url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/"
-username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
-password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
-read_only = true
-
+# --------------------------------------------------------------------------------------
 # ZEP calendars
-[storage zep_calendars_local]
+# --------------------------------------------------------------------------------------
+[storage zep_vit_calendars_local]
 type = "filesystem"
-path = "~/.local/share/zep-calendars/"
+path = "~/.local/share/calendars/zep/"
 fileext = ".ics"
 
-[storage zep_calendars_remote]
+[storage zep_vit_calendars_remote]
 type = "caldav"
+read_only = true
 url = "https://www.zep-online.de/zepvegard/sync/dav.php/calendars/stoeps/absences/"
 username = "{{ (bitwarden "item" "www.zep-online.de").login.username }}"
 password = "{{ (bitwarden "item" "www.zep-online.de").login.password }}"
-read_only = true
 
 [pair zep_calendars]
-a = "zep_calendars_local"
-b = "zep_calendars_remote"
+a = "zep_vit_calendars_local"
+b = "zep_vit_calendars_remote"
 collections = ["from a", "from b"]
+conflict_resolution = "b wins"
 
+# --------------------------------------------------------------------------------------
 # DNUG / Import only
-[pair dnug_calendar]
-a = "dnug_calendar_local"
-b = "dnug_calendar_remote"
-collections = null
-
-[storage dnug_calendar_local]
+# --------------------------------------------------------------------------------------
+[storage dnug_calendars_local]
 type = "filesystem"
-path = "~/.local/share/calendar-dnug/"
+path = "~/.local/share/calendars/dnug/"
 fileext = ".ics"
 
-[storage dnug_calendar_remote]
+[storage dnug_calendars_remote]
 type = "http"
 url = "https://dnug.de/ical-de.ics"
 read_only = true
 
+[pair dnug_calendar]
+a = "dnug_calendars_local"
+b = "dnug_calendars_remote"
+collections = null
+
+# --------------------------------------------------------------------------------------
 # NextCloud
+# --------------------------------------------------------------------------------------
 [storage nc_cal_remote]
 type = "caldav"
 url = "{{ (bitwardenFields "item" "nextcloud").URL.value }}"
@@ -64,7 +74,7 @@ password = "{{ (bitwarden "item" "nextcloud").login.password }}"
 
 [storage nc_cal_local]
 type = "filesystem"
-path = "~/.local/share/calendar-nc/"
+path = "~/.local/share/calendars/nextcloud/"
 fileext = ".ics"
 
 [pair nc_calendar]
@@ -73,21 +83,24 @@ b = "nc_cal_remote"
 collections = ["from a", "from b"]
 conflict_resolution = "a wins"
 metadata = ["color"]
+# 
+# #[pair work_nc_calendar]
+# #a = "work_calendars_local"
+# #b = "nc_cal_remote"
+# #collections = ["from a"]
+# #conflict_resolution = "a wins"
+# #metadata = ["color"]
+# 
+# # ZEP to NC
+# [pair zep_nc_calendar]
+# a = "zep_calendars_local"
+# b = "nc_cal_remote"
+# collections = ["from a"]
+# 
 
-#[pair work_nc_calendar]
-#a = "work_calendars_local"
-#b = "nc_cal_remote"
-#collections = ["from a"]
-#conflict_resolution = "a wins"
-#metadata = ["color"]
-
-# ZEP to NC
-[pair zep_nc_calendar]
-a = "zep_calendars_local"
-b = "nc_cal_remote"
-collections = ["from a"]
-
-# Upload to GCAL
+# --------------------------------------------------------------------------------------
+# Google Workspace
+# --------------------------------------------------------------------------------------
 [storage google_calendars_remote]
 type = "google_calendar"
 token_file = "~/.config/vdirsyncer/google_token"
@@ -96,30 +109,48 @@ client_secret = "{{- (bitwardenFields "item" "Stoeps Mail").client_secret.value 
 
 [storage google_calendars_local]
 type = "filesystem"
-path = "~/.local/share/calendars-gmail/"
+path = "~/.local/share/calendars/google/"
 fileext = ".ics"
+encoding = "utf-8"
 
 [pair gmail_calendars]
 a = "google_calendars_remote"
 b = "google_calendars_local"
-collections = ["from a", "from b"]
+collections = [ "christoph.stoettner@stoeps.de", "ida@stoeps.de", "ujdd3g448335v15cvfl8paqk3g5j0prq@import.calendar.google.com", "paula@stoeps.de", "corinna.stoettner@stoeps.de"]
 metadata = ["color"]
 
-# Card DAV
-[pair work_addressbook]
-a = "work_addressbook_local"
-b = "work_addressbook_remote"
-conflict_resolution = "b wins"
-collections = ["from a", "from b"]
-metadata = ["displayname"]
+# --------------------------------------------------------------------------------------
+# m365 work - Google Workspace
+# sync o365 read only to gmail (for family access)
+# atm this is not working, no idea why this get not synced to google
+# --------------------------------------------------------------------------------------
 
-[storage work_addressbook_local]
+# [pair o365_google]
+# a = "google_calendars_local"
+# b = "o365_vit_calendars_remote"
+# collections = [["worksync", "c_ac1df27ec198e4426a5759e70041eba5d1ac2afbea74c3d0e1af5b49b3c16dc8@group.calendar.google.com", "calendar"]]
+# conflict_resolution = "b wins"
+
+# --------------------------------------------------------------------------------------
+# Addressbook synchronisation
+# --------------------------------------------------------------------------------------
+# Card DAV
+# --------------------------------------------------------------------------------------
+[storage o365_vit_addressbook_local]
 type = "filesystem"
-path = "~/.local/share/contacts/work"
+path = "~/.local/share/contacts/o365-vit"
 fileext = ".vcf"
 
-[storage work_addressbook_remote]
+[storage o365_vit_addressbook_remote]
 type = "carddav"
 url = "http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/contacts"
 username = "{{ (bitwarden "item" "Microsoft-Mail").login.username }}"
 password = "{{ (bitwarden "item" "Microsoft-Mail").login.password }}"
+
+[pair work_addressbook]
+a = "o365_vit_addressbook_local"
+b = "o365_vit_addressbook_remote"
+conflict_resolution = "b wins"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
