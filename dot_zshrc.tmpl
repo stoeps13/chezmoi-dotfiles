@@ -138,7 +138,6 @@ alias gcm='git commit -m'
 alias ga='git add'
 alias gpl='git pull'
 alias gps='git push'
-alias til='cd ~/logseq-til'
 
 alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
 alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
@@ -219,10 +218,9 @@ alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
 
 export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
-alias pkm='nvim "$HOME/logseq-til/journals/$(date +%Y-%m-%d).md"'
-alias pkmj='cd $HOME/logseq-til/journals/'
-alias pkmp='cd $HOME/logseq-til/pages/'
-alias pkmu='nvim "$(find $HOME/logseq-til/ -type f -name '\''*.md'\'' -printf '\''%T@ %p\n'\'' | sort -n | tail -1 | cut -d'\'' '\'' -f2-)"'
+alias b="bookmarks | fzf | cut -d ' ' -f 1 | xargs xdg-open"
+alias ba='bookmarks'
+
 if [[ -f /usr/bin/eza ]]; then
   alias ll="eza -l --icons=always"
   alias la="eza -la --icons=always"

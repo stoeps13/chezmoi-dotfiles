@@ -6,7 +6,7 @@ type gsettings >/dev/null 2>&1 || exit 0
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
 # Set compose key
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none', 'eurosign:e', 'compose:rctrl']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none', 'eurosign:e', 'compose:rctrl', 'caps:ctrl_modifier']"
 
 # Set touchpad tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
