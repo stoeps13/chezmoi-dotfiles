@@ -1,55 +1,40 @@
 [calendars]
 
-#  [[home]]
-#    path = ~/.calendars/home/
-#    color = dark green
-#    priority = 20
-#
-#Syncing work_calendars/calendar
-#Syncing work_calendars/ZEP
-#Syncing dnug_calendar
-#Syncing nc_calendar/personal
-#Syncing nc_calendar/contact_birthdays
-#Syncing nc_calendar/calendar
-#Syncing nc_calendar/ZEP
-#Syncing nc_calendar/dnug-events
-#Syncing nc_calendar/feiertage-in-hessen-2025
-#Syncing nc_calendar/ferien-in-hessen-2025
-#Syncing nc_calendar/abfuhrtermine
-  [[work]]
-    path = ~/.local/share/calendars/calendar/
+  [[vegard]]
+    path = ~/.local/share/calendars/o365-vit/calendar/
     color = dark blue
   [[zep]]
-    path = ~/.local/share/zep-calendars/
+    path = ~/.local/share/calendars/zep/
+    color = light blue
   [[dnug events]]
-    path = ~/.local/share/calendar-dnug/
+    path = ~/.local/share/calendars/dnug/
     color = dark red
-  [[birthdays]]
-    path = ~/.local/share/calendar-nc/contact_birthdays
-    color = dark magenta
-#  [[work-nc]]
-#    path = ~/.local/share/calendar-nc/calendar
-#    color = dark blue
-  [[personal]]
-    path = ~/.local/share/calendar-nc/personal
+  [[google personal]]
+    path = ~/.local/share/calendars/google/christoph.stoettner@stoeps.de/
     color = dark green
+  [[nextcloud personal]]
+    path = ~/.local/share/calendars/nextcloud/personal/
+    color = dark green
+  [[birthdays]]
+    path = ~/.local/share/calendars/nextcloud/contact_birthdays
+    color = dark magenta
   [[feiertage]]
-    path = ~/.local/share/calendar-nc/feiertage-in-hessen-2025
+    path = ~/.local/share/calendars/nextcloud/feiertage-in-hessen-2025/
     color = light green
   [[ferien]]
-    path = ~/.local/share/calendar-nc/ferien-in-hessen-2025
+    path = ~/.local/share/calendars/nextcloud/ferien-in-hessen-2025
     color = yellow
   [[zakb]]
-    path = ~/.local/share/calendar-nc/abfuhrtermine
+    path = ~/.local/share/calendars/nextcloud/abfuhrtermine
     color = light gray
   [[corinna]]
-    path = ~/.local/share/calendars-gmail/corinna.stoettner@stoeps.de
+    path = ~/.local/share/calendars/google/corinna.stoettner@stoeps.de
     color = light red
   [[paula]]
-    path = ~/.local/share/calendars-gmail/paula@stoeps.de
+    path = ~/.local/share/calendars/google/paula@stoeps.de
     color = light magenta
   [[ida]]
-    path = ~/.local/share/calendars-gmail/ida@stoeps.de
+    path = ~/.local/share/calendars/google/ida@stoeps.de
     color = light cyan
 
 [locale]
