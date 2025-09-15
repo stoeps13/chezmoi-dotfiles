@@ -220,6 +220,8 @@ export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 alias b="bookmarks | fzf | cut -d ' ' -f 1 | xargs xdg-open"
 alias ba='bookmarks'
+alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
+alias cnx8-db2-start='distrobox-host-exec ~/.local/bin/cnx8-db2-start.sh'
 
 if [[ -f /usr/bin/eza ]]; then
   alias ll="eza -l --icons=always"
