@@ -19,7 +19,7 @@ windows:
     layout: tiled
     panes:
       - mbsync -a && vdirsyncer sync && today
-      - task
+      - todo.sh list
   - window_name: ssh
     panes:
       - ls
