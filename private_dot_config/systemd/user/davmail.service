@@ -8,4 +8,4 @@ ExecStart=/var/home/stoeps/.local/bin/davmail /var/home/stoeps/.davmail.properti
 ExecStop=killall davmail
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
