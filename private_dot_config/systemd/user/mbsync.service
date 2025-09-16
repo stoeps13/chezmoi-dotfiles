@@ -6,3 +6,6 @@ RefuseManualStop=yes
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/mbsync --all'
+
+[Install]
+WantedBy=default.target
