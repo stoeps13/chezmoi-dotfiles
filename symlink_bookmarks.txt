@@ -1,1 +1,1 @@
-$HOME/vimwiki/latest/bookmarks.txt
+$HOME/vimwiki/2025/bookmarks.txt
