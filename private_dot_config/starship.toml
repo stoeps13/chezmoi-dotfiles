@@ -12,26 +12,26 @@ $directory\
 $git_branch\
 $git_status\
 $git_metrics\
-[](bg:nord3 fg:nord2)\
-$c\
-$elixir\
-$elm\
-$golang\
-$python\
-$gradle\
-$haskell\
-$java\
-$julia\
-$nodejs\
-$nim\
-$rust\
-$scala\
 [](fg:nord3)
 $kubernetes\
 $status
 """
-#[](fg:nord3)
-
+# [](fg:nord3)
+# [](bg:nord3 fg:nord2)\
+# $c\
+# $elixir\
+# $elm\
+# $golang\
+# $python\
+# $gradle\
+# $haskell\
+# $java\
+# $julia\
+# $nodejs\
+# $nim\
+# $rust\
+# $scala\
+# 
 scan_timeout = 50
 command_timeout = 1000
 add_newline = false
