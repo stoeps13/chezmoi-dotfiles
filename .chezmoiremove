@@ -1,3 +1,4 @@
 temp/*
 Downloads/*
 hs_err_pid2.log
+.config/systemd/user/davmail.service

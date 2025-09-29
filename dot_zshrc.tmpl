@@ -76,7 +76,7 @@ fpath=(~/.oh-my-zsh-custom/completions $fpath)
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder colorize colored-man-pages copyfile copypath direnv git ssh-agent tmux web-search)
+plugins=(alias-finder colorize copyfile copypath direnv git ssh-agent tmux)
 
 # Load ssh keys
 zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github vit-ed25519-gitlab
@@ -87,31 +87,6 @@ source $ZSH/oh-my-zsh.sh
 
 export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 
 # Export user specific environment
@@ -132,12 +107,6 @@ then
    PATH="$HOME/.claude/local:$PATH"
 fi
 export PATH
-
-alias gst='git status'
-alias gcm='git commit -m'
-alias ga='git add'
-alias gpl='git pull'
-alias gps='git push'
 
 alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
 alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
@@ -179,9 +148,6 @@ then
 fi
 
 # Some aliases depending on installed software
-# [ -f /usr/bin/bat ] && alias cat='bat --color=always'
-# [ -f /usr/bin/batcat ] && alias cat='batcat --color=always'
-# [ -f /usr/bin/rg ] && alias grep='rg'
 [ -f /usr/bin/batcat ] && alias bat='batcat --color=always'
 
 if [[ -f ~/.local/bin/nvim ]]
@@ -197,8 +163,6 @@ then
   export FLYCTL_INSTALL="/home/stoeps/.fly"
   export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
-
-
 
 alias ssh='TERM=xterm ssh'
 alias today='khal list -o $(date +"%d.%m.%Y") 1d'
@@ -257,11 +221,6 @@ function set_tmux_title() {
     fi
 }
 
-# Usage example
-if [ -n $CONTAINER_ID ]; then
-  set_tmux_title "$CONTAINER_ID"
-fi
-
 export PNPM_HOME="/var/home/stoeps/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
@@ -269,8 +228,6 @@ case ":$PATH:" in
 esac
 
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
-export BW_CLIENTID='{{ (bitwarden "item" "BwAPI").login.username}}'
-export BW_CLIENTSECRET='{{ (bitwarden "item" "BwAPI").login.password}}'
 
 {{- if eq .chezmoi.hostname "FE-C-009MM" }}
 export HTTP_PROXY=http://rb-proxy-de.bosch.com:8080
