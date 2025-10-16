@@ -255,3 +255,9 @@ url = {{ gitHubLatestReleaseAssetURL "DeprecatedLuar/better-curl-saul" "saul-lin
 refreshPeriod = "168h"
 executable = true
 
+[".local/bin/helmfile"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "helmfile/helmfile" "helmfile_*_linux_amd64.tar.gz" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "helmfile"

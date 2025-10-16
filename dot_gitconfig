@@ -20,3 +20,10 @@
   dft = difftool
 [safe]
 	directory = /var/mnt/stoeps-customizer-css
+[merge]
+        tool = "nvim"
+[mergetool]
+        keepBackup = false
+        prompt = false
+[mergetool "nvim"]
+        cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
