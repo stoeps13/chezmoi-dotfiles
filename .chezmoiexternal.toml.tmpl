@@ -261,3 +261,19 @@ url = {{ gitHubLatestReleaseAssetURL "helmfile/helmfile" "helmfile_*_linux_amd64
 refreshPeriod = "168h"
 executable = true
 path = "helmfile"
+
+[".local/bin/yazi"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "sxyazi/yazi" "yazi-x86_64-unknown-linux-gnu.zip" | quote }}
+refreshPeriod = "168h"
+executable = true
+stripComponents = 1
+path = "yazi"
+
+[".local/bin/ya"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "sxyazi/yazi" "yazi-x86_64-unknown-linux-gnu.zip" | quote }}
+refreshPeriod = "168h"
+executable = true
+stripComponents = 1
+path = "ya"

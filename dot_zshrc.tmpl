@@ -110,6 +110,9 @@ export PATH
 
 alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
 alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
+alias yt-mp4='youtube-dl -t mp4'
+alias yt-mp3='youtube-dl -t mp3 -x'
+
 
 # FZF if available
 if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]
@@ -192,6 +195,16 @@ if [[ -f /usr/bin/eza ]]; then
   alias la="eza -la --icons=always"
 fi
 source ~/.local/bin/fzf-git.sh
+
+# yazi function
+# from https://yazi-rs.github.io/docs/quick-start
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
