@@ -258,18 +258,6 @@ try:
                         )
 
                 if len(comment_output) > 0:
-                    print(
-                        "### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n"
-                        % (
-                            case_id,
-                            case_title,
-                            case_id,
-                            case_id,
-                            case_id,
-                            internal_status,
-                            case_updated,
-                        )
-                    )
                     for output in comment_output:
                         print(output)
             else:
@@ -307,18 +295,19 @@ try:
                 )
 
             if len(comment_output) > 0:
-                print(
-                    "### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n"
-                    % (
-                        case_id,
-                        case_title,
-                        case_id,
-                        case_id,
-                        case_id,
-                        internal_status,
-                        case_updated,
+                if all_comments != False:
+                    print(
+                        "### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n"
+                        % (
+                            case_id,
+                            case_title,
+                            case_id,
+                            case_id,
+                            case_id,
+                            internal_status,
+                            case_updated,
+                        )
                     )
-                )
                 for output in comment_output:
                     print(output)
 finally:
