@@ -247,6 +247,7 @@ export HTTP_PROXY=http://rb-proxy-de.bosch.com:8080
 export HTTPS_PROXY=http://rb-proxy-de.bosch.com:8080
 {{- end }}
 
+eval "$(uv generate-shell-completion zsh)"
 ### End of Zinit's installer chunk
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
