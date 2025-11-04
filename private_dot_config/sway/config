@@ -300,14 +300,24 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Start some apps automatically
-workspace $ws2
-exec --no-startup-id swaymsg 'workspace $w2; exec flatpak run org.wezfurlong.wezterm'
-workspace $ws7
-exec --no-startup-id swaymsg 'workspace $w7; exec flatpak run com.discordapp.Discord'
-workspace $ws1
-exec --no-startup-id swaymsg 'workspace $w1; exec flatpak run com.github.zocker_160.SyncThingy'
-exec --no-startup-id swaymsg 'workspace $w9; exec flatpak run im.riot.Riot'
-exec --no-startup-id swaymsg 'workspace $w10; exec flatpak run org.davmail.DavMail'
+workspace $w2
+exec flatpak run org.wezfurlong.wezterm
+
+workspace $w9
+exec flatpak run com.discordapp.Discord
+
+workspace $w10
+exec '/opt/tuxedo-control-center/tuxedo-control-center --tray'
+exec flatpak run im.riot.Riot
+exec flatpak run com.github.zocker_160.SyncThingy
+exec flatpak run org.davmail.DavMail
+
+workspace $w1
+exec flatpak run app.zen_browser.zen 
+
+workspace $w1
+
+default_border pixel 2
+smart_borders on
 
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
