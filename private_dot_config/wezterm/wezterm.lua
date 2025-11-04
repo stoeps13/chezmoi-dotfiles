@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font("FiraCode Nerd Font")
-config.font_size = 10
+config.font_size = 13
 -- For example, changing the color scheme:
 -- config.color_scheme = "Nord (Gogh)"
 config.color_scheme = "Tokyo Night (Gogh)"
