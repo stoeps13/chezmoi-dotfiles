@@ -158,7 +158,7 @@ set $w6   6: 
 set $w7   7: 
 set $w8   8: 
 set $w9   9: 
-set $w10 10: 
+set $w10 10: 
 
 # workspaces for monitor2
 set $w11 11: 
@@ -170,7 +170,7 @@ set $w16 16: 
 set $w17 17: 
 set $w18 18: 
 set $w19 19: 
-set $w20 20: 
+set $w20 20: 
 
 workspace "$w1" output $monitor
 workspace "$w2" output $monitor
