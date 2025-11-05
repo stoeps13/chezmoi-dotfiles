@@ -42,6 +42,7 @@ fi
 # if [[ -x "/usr/bin/zsh" ]]; then
 #   exec zsh $LOGIN_OPTION
 # fi
+export WAYLAND_DISPLAY=$(ls "$XDG_RUNTIME_DIR" | grep -E '^wayland-[[:digit:]]$')
 export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
 alias fedora='distrobox enter fedora'
 alias kali='distrobox enter --root kali'
