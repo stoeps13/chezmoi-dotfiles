@@ -5,36 +5,6 @@ executable = true
 refreshPeriod = "168h"
 path = "chezmoi"
 
-[".oh-my-zsh"]
-type = "git-repo"
-url = "https://github.com/ohmyzsh/ohmyzsh.git"
-refreshPeriod = "168h"
-
-[".oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
-type = "git-repo"
-url = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-refreshPeriod = "168h"
-
-[".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
-type = "git-repo"
-url = "https://github.com/zsh-users/zsh-autosuggestions.git"
-refreshPeriod = "168h"
-
-[".fzf"]
-type = "git-repo"
-url = "https://github.com/junegunn/fzf.git"
-refreshPeriod = "168h"
-
-[".config/nvim"]
-type = "git-repo"
-url = "git@github.com:stoeps13/kickstart.nvim.git"
-refreshPeriod = "168h"
-
-[".local/share"]
-type = "archive"
-url = "https://github.com/neovim/neovim/releases/latest/download/nvim-{{ .chezmoi.os }}-x86_64.tar.gz"
-refreshPeriod = "168h"
-
 [".local/bin/hugo"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL 
@@ -74,24 +44,12 @@ refreshPeriod = "168h"
 executable = true
 path = "nerdctl"
 
-{{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
-[".local/bin"]
-type = "archive"
-refreshPeriod = "168h"
-url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
-
 [".local/bin/lazygit"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "lazygit_*_linux_x86_64.tar.gz") | quote }}
 refreshPeriod = "168h"
 executable = true
 path = "lazygit"
-
-[".local/bin/talosctl"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "siderolabs/talos" "talosctl-linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
 
 [".local/bin/k9s"]
 type = "archive-file"
@@ -113,13 +71,6 @@ url = {{ gitHubLatestReleaseAssetURL "ahmetb/kubectx" (printf "kubectx_*_linux_x
 refreshPeriod = "168h"
 executable = true
 path = "kubectx"
-
-[".local/bin/kubetail"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "kubetail-org/kubetail" "kubetail-linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
-
 
 [".local/bin/trivy"]
 type = "archive-file"
@@ -149,12 +100,6 @@ refreshPeriod = "168h"
 url = "https://get.helm.sh/helm-v{{ $helmVersion }}-linux-amd64.tar.gz"
 stripComponents = 1
 path = "helm"
-
-[".local/bin/kubectl"]
-type = "file"
-executable = true
-refreshPeriod = "720h"
-url = 'https://dl.k8s.io/release/{{ output "curl" "-L" "-s" "https://dl.k8s.io/release/stable.txt" | trim }}/bin/linux/amd64/kubectl'
 
 [".local/bin/hubble"]
 type = "archive-file"
@@ -200,14 +145,6 @@ executable = true
 stripComponents = 1
 path = "typst"
 
-[".local/share/fonts"]
-type = "archive"
-url = {{ gitHubLatestReleaseAssetURL "FortAwesome/Font-Awesome" (printf "fontawesome-free-*-desktop.zip") | quote }} 
-exact = true
-stripComponents = 2
-refreshPeriod = "168h"
-include = ["**/otfs/Font*.otf"]
-
 [".local/bin/todo.sh"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "todotxt/todo.txt-cli" "todo.txt_cli-*.tar.gz" | quote }}
@@ -233,36 +170,6 @@ stripComponents = 1
 executable = true
 exact = true
 path = "uvx"
-
-[".local/bin/direnv"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" "direnv.linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
-
-[".local/bin/youtube-dl"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "yt-dlp/yt-dlp" "yt-dlp_linux"  | quote }}
-refreshPeriod = "168h"
-executable = true
-
-[".local/bin/bookmarks"]
-type = "file"
-url = "https://raw.githubusercontent.com/stoeps13/bookmarks.txt/refs/heads/main/bin/bookmarks"
-executable = true
-refreshPeriod = "168h"
-
-[".local/bin/asciinema"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "asciinema/asciinema" "asciinema-x86_64-unknown-linux-gnu"  | quote }}
-refreshPeriod = "168h"
-executable = true
-
-[".local/bin/saul"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "DeprecatedLuar/better-curl-saul" "saul-linux-amd64"  | quote }}
-refreshPeriod = "168h"
-executable = true
 
 [".local/bin/helmfile"]
 type = "archive-file"
@@ -293,3 +200,24 @@ url = {{ gitHubLatestReleaseAssetURL "lycheeverse/lychee" "lychee-x86_64-unknown
 refreshPeriod = "168h"
 executable = true
 path = "lychee"
+
+[".local/bin/stern"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "stern/stern" "stern_*_linux_amd64.tar.gz" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "stern"
+
+[".local/bin/popeye"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "derailed/popeye" "popeye_linux_amd64.tar.gz" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "popeye"
+
+[".local/bin/gron"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "tomnomnom/gron" "gron-linux-amd64-*.tgz" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "gron"
