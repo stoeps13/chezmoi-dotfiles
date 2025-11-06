@@ -1,0 +1,29 @@
+[".oh-my-zsh"]
+type = "git-repo"
+url = "https://github.com/ohmyzsh/ohmyzsh.git"
+refreshPeriod = "168h"
+
+[".oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+type = "git-repo"
+url = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+refreshPeriod = "168h"
+
+[".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
+type = "git-repo"
+url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+refreshPeriod = "168h"
+
+[".fzf"]
+type = "git-repo"
+url = "https://github.com/junegunn/fzf.git"
+refreshPeriod = "168h"
+
+[".config/nvim"]
+type = "git-repo"
+url = "git@github.com:stoeps13/kickstart.nvim.git"
+refreshPeriod = "168h"
+
+["data/Seclists"]
+type = "git-repo"
+url = "https://github.com/danielmiessler/SecLists.git"
+refreshPeriod = "168h"

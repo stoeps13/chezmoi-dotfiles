@@ -1,0 +1,59 @@
+[".local/bin/talosctl"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "siderolabs/talos" "talosctl-linux-amd64" | quote }}
+refreshPeriod = "168h"
+executable = true
+
+[".local/bin/kubetail"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "kubetail-org/kubetail" "kubetail-linux-amd64" | quote }}
+refreshPeriod = "168h"
+executable = true
+
+[".local/bin/kubectl"]
+type = "file"
+executable = true
+refreshPeriod = "720h"
+url = 'https://dl.k8s.io/release/{{ output "curl" "-L" "-s" "https://dl.k8s.io/release/stable.txt" | trim }}/bin/linux/amd64/kubectl'
+
+[".local/bin/direnv"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" "direnv.linux-amd64" | quote }}
+refreshPeriod = "168h"
+executable = true
+
+[".local/bin/youtube-dl"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "yt-dlp/yt-dlp" "yt-dlp_linux"  | quote }}
+refreshPeriod = "168h"
+executable = true
+
+[".local/bin/bookmarks"]
+type = "file"
+url = "https://raw.githubusercontent.com/stoeps13/bookmarks.txt/refs/heads/main/bin/bookmarks"
+executable = true
+refreshPeriod = "168h"
+
+[".local/bin/asciinema"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "asciinema/asciinema" "asciinema-x86_64-unknown-linux-gnu"  | quote }}
+refreshPeriod = "168h"
+executable = true
+
+[".local/bin/saul"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "DeprecatedLuar/better-curl-saul" "saul-linux-amd64"  | quote }}
+refreshPeriod = "168h"
+executable = true
+
+["data/sectools/linpeas_linux_amd64"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "peass-ng/PEASS-ng" "linpeas_linux_amd64"  | quote }}
+refreshPeriod = "168h"
+executable = true
+
+["data/sectools/winPEASx64.exe"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "peass-ng/PEASS-ng" "winPEASx64.exe"  | quote }}
+refreshPeriod = "168h"
+executable = true

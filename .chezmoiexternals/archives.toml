@@ -1,0 +1,18 @@
+[".local/share"]
+type = "archive"
+url = "https://github.com/neovim/neovim/releases/latest/download/nvim-{{ .chezmoi.os }}-x86_64.tar.gz"
+refreshPeriod = "168h"
+
+{{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
+[".local/bin"]
+type = "archive"
+refreshPeriod = "168h"
+url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
+
+[".local/share/fonts"]
+type = "archive"
+url = {{ gitHubLatestReleaseAssetURL "FortAwesome/Font-Awesome" (printf "fontawesome-free-*-desktop.zip") | quote }} 
+exact = true
+stripComponents = 2
+refreshPeriod = "168h"
+include = ["**/otfs/Font*.otf"]
