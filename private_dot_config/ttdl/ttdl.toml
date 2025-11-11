@@ -1,43 +1,3 @@
-# The configuration file follows TOML format rules: https://toml.io/
-# Note on file paths:
-#   On Windows a file path usually includes backslashes. When TOML parses a string
-#   enclosed into double quotes, it treats backslashes as escape characters. This
-#   results in errors when loading a configuration file. To avoid this trouble, use
-#   one of the following ways to put a file path to the configuration:
-#   1. Use single quotes instead of double ones:
-#     filename = 'c:\Users\user\todo.txt'
-#   2. Duplicate backslashes:
-#     filename = "c:\\Users\\user\\todo.txt"
-#   3. Replace backslashes with slashes:
-#     filename = "c:/Users/user/todo.txt"
-#
-# A TTDL config can be in the current working directory - to support
-#   ttdl settings on per project basis. Global user config must be in:
-# * Linux: ~/.config/ttdl/ttdl.toml
-# * Windows: c:\Users\<username>\AppData\Roaming\ttdl\ttdl.toml
-# * MacOS: /Users/<username>/Library/Preferences/ttdl/ttdl.toml
-#
-# All section must exists in the custom configuration file, but all options
-#   inside every section are optional.
-#
-# available colors (names are case-insensitive):
-#   black, red, green, yellow, blue, magenta, cyan, white
-# every color may have up to 3 modifiers:
-#   bold, underline, bright(or intense)
-# the first two modifiers works only in ANSI-compatible terminal.
-# To make them work on Windows, use ConEmu or Cmder instead
-#   of standard cmd or PowerShell.
-# For Cmder/ConEmu and Linux terminals indexed 256-color terminal and
-#   RGB colors are supported as well. Format for indexed colors is the index
-#   of the color(enclosed in double quotes):
-#   overdue="140"
-#   Format for RGB is enclosed in double quotes a comma separated list of 3
-#   numbers (order of colors is R,G,B) :
-#   overdue="220,0,0"
-#   For both indexed and RGB colors the number can be either decimal between
-#   0 and 255 or hexadecimal in range 0x0 - 0xFF. In latter case, it must start
-#   with  "0x".
-# If a color value cannot be parsed it defaults to 'white'
 [colors]
 # color_term: terminal color support
 #   auto: standard console API for Windows, ANSI for *nix OSes
@@ -67,7 +27,7 @@ old = "bright black"
 [ranges]
 # TTDL filter `soon` selects todos that are due in and less than in `soon` days
 # 0 - disable `soon` feature
-soon = 0
+soon = 3
 # todos that have priority equal or higher than `important` are displayed in
 #   in `colors.important` font color.
 # Priority is a character from 'a'(highest priority) through 'z'. Setting
@@ -84,11 +44,11 @@ old = "1y"
 filename = "~/vimwiki/latest/diary/todo.txt"
 
 # automatically set creation date to today if it is not set when adding a new todo
-# creation_date_auto = true
+creation_date_auto = true
 
 # fields that are displayed by default. Available fields:
 #   pri, done, due, created, finished, thr
-# fields = "pri,due,done"
+fields = "pri,due,done"
 
 # default sorting
 # sort = "pri"
@@ -113,11 +73,12 @@ filename = "~/vimwiki/latest/diary/todo.txt"
 #    false - first day of week is Monday
 # Note: The option is unused yet
 # first_sunday = true
+first_sunday = false
 
 # enables strict command-line mode: in this mode the first free command-line
 # argument must be a TTDL command. It may be useful to avoid adding incorrect
 # todos after making a type, e.g, `ttdl listt`
-# strict_mode = false
+strict_mode = true
 
 # defines what items from a subject will be removed before printing:
 #    none | nothing = subject is printed as-is (default)
@@ -167,7 +128,7 @@ filename = "~/vimwiki/latest/diary/todo.txt"
 [syntax]
 # Set enabled to 'true' to highlight projects, contexts, tags, and hashtags
 #     inside the subject
-# enabled = false
+enabled = true
 tag_color = "bright cyan"
 hashtag_color = "cyan"
 project_color = "bright green"
