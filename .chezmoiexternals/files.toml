@@ -57,3 +57,9 @@ type = "file"
 url = {{ gitHubLatestReleaseAssetURL "peass-ng/PEASS-ng" "winPEASx64.exe"  | quote }}
 refreshPeriod = "168h"
 executable = true
+
+[".local/bin/git-secrets"]
+type = "file"
+url = "https://github.com/awslabs/git-secrets/blob/master/git-secrets"
+executable = true
+refreshPeriod = "168h"
