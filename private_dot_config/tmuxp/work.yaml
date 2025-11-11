@@ -1,0 +1,25 @@
+---
+shell_command_before:
+  - cmd: echo .
+    sleep_before: 1
+    sleep_after: 1
+session_name: work
+windows:
+  - window_name: TIL
+    panes:
+      - shell_command:
+          - cd ~/vimwiki
+          - nvim -c VimwikiMakeDiaryNote
+  - window_name: MAIL
+    layout: tiled
+    panes:
+      - neomutt
+      - gmail
+  - window_name: PIM
+    layout: tiled
+    panes:
+      - mbsync -a && vdirsyncer sync && today
+      - ttdl list --due soon
+  - window_name: ssh
+    panes:
+      - ls
