@@ -23,7 +23,8 @@ type = "git-repo"
 url = "git@github.com:stoeps13/kickstart.nvim.git"
 refreshPeriod = "168h"
 
-["data/Seclists"]
+["data/SecLists"]
 type = "git-repo"
 url = "https://github.com/danielmiessler/SecLists.git"
 refreshPeriod = "168h"
+clone.args = ["--depth", "1"]

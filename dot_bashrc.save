@@ -1,4 +1,7 @@
-# .bashrc
+distrobox-ho#
+ps ax | grep nano
+kill 820085
+ .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -48,19 +51,9 @@ fi
 
 export XDG_SCREENSHOTS_DIR='~/Pictures/screenshots/'
 export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
-if [[ -f ~/.local/bin/nvim ]]
-then
-  alias vim='nvim'
-  export EDITOR=nvim
-else
-  export EDITOR=vim
-fi
-
-
 alias fedora='distrobox enter fedora'
 alias kali='distrobox enter --root kali'
 alias ubuntu='distrobox enter ubuntu'
-# alias distrobox='distrobox --file ~/.config/distrobox/distrobox.ini'
 
 export GDK_SCALE=1.5
 
