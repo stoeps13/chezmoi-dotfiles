@@ -243,6 +243,7 @@ esac
 export XDG_SCREENSHOTS_DIR=~/Pictures/screenshots/
 export WAYLAND_DISPLAY=$(ls "$XDG_RUNTIME_DIR" | grep -E '^wayland-[[:digit:]]$')
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
+export TMUXP_CONFIGDIR='~/.config/tmuxp'
 
 {{- if eq .chezmoi.hostname "FE-C-009MM" }}
 export HTTP_PROXY=http://rb-proxy-de.bosch.com:8080
