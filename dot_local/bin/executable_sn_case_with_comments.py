@@ -102,6 +102,14 @@ parser.add_argument(
     "--from-date",
     help="Show comments from this date (format: YYYY-MM-DD) until today",
 )
+parser.add_argument(
+    "-l",
+    "--header-level",
+    type=int,
+    default=3,
+    choices=[2, 3, 4],
+    help="Markdown header level for comments (2=##, 3=###, 4=####). Default: 3",
+)
 
 # Folder to store downloaded images
 assets_dir = "assets"
@@ -122,6 +130,7 @@ days_display = 7
 case_number = ""
 all_comments = False
 from_date = None
+header_level = args.header_level
 
 if vars(args)["days"]:
     days_display = int(args.days)
@@ -160,6 +169,9 @@ username, password, base_url = load_config()
 
 # Send a GET request with authentication
 response = requests.get(url, auth=HTTPBasicAuth(username, password))
+
+# Create the markdown header prefix based on header level
+header_prefix = "#" * header_level
 
 try:
     # Check if the request was successful (status code 200)
@@ -252,7 +264,7 @@ try:
                         # Join the wrapped lines with line feeds
                         final_output = "\n".join(wrapped_lines)
 
-                        comment_output.append("### " + comment[0] + "\n")
+                        comment_output.append(header_prefix + " " + comment[0] + "\n")
                         comment_output.append(
                             convert_code_html_to_markdown(final_output) + "\n"
                         )
@@ -289,25 +301,12 @@ try:
                 # Join the wrapped lines with line feeds
                 final_output = "\n".join(wrapped_lines)
 
-                comment_output.append("#### " + comment[0] + "\n")
+                comment_output.append(header_prefix + " " + comment[0] + "\n")
                 comment_output.append(
                     convert_code_html_to_markdown(final_output) + "\n"
                 )
 
             if len(comment_output) > 0:
-                if all_comments != False:
-                    print(
-                        "### [%s: %s](/hcl-cases/%s)\n\n* Case-no: [%s](/hcl-cases/%s)\n* internal_status: %s\n* last_update: %s\n"
-                        % (
-                            case_id,
-                            case_title,
-                            case_id,
-                            case_id,
-                            case_id,
-                            internal_status,
-                            case_updated,
-                        )
-                    )
                 for output in comment_output:
                     print(output)
 finally:
