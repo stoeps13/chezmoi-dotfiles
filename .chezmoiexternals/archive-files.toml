@@ -229,3 +229,9 @@ refreshPeriod = "168h"
 executable = true
 path = "ttdl"
 
+[".local/bin/bw"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "bitwarden/client" "bw-linux-*.zip" | quote }}
+refreshPeriod = "168h"
+executable = true
+path = "bw"
