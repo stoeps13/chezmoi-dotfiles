@@ -231,7 +231,7 @@ path = "ttdl"
 
 [".local/bin/bw"]
 type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "bitwarden/client" "bw-linux-*.zip" | quote }}
+url = "https://vault.bitwarden.com/download/?app=cli&platform=linux"
 refreshPeriod = "168h"
 executable = true
 path = "bw"
