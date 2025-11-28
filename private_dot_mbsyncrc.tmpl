@@ -3,7 +3,7 @@ Host 127.0.0.1
 Port 1143
 User {{ (bitwarden "item" "Microsoft-Mail").login.username }}
 Pass {{ (bitwarden "item" "Microsoft-Mail").login.password }}
-SSLType None
+TLSType None
 AuthMechs LOGIN
 
 IMAPStore work-remote
@@ -25,7 +25,7 @@ Expunge Both
 
 IMAPStore gmail-remote
 Host imap.gmail.com
-SSLType IMAPS
+TLSType IMAPS
 AuthMechs LOGIN
 User {{ (bitwarden "item" "Googlemail SMTP").login.username }}
 Pass {{ (bitwarden "item" "Googlemail SMTP").login.password }}
