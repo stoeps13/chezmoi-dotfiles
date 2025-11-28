@@ -3,3 +3,4 @@ Downloads/*
 hs_err_pid2.log
 .config/systemd/user/davmail.service
 .wezterm.lua
+.local/share/fonts/.uuid
