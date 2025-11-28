@@ -52,6 +52,249 @@ def convert_code_html_to_markdown(input_string):
         return input_string
 
 
+def sanitize_filename(filename):
+    """Sanitize filename for filesystem compatibility"""
+    # Replace spaces with underscores
+    filename = filename.replace(" ", "_")
+
+    # Remove or replace other invalid characters
+    invalid_chars = '<>:"/\\|?*'
+    for char in invalid_chars:
+        filename = filename.replace(char, "_")
+
+    # Limit length to avoid filesystem issues
+    if len(filename) > 200:
+        name, ext = os.path.splitext(filename)
+        filename = name[: 200 - len(ext)] + ext
+
+    return filename
+
+
+def download_attachments(
+    case_number, case_sys_id, username, password, base_url, assets_dir
+):
+    """Download all attachments for a specific case"""
+    attachments_info = []
+    downloaded_files = set()  # Track downloaded files to avoid duplicates
+    filename_counter = {}  # Track filename occurrences for unique naming
+    sys_id_to_path = {}  # Map sys_id to local file path for link replacement
+
+    # ServiceNow REST API endpoint for attachments
+    attachments_url = f"{base_url}/api/now/attachment"
+
+    # Query for attachments related to the case
+    params = {
+        "sysparm_query": f"table_name=sn_customerservice_case^table_sys_id={case_sys_id}",
+        "sysparm_fields": "sys_id,file_name,content_type,size_bytes,sys_created_on",
+    }
+
+    try:
+        response = requests.get(
+            attachments_url,
+            auth=HTTPBasicAuth(username, password),
+            params=params,
+            headers={"Accept": "application/json"},
+        )
+
+        if response.status_code == 200:
+            data = response.json()
+
+            for attachment in data.get("result", []):
+                sys_id = attachment["sys_id"]
+                filename = attachment["file_name"]
+                content_type = attachment["content_type"]
+                size_bytes = attachment.get("size_bytes", "0")
+                created_on = attachment.get("sys_created_on", "")
+
+                # Convert size to int, handling string values
+                try:
+                    size_int = int(float(str(size_bytes))) if size_bytes else 0
+                except (ValueError, TypeError):
+                    size_int = 0
+
+                # Create case-specific subdirectory
+                case_assets_dir = os.path.join(assets_dir, case_number)
+                os.makedirs(case_assets_dir, exist_ok=True)
+
+                # Sanitize filename and handle duplicates
+                safe_filename = sanitize_filename(filename)
+
+                # Handle duplicate filenames by adding a counter
+                base_name, extension = os.path.splitext(safe_filename)
+                if safe_filename in filename_counter:
+                    filename_counter[safe_filename] += 1
+                    safe_filename = (
+                        f"{base_name}_{filename_counter[safe_filename]}{extension}"
+                    )
+                else:
+                    filename_counter[safe_filename] = 0
+
+                file_path = os.path.join(case_assets_dir, safe_filename)
+
+                # Create unique identifier to avoid downloading duplicates
+                file_key = f"{sys_id}_{filename}"
+
+                if file_key in downloaded_files:
+                    print(f"Skipping duplicate sys_id: {filename}")
+                    continue
+
+                downloaded_files.add(file_key)
+
+                # Skip if file already exists
+                if os.path.exists(file_path):
+                    print(f"File already exists, skipping: {safe_filename}")
+                    # Still add to attachments info and mapping
+                    relative_path = os.path.join("assets", case_number, safe_filename)
+                    attachments_info.append(
+                        {
+                            "filename": filename,
+                            "safe_filename": safe_filename,
+                            "path": relative_path,
+                            "content_type": content_type,
+                            "size": size_int,
+                            "created_on": created_on,
+                        }
+                    )
+                    # Map sys_id to local path even if file already exists
+                    sys_id_to_path[sys_id] = relative_path
+                    continue
+
+                # Download the actual file
+                download_url = f"{base_url}/api/now/attachment/{sys_id}/file"
+
+                file_response = requests.get(
+                    download_url, auth=HTTPBasicAuth(username, password), stream=True
+                )
+
+                if file_response.status_code == 200:
+                    with open(file_path, "wb") as f:
+                        for chunk in file_response.iter_content(chunk_size=8192):
+                            f.write(chunk)
+
+                    # Store attachment info for markdown links
+                    relative_path = os.path.join("assets", case_number, safe_filename)
+                    attachments_info.append(
+                        {
+                            "filename": filename,
+                            "safe_filename": safe_filename,
+                            "path": relative_path,
+                            "content_type": content_type,
+                            "size": size_int,
+                            "created_on": created_on,
+                        }
+                    )
+
+                    # Map sys_id to local path for link replacement
+                    sys_id_to_path[sys_id] = relative_path
+
+                    print(f"Downloaded: {sys_id}-{filename} -> {safe_filename}")
+                else:
+                    print(
+                        f"Failed to download {filename}: HTTP {file_response.status_code}"
+                    )
+
+        else:
+            print(
+                f"Failed to fetch attachments for case {case_number}: HTTP {response.status_code}"
+            )
+            if response.status_code == 401:
+                print("Authentication failed. Please check your credentials.")
+            elif response.status_code == 403:
+                print(
+                    "Access forbidden. You may not have permission to access attachments."
+                )
+
+    except Exception as e:
+        print(f"Error downloading attachments for case {case_number}: {str(e)}")
+
+    return attachments_info, sys_id_to_path
+
+
+def get_case_sys_id(case_number, username, password, base_url):
+    """Get the sys_id for a case number using the Table API"""
+    try:
+        # ServiceNow Table API endpoint for cases
+        cases_url = f"{base_url}/api/now/table/sn_customerservice_case"
+
+        params = {
+            "sysparm_query": f"number={case_number}",
+            "sysparm_fields": "sys_id,number",
+            "sysparm_limit": "1",
+        }
+
+        response = requests.get(
+            cases_url,
+            auth=HTTPBasicAuth(username, password),
+            params=params,
+            headers={"Accept": "application/json"},
+        )
+
+        if response.status_code == 200:
+            data = response.json()
+            results = data.get("result", [])
+
+            if results:
+                return results[0]["sys_id"]
+
+        print(f"Could not find sys_id for case {case_number}")
+        return None
+
+    except Exception as e:
+        print(f"Error getting sys_id for case {case_number}: {str(e)}")
+        return None
+
+
+def format_attachments_markdown(attachments_info, header_level):
+    """Format attachments as markdown links"""
+    if not attachments_info:
+        return ""
+
+    header_prefix = "#" * (header_level + 1)  # One level deeper than comments
+    markdown = f"\n{header_prefix} Attachments:\n"
+
+    for attachment in attachments_info:
+        filename = attachment["filename"]
+        path = attachment["path"]
+        size = attachment.get("size", 0)
+        content_type = attachment.get("content_type", "unknown")
+
+        # Ensure size is an integer
+        try:
+            size = int(float(str(size))) if size else 0
+        except (ValueError, TypeError):
+            size = 0
+
+        # Format file size
+        if size > 1024 * 1024:
+            size_str = f"{size/(1024*1024):.1f}MB"
+        elif size > 1024:
+            size_str = f"{size/1024:.1f}KB"
+        else:
+            size_str = f"{size}B"
+
+        markdown += f"- [{filename}]({path}) ({size_str}, {content_type})\n"
+
+    return markdown
+
+
+def replace_attachment_links(text, sys_id_to_path):
+    """Replace ServiceNow attachment links with local file paths"""
+    if not sys_id_to_path:
+        return text
+
+    # Pattern to match ![](/sys_attachment.do?sys_id=XXXXXXXX)
+    pattern = r"!\[\]\(/sys_attachment\.do\?sys_id=([a-f0-9]+)\)"
+
+    def replace_link(match):
+        sys_id = match.group(1)
+        if sys_id in sys_id_to_path:
+            local_path = sys_id_to_path[sys_id]
+            return f"![]({local_path})"
+        return match.group(0)  # Return original if sys_id not found
+
+    return re.sub(pattern, replace_link, text)
+
+
 def load_config():
     """Load ServiceNow configuration from .sn_envrc file in home directory"""
     home_dir = str(pathlib.Path.home())
@@ -110,6 +353,11 @@ parser.add_argument(
     choices=[2, 3, 4],
     help="Markdown header level for comments (2=##, 3=###, 4=####). Default: 3",
 )
+parser.add_argument(
+    "--download-attachments",
+    action="store_true",
+    help="Download attachments for the cases",
+)
 
 # Folder to store downloaded images
 assets_dir = "assets"
@@ -131,6 +379,7 @@ case_number = ""
 all_comments = False
 from_date = None
 header_level = args.header_level
+should_download_attachments = args.download_attachments
 
 if vars(args)["days"]:
     days_display = int(args.days)
@@ -234,6 +483,16 @@ try:
         # Calculate the difference between the two dates
         age = today - date_object
 
+        # Download attachments if requested
+        attachments_info = []
+        sys_id_to_path = {}
+        if should_download_attachments:
+            case_sys_id = get_case_sys_id(case_id, username, password, base_url)
+            if case_sys_id:
+                attachments_info, sys_id_to_path = download_attachments(
+                    case_id, case_sys_id, username, password, base_url, assets_dir
+                )
+
         if all_comments == False:
             if (
                 start_date
@@ -264,12 +523,24 @@ try:
                         # Join the wrapped lines with line feeds
                         final_output = "\n".join(wrapped_lines)
 
+                        # Replace attachment links if attachments were downloaded
+                        if sys_id_to_path:
+                            final_output = replace_attachment_links(
+                                final_output, sys_id_to_path
+                            )
+
                         comment_output.append(header_prefix + " " + comment[0] + "\n")
                         comment_output.append(
                             convert_code_html_to_markdown(final_output) + "\n"
                         )
 
                 if len(comment_output) > 0:
+                    # Add attachments information before comments
+                    if attachments_info:
+                        print(
+                            format_attachments_markdown(attachments_info, header_level)
+                        )
+
                     for output in comment_output:
                         print(output)
             else:
@@ -301,12 +572,22 @@ try:
                 # Join the wrapped lines with line feeds
                 final_output = "\n".join(wrapped_lines)
 
+                # Replace attachment links if attachments were downloaded
+                if sys_id_to_path:
+                    final_output = replace_attachment_links(
+                        final_output, sys_id_to_path
+                    )
+
                 comment_output.append(header_prefix + " " + comment[0] + "\n")
                 comment_output.append(
                     convert_code_html_to_markdown(final_output) + "\n"
                 )
 
             if len(comment_output) > 0:
+                # Add attachments information before comments
+                if attachments_info:
+                    print(format_attachments_markdown(attachments_info, header_level))
+
                 for output in comment_output:
                     print(output)
 finally:
