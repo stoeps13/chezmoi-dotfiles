@@ -63,3 +63,15 @@ type = "file"
 url = "https://github.com/awslabs/git-secrets/blob/master/git-secrets"
 executable = true
 refreshPeriod = "168h"
+
+[".local/bin/yq"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "mikefarah/yq" "yq_linux_amd64" | quote }}
+executable = true
+refreshPeriod = "168h"
+
+[".local/bin/argocd"]
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" "argocd-linux-amd64" | quote }}
+executable = true
+refreshPeriod = "168h"
