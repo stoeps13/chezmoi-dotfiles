@@ -91,10 +91,9 @@ input "type:touchpad" {
     tap_button_map lrm
 }
 
-# enable compose key right ctrl
-input * xkb_options compose:rctrl
+# enable compose key right ctrl, disable caps lock
 input "type:keyboard" {
-    xkb_options caps:ctrl_modifier
+    xkb_options "caps:ctrl_modifier,compose:rctrl"
 }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -323,6 +322,7 @@ workspace $w1
 default_border pixel 2
 smart_borders on
 
+# Screenshot tool floating
 for_window [app_id="be.alexandervanhee.gradia"] floating enable
 
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
