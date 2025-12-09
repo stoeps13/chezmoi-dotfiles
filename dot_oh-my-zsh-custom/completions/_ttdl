@@ -1,0 +1,120 @@
+#compdef ttdl
+
+# ----------------------------------------------------------------------------
+# Completion script for ttdl
+#
+# https://github.com/VladimirMarkelov/ttdl
+#
+# Licensed under the same license as ttdl. 
+# MIT License: https://github.com/VladimirMarkelov/ttdl/blob/master/LICENSE
+#
+# ----------------------------------------------------------------------------
+
+local line state
+local -i ret
+
+ret=1
+
+_arguments -C \
+        '1: :->cmds' \
+        '*:: :->args' \
+        && ret=0
+
+_ttdl_add_args() {
+    local prefix="${words[CURRENT]}"
+    local -a values
+    
+    if [[ $prefix == @* ]]; then
+        # User typed @, show contexts
+        values=($(ttdl listcon 2>/dev/null))
+        compadd -p "@" -a values
+    elif [[ $prefix == +* ]]; then
+        # User typed +, show projects
+        values=($(ttdl listproj 2>/dev/null))
+        compadd -p "+" -a values
+    else
+        # If no prefix, show both options
+        values=($(ttdl listcon 2>/dev/null))
+        compadd -p "@" -a values
+        values=($(ttdl listproj 2>/dev/null))
+        compadd -p "+" -a values
+    fi
+}
+
+_ttdl_get_todonumber() {
+    local -a todos
+    local line
+    
+    typeset -A todo_map
+    while IFS= read -r line; do
+        local num=$(echo "$line" | awk '{print $1}')
+        # local desc=$(echo "$line" | cut -d' ' -f2-)
+        
+        local desc=$(echo "$line" | awk '{$1=""; print substr($0,2)}')
+
+        if [[ -n $num && $num =~ ^[0-9]+$ ]]; then
+            todo_map[$num]="$desc"
+        fi
+    done < <(ttdl list -a | grep -e "^\s\?[0-9]\+" | head -n-1)
+    
+    local -a sorted_nums=($(printf '%s\n' "${(@k)todo_map}" | sort -n))
+    local -a display_descs
+    
+    for num in $sorted_nums; do
+        display_descs+=("$num -- ${todo_map[$num]}")
+    done
+    
+    compadd -d display_descs -a sorted_nums
+}
+
+case $state in 
+        cmds)
+                _values "ttdl command" \
+                        {add,a}"[Add a new todo]" \
+                        {list,l}"[List todos (default command)]" \
+                        {done,d}"[Mark selected todos completed]" \
+                        {undone,u}"[Remove finished mark from completed todos]" \
+                        {remove,rm}"[Remove selected todos]" \
+                        {archive,arc,clean,c}"[Move completed todos to done.txt]" \
+                        {edit,e}"[Modify properties of selected todos]" \
+                        {append,app}"[Add text to the end of selected todos]" \
+                        {prepend,pre}"[Add text to the beginning of selected todos]" \
+                        {postpone,post}"[Push tasks due date]" \
+                        {stats,}"[Display todo statistics]" \
+                        {listprojects,listproj,lp}"[list all projects]" \
+                        {listcontexts,listcon,lc}"[list all contexts]" \
+                        {start,}"[activate todo timer]" \
+                        {stop,}"[stop todo timer and update time spent]" \
+                        {--help,}"[Show help]"
+
+                ret=0
+                ;;
+        args)
+                case $line[1] in
+                        a|add)
+                                _arguments \
+                                        "(--help)--help[show help for add command]" \
+                                        '*:add_args:_ttdl_add_args'
+                                ret=0
+                                ;;
+                        e|edit)
+                                _arguments \
+                                        '1:todo_number:_ttdl_get_todonumber'
+                                ret=0
+                                ;;
+                        l|list)
+                                _arguments \
+                                        "(-a --all)"{-a,--all}"[Select all todos including completed ones]" \
+                                        '(-s --sort)'{-s,--sort}'=[show all incomplete todos sorted by]:sort_field:(pri proj)' \
+                                        "--pri=[show all incomplete todos with priority]:priority:(a b b+ c c+ d e f g h i j k l m n o p q r s t u v w x y z)" \
+                                        "--due=[show todos due in]:sort_field:(soon tomorrow ..2d.. ..3d.. ..1w..)" \
+                                        "--max=[Set maximum number of todos to display]:number:(5 10 20 50)" 
+                                ret=0
+                                ;;
+                esac
+                ;;
+esac
+
+return ret
+# vim: ft=zsh
+
