@@ -5,6 +5,9 @@ shell_command_before:
     sleep_after: 1
 session_name: work
 windows:
+  - window_name: host
+    panes:
+      - distrobox-host-exec bash
   - window_name: til
     panes:
       - shell_command:
@@ -26,3 +29,6 @@ windows:
   - window_name: cnx
     panes:
       - cd ~/projects-work/hclcnx
+  - window_name: talos
+    panes:
+      - cd ~/projects-work/iac/talos
