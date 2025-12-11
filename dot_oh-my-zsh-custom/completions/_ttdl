@@ -32,12 +32,19 @@ _ttdl_add_args() {
         # User typed +, show projects
         values=($(ttdl listproj 2>/dev/null))
         compadd -p "+" -a values
+    elif [[ $prefix == due:* ]]; then
+        # User typed due:, suggest dates
+        # You can customize this with specific dates or a function
+        compadd -p "due:" $(date +%Y-%m-%d)
+    elif [[ $prefix == rec:* ]]; then
+        # User typed rec:, suggest recurrence patterns
+        compadd -p "rec:" daily weekly monthly
+    elif [[ $prefix == start:* ]]; then
+        # User typed start:, suggest recurrence patterns
+        compadd -p "start:" $(date +%Y-%m-%d)
     else
-        # If no prefix, show both options
-        values=($(ttdl listcon 2>/dev/null))
-        compadd -p "@" -a values
-        values=($(ttdl listproj 2>/dev/null))
-        compadd -p "+" -a values
+        # If no prefix, show both options and prefixes
+        compadd "@" "+" "due:" "rec:" "start:"
     fi
 }
 
@@ -61,10 +68,22 @@ _ttdl_get_todonumber() {
     local -a display_descs
     
     for num in $sorted_nums; do
-        display_descs+=("$num -- ${todo_map[$num]}")
+        display_descs+=("$num - ${todo_map[$num]}")
     done
     
     compadd -d display_descs -a sorted_nums
+}
+
+_ttdl_get_contexts() {
+    local -a values
+    values=($(ttdl listcon))
+    _describe 'context' values
+}
+
+_ttdl_get_projects() {
+    local -a values
+    values=($(ttdl listproj))
+    _describe 'project' values
 }
 
 case $state in 
@@ -99,7 +118,11 @@ case $state in
                                 ;;
                         e|edit)
                                 _arguments \
-                                        '1:todo_number:_ttdl_get_todonumber'
+                                        '1:todo_number:_ttdl_get_todonumber' \
+                                        '--set-due=[set due date]:sort_field:(t+1w due+2d)' \
+                                        '--set-pri=[set priority]:sort_field:(a b c d e f)' \
+                                        '--set-proj[add project]:add_args:_ttdl_get_projects' \
+                                        '--set-ctx[add context]:add_args:_ttdl_get_contexts' 
                                 ret=0
                                 ;;
                         l|list)
