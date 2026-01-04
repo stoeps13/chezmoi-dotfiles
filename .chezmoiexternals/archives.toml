@@ -3,11 +3,11 @@ type = "archive"
 url = "https://github.com/neovim/neovim/releases/latest/download/nvim-{{ .chezmoi.os }}-x86_64.tar.gz"
 refreshPeriod = "168h"
 
-{{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
-[".local/bin"]
-type = "archive"
-refreshPeriod = "168h"
-url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
+# {{- $mitmVersion := ((gitHubLatestRelease "mitmproxy/mitmproxy").TagName) | replaceAllRegex "v" "" }}
+# [".local/bin"]
+# type = "archive"
+# refreshPeriod = "168h"
+# url = "https://downloads.mitmproxy.org/{{ $mitmVersion }}/mitmproxy-{{ $mitmVersion }}-linux-x86_64.tar.gz"
 
 [".local/share/fonts"]
 type = "archive"
