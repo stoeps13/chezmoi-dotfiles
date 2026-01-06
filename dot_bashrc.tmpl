@@ -1,7 +1,4 @@
-distrobox-ho#
-ps ax | grep nano
-kill 820085
- .bashrc
+# .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -51,9 +48,19 @@ fi
 
 export XDG_SCREENSHOTS_DIR='~/Pictures/screenshots/'
 export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
+if [[ -f ~/.local/bin/nvim ]]
+then
+  alias vim='nvim'
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
+
+
 alias fedora='distrobox enter fedora'
 alias kali='distrobox enter --root kali'
 alias ubuntu='distrobox enter ubuntu'
+# alias distrobox='distrobox --file ~/.config/distrobox/distrobox.ini'
 
 export GDK_SCALE=1.5
 
@@ -77,5 +84,7 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 # pnpm end
 eval $(starship init bash)
