@@ -1,7 +1,6 @@
 [Unit]
 Description=Check calendars and contacts every 15 minutes
-RefuseManualStart=no
-RefuseManualStop=no
+Requires=vdirsync.service
 
 [Timer]
 Persistent=false
