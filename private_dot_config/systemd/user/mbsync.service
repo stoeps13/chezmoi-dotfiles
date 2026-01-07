@@ -1,11 +1,11 @@
 [Unit]
 Description=check mail
-RefuseManualStart=no
-RefuseManualStop=yes
+Wants=mbsync.timer
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/bash -c '/var/home/stoeps/.local/bin/mbsync --all'
+ExecStart=/var/home/stoeps/.local/bin/mbsync -a
+TimeoutSec=120
 
 [Install]
 WantedBy=default.target

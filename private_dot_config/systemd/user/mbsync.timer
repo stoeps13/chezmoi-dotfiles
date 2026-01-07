@@ -1,10 +1,8 @@
 [Unit]
 Description=Check Mail every ten minutes
-RefuseManualStart=no
-RefuseManualStop=no
+Requires=mbsync.service
 
 [Timer]
-Persistent=false
 OnBootSec=5min
 OnUnitActiveSec=10min
 Unit=mbsync.service
