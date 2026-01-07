@@ -61,3 +61,4 @@ macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<e
 
 macro index,pager S "<tag-thread><save-message>" "Archive thread"
 macro pager \cm 'urlview' 'Follow links with urlview'
+macro index E "<shell-escape>mbsync -a<enter>" "Synchronize emails"

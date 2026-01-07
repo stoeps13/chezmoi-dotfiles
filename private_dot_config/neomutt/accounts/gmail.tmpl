@@ -16,7 +16,7 @@ set signature = "$XDG_CONFIG_HOME/neomutt/sigs/gmail.signature"
 set mail_check_stats
 # You can use any gmail imap mailboxes
 
-mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Archive =[Gmail]/Archive/2023 =[Gmail]/Archive/2024 =[Gmail]/Archive/2025 =[Gmail]/Archive/2026
+mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Archive  =[Gmail]/Archive/2026 =[Gmail]/Archive/2025 =[Gmail]/Archive/2024 =[Gmail]/Archive/2023
 
 # Yearly archives
 save-hook ~r01/01/2023-31/12/2023 =/[Gmail]/Archive/2023
@@ -39,3 +39,5 @@ set pgp_default_key="641CD2C74596010D584348637704D09CE99650FC"
 set pgp_check_gpg_decrypt_status_fd
 set pgp_use_gpg_agent = yes
 set pgp_self_encrypt = yes
+
+macro index E "<shell-escape>mbsync gmail<enter>" "Synchronize emails"
