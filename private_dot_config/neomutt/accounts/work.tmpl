@@ -8,7 +8,7 @@ set postponed = "+Drafts"
 set realname = 'Christoph Stoettner'
 set from = '{{ (bitwarden "item" "Microsoft-Mail").login.username }}'
 set use_from = yes
-mailboxes "+Inbox" "+Sent" "+Drafts" "+Archive" "+Archive/2023" "+Archive/2024" "+Archive/2025" "+Archive/2026"
+mailboxes "+Inbox" "+Sent" "+Drafts" "+Archive" "+Archive/2026" "+Archive/2025" "+Archive/2024" "+Archive/2023"
 
 # Yearly archives
 save-hook ~r01/01/2023-31/12/2023 +Archive/2023
@@ -36,3 +36,5 @@ set pgp_default_key="9536DDCDF669F74E80295E7BD1844AF1CE287870"
 set pgp_check_gpg_decrypt_status_fd
 set pgp_use_gpg_agent = yes
 set pgp_self_encrypt = yes
+
+macro index E "<shell-escape>mbsync work<enter>" "Synchronize emails"
