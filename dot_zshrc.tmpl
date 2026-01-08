@@ -250,6 +250,7 @@ pulldiff() {
 }
 alias r='cd $(git rev-parse --show-toplevel)'
 alias f="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
+alias todo='ttdl l --sort=pri'
 
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 export TMUXP_CONFIGDIR='~/.config/tmuxp'
