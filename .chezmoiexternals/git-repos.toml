@@ -28,3 +28,9 @@ type = "git-repo"
 url = "https://github.com/danielmiessler/SecLists.git"
 refreshPeriod = "168h"
 clone.args = ["--depth", "1"]
+
+[".task/hooks/default-time"]
+type = "git-repo"
+url = "https://github.com/tbabej/taskwarrior-default-date-time-hook.git"
+refreshPeriod = "168h"
+clone.args = ["--depth", "1"]
