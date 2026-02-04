@@ -75,3 +75,15 @@ type = "file"
 url = {{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" "argocd-linux-amd64" | quote }}
 executable = true
 refreshPeriod = "168h"
+
+[".local/share/task/hooks/on-add-pirate"]
+type = "file"
+url = "https://github.com/tbabej/taskpirate/blob/master/on-add-pirate"
+executable = true
+refreshPeriod = "168h"
+
+[".local/share/task/hooks/on-modify-pirate"]
+type = "file"
+url = "https://github.com/tbabej/taskpirate/blob/master/on-modify-pirate"
+executable = true
+refreshPeriod = "168h"

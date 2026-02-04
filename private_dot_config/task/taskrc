@@ -15,13 +15,13 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=/var/home/stoeps/.task
+data.location=~/.local/share/task
 
 # To use the default location of the XDG directories,
 # move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
 
 #data.location=~/.local/share/task
-#hooks.location=~/.config/task/hooks
+hooks.location=~/.local/share/task/hooks
 
 # Color theme (uncomment one to use)
 #include light-16.theme
@@ -59,3 +59,4 @@ report.delegated.description=Tasks delegated to others
 report.delegated.columns=id,project,description,delegated
 report.delegated.sort=delegated+,project+,description+
 report.delegated.filter=delegated.not: +PENDING
+weekstart=Monday
