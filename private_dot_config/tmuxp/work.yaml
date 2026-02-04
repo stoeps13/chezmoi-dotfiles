@@ -22,7 +22,7 @@ windows:
     layout: tiled
     panes:
       - mbsync -a && vdirsyncer sync && today
-      - ttdl list --due=..3d..; ttdl l -s pri
+      - task
   - window_name: ssh
     panes:
       - ls
