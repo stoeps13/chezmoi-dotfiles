@@ -145,14 +145,6 @@ executable = true
 stripComponents = 1
 path = "typst"
 
-[".local/bin/todo.sh"]
-type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "todotxt/todo.txt-cli" "todo.txt_cli-*.tar.gz" | quote }}
-refreshPeriod = "168h"
-executable = true
-stripComponents = 1
-path = "todo.sh"
-
 [".local/bin/uv"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "astral-sh/uv" "uv-x86_64-unknown-linux-gnu.tar.gz" | quote }}
@@ -221,13 +213,6 @@ url = {{ gitHubLatestReleaseAssetURL "tomnomnom/gron" "gron-linux-amd64-*.tgz" |
 refreshPeriod = "168h"
 executable = true
 path = "gron"
-
-[".local/bin/ttdl"]
-type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "VladimirMarkelov/ttdl" "ttdl_*_linux-x64-musl.tar.gz" | quote }}
-refreshPeriod = "168h"
-executable = true
-path = "ttdl"
 
 [".local/bin/bw"]
 type = "archive-file"

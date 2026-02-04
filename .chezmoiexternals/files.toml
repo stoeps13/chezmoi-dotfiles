@@ -60,7 +60,7 @@ executable = true
 
 [".local/bin/git-secrets"]
 type = "file"
-url = "https://github.com/awslabs/git-secrets/blob/master/git-secrets"
+url = "https://raw.githubusercontent.com/awslabs/git-secrets/refs/heads/master/git-secrets"
 executable = true
 refreshPeriod = "168h"
 
@@ -78,12 +78,12 @@ refreshPeriod = "168h"
 
 [".local/share/task/hooks/on-add-pirate"]
 type = "file"
-url = "https://github.com/tbabej/taskpirate/blob/master/on-add-pirate"
+url = "https://raw.githubusercontent.com/tbabej/taskpirate/refs/heads/master/on-add-pirate"
 executable = true
 refreshPeriod = "168h"
 
 [".local/share/task/hooks/on-modify-pirate"]
 type = "file"
-url = "https://github.com/tbabej/taskpirate/blob/master/on-modify-pirate"
+url = "https://raw.githubusercontent.com/tbabej/taskpirate/refs/heads/master/on-modify-pirate"
 executable = true
 refreshPeriod = "168h"
