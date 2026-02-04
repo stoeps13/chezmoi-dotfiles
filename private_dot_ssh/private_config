@@ -23,6 +23,16 @@ Match tagged kali
   IdentityFile ~/.ssh/id_ed25519
   ForwardX11 yes
 
+# DevPod Start vit.devpod
+Host vit.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/var/home/stoeps/.var/app/sh.loft.devpod/data/devpod-cli" ssh --stdio --context default --user vscode vit
+  User vscode
+# DevPod End vit.devpod
 # DevPod Start presentations.devpod
 Host presentations.devpod
   ForwardAgent yes
@@ -33,11 +43,6 @@ Host presentations.devpod
   ProxyCommand "/home/stoeps/.local/bin/devpod-cli" ssh --stdio --context default --user vscode presentations
   User vscode
 # DevPod End presentations.devpod
-Host kali
-  HostName 10.0.22.241
-  Tag kali
-  User stoeps
-
 Host *.stoeps.internal
   User root
   UserKnownHostsFile=/dev/null
@@ -84,6 +89,16 @@ Host *.stoeps.home
   AddKeysToAgent yes
   IdentitiesOnly yes
   StrictHostKeyChecking=no
+Host 10.0.22.241
+  Port 22
+  User kali 
+  IdentityFile ~/.ssh/id_ed25519 
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  ForwardAgent yes
+  Tag iac
 Host 10.0.22.*
   Port 22
   User ansible
@@ -110,6 +125,7 @@ Host lnx-stwsh
   User stoeps
   IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
+  AddressFamily inet
 Host pfsense
    User root
    Hostname 192.168.1.211
@@ -153,6 +169,7 @@ Host OMV
 Host www7.your-server.de
   Hostname www7.your-server.de
   User stoepsa
+Host 192.168.11.1
 Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/ansible_ed25519
