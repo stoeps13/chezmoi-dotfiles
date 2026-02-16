@@ -14,7 +14,7 @@ if [ -z "$1" ]; then
 fi
 
 # Your OpenWeatherMap API key
-API_KEY="a1a9fb29a156b9246fcf2b84cda89e0d"
+API_KEY="{{ (bitwarden "item" "openweatherapp_apikey").login.password }}"
 
 # Function to map weather condition to emoji
 weather_to_emoji() {
