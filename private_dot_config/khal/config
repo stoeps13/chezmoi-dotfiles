@@ -9,7 +9,7 @@
   [[dnug events]]
     path = ~/.local/share/calendars/dnug/
     color = dark red
-  [[google personal]]
+  [[personal]]
     path = ~/.local/share/calendars/google/christoph.stoettner@stoeps.de/
     color = dark green
   [[nextcloud personal]]
