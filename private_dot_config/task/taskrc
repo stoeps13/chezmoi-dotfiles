@@ -59,4 +59,5 @@ report.delegated.description=Tasks delegated to others
 report.delegated.columns=id,project,description,delegated
 report.delegated.sort=delegated+,project+,description+
 report.delegated.filter=delegated.not: +PENDING
+report.next.filter=status:pending -WAITING -BLOCKED limit:page
 weekstart=Monday
