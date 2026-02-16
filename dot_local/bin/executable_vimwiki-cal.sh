@@ -43,7 +43,7 @@ for ((i=0; i<num_days; i++)); do
     printf "## [$weekday, $day_display]($iso_date)\n\n"
 
     # Get khal output for this day
-    khal_output=$(khal list -o "$day_display" --day-format "" --format "### {start-end-time-style} {title}" 1d)
+    khal_output=$(khal list -o "$day_display" --day-format "" --format "### {start-end-time-style} {title} ({calendar})" 1d)
 
     # Print the output, or a placeholder if empty
     if [ -z "$khal_output" ]; then
