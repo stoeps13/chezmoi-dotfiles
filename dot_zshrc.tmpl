@@ -88,6 +88,7 @@ source $ZSH/oh-my-zsh.sh
 export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 
 alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias fix='git diff --name-only | uniq | xargs $EDITOR'
 
 # Export user specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/go/bin" ]]
