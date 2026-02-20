@@ -114,6 +114,12 @@ Host pi2
   Hostname 192.168.11.210
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
+Host pve.stoeps.home
+  Port 22
+  User root
+  Hostname 192.168.11.220
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
 Host 192.168.1.211
   Port 22
   User ubuntu
@@ -126,25 +132,6 @@ Host lnx-stwsh
   IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
   AddressFamily inet
-Host pfsense
-   User root
-   Hostname 192.168.1.211
-   Port 22
-   IdentityFile ~/.ssh/vit-ed25519-ubuntu
-   # pfsense
-   LocalForward 8082 192.168.2.2:80
-   IdentitiesOnly yes
-Host goadproxmox
-   User root
-   Hostname 192.168.1.211
-   Port 22
-   IdentityFile ~/.ssh/vit-ed25519-ubuntu
-Host goadprovisioning
-   User root
-   Hostname 192.168.2.3
-   Port 22
-   IdentityFile ~/.ssh/vit-ed25519-ubuntu
-   Proxyjump goadproxmox
 Host kali-kvm
   User stoeps
   Hostname 10.0.22.240
