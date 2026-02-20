@@ -21,14 +21,22 @@ windows:
   - window_name: pim
     layout: tiled
     panes:
-      - mbsync -a && vdirsyncer sync && today
-      - task
-  - window_name: ssh
-    panes:
-      - ls
-  - window_name: cnx
+      - shell_command:
+          - mbsync -a && vdirsyncer sync && today
+          - task
+  - window_name: hclcnx
     panes:
       - cd ~/projects-work/hclcnx
   - window_name: talos
     panes:
       - cd ~/projects-work/iac/talos
+  - window_name: iac
+    panes:
+      - cd ~/projects-work/iac/vit
+      - cd ~/projects-work/iac/vit
+  - window_name: proxmox
+    panes:
+      - ssh root@pve.stoeps.home
+  - window_name: ssh
+    panes:
+      - ls
