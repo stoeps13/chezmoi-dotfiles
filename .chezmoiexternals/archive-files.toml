@@ -228,17 +228,10 @@ refreshPeriod = "168h"
 executable = true
 path = "tofu"
 
-[".local/bin/terramate"]
+[".local/bin/opencode"]
 type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "terramate-io/terramate" "terramate_*_linux_x86_64.tar.gz" | quote }} 
+url = {{ gitHubLatestReleaseAssetURL "anomalyco/opencode" "opencode-linux-x64.tar.gz" | quote }} 
 refreshPeriod = "168h"
 executable = true
-path = "terramate"
-
-[".local/bin/terramate-ls"]
-type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "terramate-io/terramate" "terramate_*_linux_x86_64.tar.gz" | quote }} 
-refreshPeriod = "168h"
-executable = true
-path = "terramate-ls"
+path = "opencode"
 
