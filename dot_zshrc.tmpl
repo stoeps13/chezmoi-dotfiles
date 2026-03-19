@@ -87,9 +87,6 @@ source $ZSH/oh-my-zsh.sh
 
 export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 
-alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
-alias fix='git diff --name-only | uniq | xargs $EDITOR'
-
 # Export user specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/go/bin" ]]
 then
@@ -108,11 +105,6 @@ then
    PATH="$HOME/.claude/local:$PATH"
 fi
 export PATH
-
-alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
-alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
-alias yt-mp4='youtube-dl -t mp4'
-alias yt-mp3='youtube-dl -t mp3 -x'
 
 
 # FZF if available
@@ -167,28 +159,33 @@ then
   export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
 
-alias ssh='TERM=xterm ssh'
-alias today='khal list -o $(date +"%d.%m.%Y") 1d'
-alias tomorrow='khal list -o $(date -d "+1 days" +"%d.%m.%Y") 1d'
 alias 3days='khal list -o $(date +"%d.%m.%Y") 3d'
-alias nextweek='khal list -o $(date -dnext-monday +%d.%m.%Y) 7d'
 alias 4k='gnome-monitor-config set -LpM DP-2 -m "3840x2160@59.997" -s 1.25'
-alias fullhd='gnome-monitor-config set -LpM DP-2 -s 1.0 -m "1920x1080@60.000"'
-alias gmail='neomutt -F ~/.config/neomutt/neomuttrc_gmail'
-alias fedora='distrobox-enter fedora'
-alias ubuntu='distrobox-enter ubuntu'
-alias kali='distrobox-enter kali'
-alias tmux_work='tmuxp load ~/.config/tmux/tmuxp-work.yml'
-alias external-ip='curl https://ipinfo.io/'
-alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
-alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
-
-export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
-
 alias b="bookmarks | fzf | cut -d ' ' -f 1 | xargs xdg-open"
 alias ba='bookmarks'
-alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
 alias cnx8-db2-start='distrobox-host-exec ~/.local/bin/cnx8-db2-start.sh'
+alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
+alias external-ip='curl https://ipinfo.io/'
+alias f="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
+alias fedora='distrobox-enter fedora'
+alias fix='git diff --name-only | uniq | xargs $EDITOR'
+alias fullhd='gnome-monitor-config set -LpM DP-2 -s 1.0 -m "1920x1080@60.000"'
+alias gmail='neomutt -F ~/.config/neomutt/neomuttrc_gmail'
+alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
+alias kali='distrobox-enter kali'
+alias nextweek='khal list -o $(date -dnext-monday +%d.%m.%Y) 7d'
+alias r='cd $(git rev-parse --show-toplevel)'
+alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
+alias ssh='TERM=xterm ssh'
+alias tmux_work='tmuxp load ~/.config/tmux/tmuxp-work.yml'
+alias today='khal list -o $(date +"%d.%m.%Y") 1d'
+alias tomorrow='khal list -o $(date -d "+1 days" +"%d.%m.%Y") 1d'
+alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
+alias ubuntu='distrobox-enter ubuntu'
+alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
+alias yt-mp3='youtube-dl -t mp3 -x'
+alias yt-mp4='youtube-dl -t mp4'
 
 if [[ -f /usr/bin/eza ]]; then
   alias ll="eza -l --icons=always"
@@ -196,6 +193,7 @@ if [[ -f /usr/bin/eza ]]; then
 fi
 source ~/.local/bin/fzf-git.sh
 
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 # yazi function
 # from https://yazi-rs.github.io/docs/quick-start
 function y() {
@@ -248,16 +246,14 @@ pulllog() {
 pulldiff() {
   git diff @{1}..
 }
-alias r='cd $(git rev-parse --show-toplevel)'
-alias f="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
 
 # ripgrep->fzf->vim [QUERY]
 rfv() (
   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-            vim {1} +{2}     # No selection. Open the current line in Vim.
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
           else
-            vim +cw -q {+f}  # Build quickfix list for the selected items.
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
           fi'
   fzf --disabled --ansi --multi \
       --bind "start:$RELOAD" --bind "change:$RELOAD" \
@@ -289,7 +285,7 @@ export FZF_ALT_C_OPTS="
 
 export FZF_TMUX=1
 
-export FZF_TMUX_OPTS="-h 40% -w 80% -x 0 -y 0"
+export FZF_TMUX_OPTS="-h 40% -w 80% -x 10% -y 0"
 
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 export TMUXP_CONFIGDIR='~/.config/tmuxp'
