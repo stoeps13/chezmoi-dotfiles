@@ -271,6 +271,7 @@ rfv() (
 )
 
 # export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+export FZF_DEFAULT_OPTS="fd -H -L . ~"
 
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
@@ -288,7 +289,7 @@ export FZF_ALT_C_OPTS="
 
 export FZF_TMUX=1
 
-export FZF_TMUX_OPTS="-p 80%,60%"
+export FZF_TMUX_OPTS="-h 40% -w 80% -x 0 -y 0"
 
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 export TMUXP_CONFIGDIR='~/.config/tmuxp'
