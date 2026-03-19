@@ -25,7 +25,6 @@ fi
 unset rc
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-# eval "$(atuin init bash)"
 export QT_SCREEN_SCALE_FACTORS="1.5;1"
 
 if [ -n "$CONTAINER_ID" ]; then
@@ -70,21 +69,5 @@ function set_tmux_title() {
         tmux rename-window "$1"
     fi
 }
-
-. "$HOME/.atuin/bin/env"
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
-
-# add Pulumi to the PATH
-export PATH=$PATH:/var/home/stoeps/.pulumi/bin
-
-# pnpm
-export PNPM_HOME="/var/home/stoeps/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
-# pnpm end
 eval $(starship init bash)
