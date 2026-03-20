@@ -255,7 +255,7 @@ vg() (
           else
             nvim +cw -q {+f}  # Build quickfix list for the selected items.
           fi'
-  fzf-tmux -p --disabled --ansi --multi \
+  fzf --disabled --ansi --multi \
       --bind "start:$RELOAD" --bind "change:$RELOAD" \
       --bind "enter:become:$OPENER" \
       --bind "ctrl-o:execute:$OPENER" \
