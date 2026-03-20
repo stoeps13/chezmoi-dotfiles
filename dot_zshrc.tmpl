@@ -182,7 +182,7 @@ alias today='khal list -o $(date +"%d.%m.%Y") 1d'
 alias tomorrow='khal list -o $(date -d "+1 days" +"%d.%m.%Y") 1d'
 alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
 alias ubuntu='distrobox-enter ubuntu'
-alias v='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias vf='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
 alias yt-mp3='youtube-dl -t mp3 -x'
 alias yt-mp4='youtube-dl -t mp4'
@@ -248,7 +248,7 @@ pulldiff() {
 }
 
 # ripgrep->fzf->vim [QUERY]
-rfv() (
+vg() (
   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
             nvim {1} +{2}     # No selection. Open the current line in Vim.
