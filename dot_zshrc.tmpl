@@ -299,4 +299,6 @@ export DISABLE_AUTO_TITLE='true'
 
 eval "$(uv generate-shell-completion zsh)"
 ### End of Zinit's installer chunk
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
