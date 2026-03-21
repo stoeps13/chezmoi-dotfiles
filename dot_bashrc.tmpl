@@ -71,3 +71,6 @@ function set_tmux_title() {
 }
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 eval $(starship init bash)
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
