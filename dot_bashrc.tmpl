@@ -70,9 +70,16 @@ function set_tmux_title() {
     fi
 }
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
-eval $(starship init bash)
+# eval $(starship init bash)
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 # [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Load Liquid Prompt.
+source ~/.liquidprompt/liquidprompt
+# Configure the desired variant (or colors, etc.).
+source ~/.lp-jolly/presets/variant-chevron.conf
+source ~/.lp-jolly/presets/colors-all-blues.conf
+# Load the theme.
+source ~/.lp-jolly/jolly.theme && lp_theme jolly
