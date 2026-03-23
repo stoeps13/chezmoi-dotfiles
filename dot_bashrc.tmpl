@@ -78,8 +78,6 @@ export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login
 
 # Load Liquid Prompt.
 source ~/.liquidprompt/liquidprompt
-# Configure the desired variant (or colors, etc.).
-source ~/.lp-jolly/presets/variant-chevron.conf
-source ~/.lp-jolly/presets/colors-all-blues.conf
 # Load the theme.
-source ~/.lp-jolly/jolly.theme && lp_theme jolly
+source ~/.liquidprompt/themes/powerline/powerline.theme
+lp_theme powerline
