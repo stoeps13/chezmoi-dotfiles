@@ -227,3 +227,10 @@ url = {{ gitHubLatestReleaseAssetURL "opentofu/opentofu" "tofu_*_linux_amd64.tar
 refreshPeriod = "168h"
 executable = true
 path = "tofu"
+
+[".local/bin/tree-sitter"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "tree-sitter/tree-sitter" "tree-sitter-cli-linux-x64.zip" | quote }} 
+refreshPeriod = "168h"
+executable = true
+path = "tree-sitter"
