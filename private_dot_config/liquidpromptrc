@@ -73,7 +73,6 @@
 # Type: string
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_PS1_PREFIX
 #LP_PS1_PREFIX=""
-LP_PS1_PREFIX="\n"
 
 # The formatting string passed to :manpage:`date(1)` using formatting from
 # :manpage:`strftime(3)` used to display the current date and/or time.
@@ -108,7 +107,6 @@ LP_PS1_PREFIX="\n"
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_DISPLAY_VALUES_AS_PERCENTS
 #LP_DISPLAY_VALUES_AS_PERCENTS=0
-LP_DISPLAY_VALUES_AS_PERCENTS=1
 
 # Display the current value of :envvar:`AWS_PROFILE`,
 # :envvar:`AWS_DEFAULT_PROFILE`, or :envvar:`AWS_VAULT`. AWS_PROFILE and
@@ -131,7 +129,6 @@ LP_DISPLAY_VALUES_AS_PERCENTS=1
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_BZR
 #LP_ENABLE_BZR=1
-LP_ENABLE_BZR=0
 
 # Display whether a *chroot* environment is active.
 # Type: bool
@@ -155,8 +152,7 @@ LP_ENABLE_BZR=0
 # Podman, LXC, Singularity, systemd-:spelling:word:`nspawn`).
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_CONTAINER
-#LP_ENABLE_CONTAINER=0
-LP_ENABLE_CONTAINER=1
+# LP_ENABLE_CONTAINER=1
 
 # Display the number of detached multiplexer sessions.
 # Type: bool
@@ -166,7 +162,7 @@ LP_ENABLE_CONTAINER=1
 # Display the size of the directory stack if it is greater than `1`.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_DIRSTACK
-#LP_ENABLE_DIRSTACK=0
+LP_ENABLE_DIRSTACK=0
 
 # Detect if the connection has X11 support.
 # Type: bool
@@ -198,33 +194,24 @@ LP_ENABLE_CONTAINER=1
 # May show if the variables are unset, set, or their actual content.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_ENV_VARS
-#LP_ENABLE_ENV_VARS=1
+LP_ENABLE_ENV_VARS=1
 
 # Display VCS information inside `Fossil <https://www.fossil-scm.org/>`_
 # repositories.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_FOSSIL
 #LP_ENABLE_FOSSIL=1
-LP_ENABLE_FOSSIL=0
 
 # Display VCS information inside `Git <https://git-scm.com/>`_ repositories.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_GIT
 #LP_ENABLE_GIT=1
 
-# Use `gitstatus <https://github.com/romkatv/gitstatus>`_ to fetch Git
-# repository information. Can potentially be much faster than the built in
-# data generation method.
-# Type: bool
-# More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_GITSTATUSD
-#LP_ENABLE_GITSTATUSD=1
-
 # Display VCS information inside `Mercurial <https://www.mercurial-scm.org/>`_
 # repositories.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_HG
 #LP_ENABLE_HG=1
-LP_ENABLE_HG=0
 
 # Adds clickable links to some elements of the prompt:
 # Type: bool
@@ -270,7 +257,7 @@ LP_ENABLE_HG=0
 #LP_ENABLE_MODULES_HASHCOLOR=0
 
 # Allows getting the name of the current multiplexer
-# (*screen*, *shpool*, or *tmux*), if any.
+# (*screen* or *tmux*), if any.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_MULTIPLEXER
 #LP_ENABLE_MULTIPLEXER=1
@@ -358,8 +345,7 @@ LP_ENABLE_HG=0
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_SCLS
 #LP_ENABLE_SCLS=1
 
-# Set the terminal title while in a terminal multiplexer that can set the
-# title itself: *screen* or *tmux*.
+# Set the terminal title while in a terminal multiplexer.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_SCREEN_TITLE
 #LP_ENABLE_SCREEN_TITLE=0
@@ -382,7 +368,6 @@ LP_ENABLE_HG=0
 # This can give each host a "color feel" to help distinguish them.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_SSH_COLORS
-#LP_ENABLE_SSH_COLORS=0
 LP_ENABLE_SSH_COLORS=1
 
 # Check if the user has valid `sudo` credentials, and display an indicating
@@ -396,7 +381,6 @@ LP_ENABLE_SSH_COLORS=1
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_SVN
 #LP_ENABLE_SVN=1
-LP_ENABLE_SVN=0
 
 # Display the highest system temperature if above the threshold.
 # Type: bool
@@ -431,12 +415,6 @@ LP_ENABLE_SVN=0
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_TMUX_TITLE_PANES
 #LP_ENABLE_TMUX_TITLE_PANES=1
 
-# Enable the display of changed lines in VCS repositories. Disabling this can
-# be a huge performance improvement.
-# Type: bool
-# More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_VCS_LINES
-#LP_ENABLE_VCS_LINES=1
-
 # Enable the display of the remote repository in the VCS state section.
 # Type: bool
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENABLE_VCS_REMOTE
@@ -463,7 +441,7 @@ LP_ENABLE_SVN=0
 # The set of environment variables that the user wants to watch.
 # Type: array<string>
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_ENV_VARS
-#LP_ENV_VARS=()
+LP_ENV_VARS=("CONTAINER_ID %s")
 
 # The command to use for Mercurial commands. Can be used to replace `hg`
 # with `rhg` or `chg`.
@@ -481,12 +459,12 @@ LP_ENABLE_SVN=0
 # Determine when the hostname should be displayed.
 # Type: int
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_HOSTNAME_ALWAYS
-#LP_HOSTNAME_ALWAYS=0
+# LP_HOSTNAME_ALWAYS=1
 
 # Determine the method for displaying the hostname.
 # Type: string
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_HOSTNAME_METHOD
-#LP_HOSTNAME_METHOD="short"
+# LP_HOSTNAME_METHOD="short"
 
 # An array of single letter switches to customize the `RVM prompt`_ output.
 # Type: array<string>
@@ -510,7 +488,6 @@ LP_ENABLE_SVN=0
 # Type: int
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_USER_ALWAYS
 #LP_USER_ALWAYS=1
-LP_USER_ALWAYS=0
 
 # The percentage threshold that the battery level needs to fall below before
 # it will be displayed in `LP_COLOR_CHARGING_UNDER` or
@@ -519,7 +496,6 @@ LP_USER_ALWAYS=0
 # Type: int
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_BATTERY_THRESHOLD
 #LP_BATTERY_THRESHOLD=75
-LP_BATTERY_THRESHOLD=100
 
 # Control the numbers of decimals when displaying the absolute available space
 # of the current hard drive. If set to 0, don't display decimals. If set to 1
@@ -896,7 +872,7 @@ LP_BATTERY_THRESHOLD=100
 # Color used to indicate that the current shell is running in a container.
 # Type: string
 # More information: https://liquidprompt.readthedocs.io/en/stable/config.html#LP_COLOR_CONTAINER
-#LP_COLOR_CONTAINER=$BOLD_BLUE
+# LP_COLOR_CONTAINER=$BOLD_GREEN
 
 # Color used to indicate that the current repository has lines that have been
 # changed since the last commit.
