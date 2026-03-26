@@ -56,6 +56,7 @@ else
 fi
 
 export SSH_AUTH_SOCK=/var/home/stoeps/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
+eval $(ssh-agent -s)
 alias fedora='distrobox enter fedora-stoeps'
 alias kali='distrobox enter --root kali'
 alias ubuntu='distrobox enter ubuntu'
@@ -69,6 +70,8 @@ function set_tmux_title() {
         tmux rename-window "$1"
     fi
 }
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+eval $(ssh-agent -s)
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
 # eval $(starship init bash)
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
