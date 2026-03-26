@@ -8,44 +8,23 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        //"idle_inhibitor",
         "pulseaudio",
         "network",
         "cpu",
         "memory",
         "temperature",
         "backlight",
-        //"sway/language",
         "battery",
         "power-profiles-daemon",
         "tray",
         "custom/power"
     ],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -184,7 +163,6 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
         "format" : "⏻ ",
@@ -200,8 +178,11 @@
     },
     "hyprland/workspaces": {
          "format": "{icon}",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+         "disable-scroll": true,
+         "warp-on-scroll": false,
+         "all-outputs": false,
+         "format-icons": {
+             "active": ""
+         }
     }
-
 }
