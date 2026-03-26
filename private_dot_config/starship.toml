@@ -1,37 +1,17 @@
 # Powerline style with Nord color palette
 
 format = """
-[](nord0)\
 $username\
 $hostname\
 $container\
 $os\
-[](bg:nord1 fg:nord0)\
 $directory\
-[](bg:nord2 fg:nord1)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:nord3)
 $kubernetes\
 $status
 """
-# [](fg:nord3)
-# [](bg:nord3 fg:nord2)\
-# $c\
-# $elixir\
-# $elm\
-# $golang\
-# $python\
-# $gradle\
-# $haskell\
-# $java\
-# $julia\
-# $nodejs\
-# $nim\
-# $rust\
-# $scala\
-# 
 scan_timeout = 50
 command_timeout = 1000
 add_newline = false
@@ -49,8 +29,8 @@ nord14 = '#A2BE8A'
 
 # username, host and OS
 [username]
-style_root = 'bg:nord0 fg:nord11'
-style_user = 'bg:nord0 fg:nord4'
+# style_root = 'bg:nord0 fg:nord11'
+# style_user = 'bg:nord0 fg:nord4'
 format = '[$user]($style)'
 show_always = true
 disabled = false
@@ -60,29 +40,29 @@ ssh_only = true
 ssh_symbol = ' '
 trim_at = '.'
 format = '[@$hostname$ssh_symbol]($style)'
-style = 'bg:nord0 fg:nord4'
+# style = 'bg:nord0 fg:nord4'
 detect_env_vars = ['!CONTAINER_ID']
 disabled = false
 
 [container]
 format = '[ $name ]($style)'
-style = 'bg:nord0 fg:nord13'
+# style = 'bg:nord0 fg:nord13'
 
 [os]
 format = '[ $symbol ]($style)'
-style = 'bg:nord0 fg:nord4'
+# style = 'bg:nord0 fg:nord4'
 disabled = false
 # for symbols look at the end of the file
 
 # directory
 [directory]
-truncation_length = 6
-truncate_to_repo = false
+truncation_length = 3
+truncate_to_repo = true
 format = '[ $path ]($style)[$read_only]($read_only_style)'
-style = 'bg:nord1 fg:nord4'
+# style = 'bg:nord1 fg:nord4'
 disabled = false
 read_only = ' 󰌾 '
-read_only_style = 'bg:nord1 fg:nord11'
+# read_only_style = 'bg:nord1 fg:nord11'
 truncation_symbol = '…/'
 
 [directory.substitutions]
@@ -98,23 +78,23 @@ truncation_symbol = '…/'
 # git
 [git_branch]
 symbol = ''
-style = 'bg:nord2 fg:nord4'
+# style = 'bg:nord2 fg:nord4'
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = 'bg:nord2 fg:nord4'
+# style = 'bg:nord2 fg:nord4'
 format = '[$all_status$ahead_behind ]($style)'
 
 [git_metrics]
-added_style = 'bg:nord2 fg:nord14'
-deleted_style = 'bg:nord2 fg:nord11'
+# added_style = 'bg:nord2 fg:nord14'
+# deleted_style = 'bg:nord2 fg:nord11'
 format = '[+$added ]($added_style)[-$deleted ]($deleted_style)'
 disabled = false
 
 # programming
 [c]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+# style = 'bg:nord3 fg:nord4'
 format = '[ $symbol ($version) ]($style)'
 
 [elixir]
@@ -134,7 +114,7 @@ format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+# style = 'bg:nord3 fg:nord4'
 format = '[ $symbol ($version) (\($virtualenv\)) ]($style)'
 
 [gradle]
