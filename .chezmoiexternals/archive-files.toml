@@ -234,3 +234,11 @@ url = {{ gitHubLatestReleaseAssetURL "tree-sitter/tree-sitter" "tree-sitter-cli-
 refreshPeriod = "168h"
 executable = true
 path = "tree-sitter"
+
+[".local/bin/tflint"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "terraform-linters/tflint" "tflint_linux_amd64.zip" | quote }} 
+refreshPeriod = "168h"
+executable = true
+path = "tflint"
+
