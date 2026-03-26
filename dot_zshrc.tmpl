@@ -83,7 +83,7 @@ fpath=(~/.oh-my-zsh-custom/completions $fpath)
 plugins=(alias-finder colorize colored-man-pages copyfile copypath direnv git tmux)
 
 # Load ssh keys
-# zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github vit-ed25519-gitlab
+zstyle :omz:plugins:ssh-agent identities id_ed25519 vit-ed25519-github iac-ed25519 cnx6 ansible_ed25519 vit-ed25519-github vit-ed25519-gitlab
 
 ZSH_TMUX_AUTOSTART_ONCE=true
 
@@ -197,8 +197,8 @@ if [[ -f /usr/bin/eza ]]; then
 fi
 source ~/.local/bin/fzf-git.sh
 
-# export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
-export SSH_AUTH_SOCK=/var/home/stoeps/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+# export SSH_AUTH_SOCK=/var/home/stoeps/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
 # yazi function
 # from https://yazi-rs.github.io/docs/quick-start
 function y() {
