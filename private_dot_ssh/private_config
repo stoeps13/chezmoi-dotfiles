@@ -112,8 +112,8 @@ Host pi2
   Port 22
   User stoeps
   Hostname 192.168.11.210
-  IdentityFile ~/.ssh/id_ed25519
-  IdentitiesOnly yes
+  # IdentityFile ~/.ssh/id_ed25519
+  # IdentitiesOnly yes
 Host pve.stoeps.home
   Port 22
   User root
