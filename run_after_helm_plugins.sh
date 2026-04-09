@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-helm plugin install https://github.com/databus23/helm-diff || echo "plugin already installed"
+helm plugin install https://github.com/databus23/helm-diff --verify=false || echo "plugin already installed"
 
 if [[ -f ~/.local/bin/helm ]]
 then
