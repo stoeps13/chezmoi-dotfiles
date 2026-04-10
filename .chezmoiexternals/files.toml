@@ -1,27 +1,3 @@
-[".local/bin/talosctl"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "siderolabs/talos" "talosctl-linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
-
-[".local/bin/kubetail"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "kubetail-org/kubetail" "kubetail-linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
-
-[".local/bin/kubectl"]
-type = "file"
-executable = true
-refreshPeriod = "720h"
-url = 'https://dl.k8s.io/release/{{ output "curl" "-L" "-s" "https://dl.k8s.io/release/stable.txt" | trim }}/bin/linux/amd64/kubectl'
-
-[".local/bin/direnv"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" "direnv.linux-amd64" | quote }}
-refreshPeriod = "168h"
-executable = true
-
 [".local/bin/youtube-dl"]
 type = "file"
 url = {{ gitHubLatestReleaseAssetURL "yt-dlp/yt-dlp" "yt-dlp_linux"  | quote }}
@@ -33,12 +9,6 @@ type = "file"
 url = "https://raw.githubusercontent.com/stoeps13/bookmarks.txt/refs/heads/main/bin/bookmarks"
 executable = true
 refreshPeriod = "168h"
-
-[".local/bin/asciinema"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "asciinema/asciinema" "asciinema-x86_64-unknown-linux-gnu"  | quote }}
-refreshPeriod = "168h"
-executable = true
 
 [".local/bin/saul"]
 type = "file"
@@ -61,18 +31,6 @@ executable = true
 [".local/bin/git-secrets"]
 type = "file"
 url = "https://raw.githubusercontent.com/awslabs/git-secrets/refs/heads/master/git-secrets"
-executable = true
-refreshPeriod = "168h"
-
-[".local/bin/yq"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "mikefarah/yq" "yq_linux_amd64" | quote }}
-executable = true
-refreshPeriod = "168h"
-
-[".local/bin/argocd"]
-type = "file"
-url = {{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" "argocd-linux-amd64" | quote }}
 executable = true
 refreshPeriod = "168h"
 
