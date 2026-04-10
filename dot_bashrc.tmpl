@@ -1,28 +1,180 @@
-# .bashrc
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+# Path to your oh-my-bash installation.
+export OSH='/var/home/stoeps/.oh-my-bash'
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-bash is loaded.
+OSH_THEME="font"
+
+# If you set OSH_THEME to "random", you can ignore themes you don't like.
+# OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
+# You can also specify the list from which a theme is randomly selected:
+# OMB_THEME_RANDOM_CANDIDATES=("font" "powerline-light" "minimal")
+
+# Uncomment the following line to use case-sensitive completion.
+# OMB_CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# OMB_HYPHEN_SENSITIVE="false"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_OSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you don't want the repository to be considered dirty
+# if there are untracked files.
+# SCM_GIT_DISABLE_UNTRACKED_DIRTY="true"
+
+# Uncomment the following line if you want to completely ignore the presence
+# of untracked files in the repository.
+# SCM_GIT_IGNORE_UNTRACKED="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.  One of the following values can
+# be used to specify the timestamp format.
+# * 'mm/dd/yyyy'     # mm/dd/yyyy + time
+# * 'dd.mm.yyyy'     # dd.mm.yyyy + time
+# * 'yyyy-mm-dd'     # yyyy-mm-dd + time
+# * '[mm/dd/yyyy]'   # [mm/dd/yyyy] + [time] with colors
+# * '[dd.mm.yyyy]'   # [dd.mm.yyyy] + [time] with colors
+# * '[yyyy-mm-dd]'   # [yyyy-mm-dd] + [time] with colors
+# If not set, the default value is 'yyyy-mm-dd'.
+# HIST_STAMPS='yyyy-mm-dd'
+
+# Uncomment the following line if you do not want OMB to overwrite the existing
+# aliases by the default OMB aliases defined in lib/*.sh
+# OMB_DEFAULT_ALIASES="check"
+
+# Would you like to use another custom folder than $OSH/custom?
+# OSH_CUSTOM=/path/to/new-custom-folder
+
+# To disable the uses of "sudo" by oh-my-bash, please set "false" to
+# this variable.  The default behavior for the empty value is "true".
+OMB_USE_SUDO=true
+
+# To enable/disable display of Python virtualenv and condaenv
+OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+# OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
+
+# To enable/disable Spack environment information
+# OMB_PROMPT_SHOW_SPACK_ENV=true  # enable
+# OMB_PROMPT_SHOW_SPACK_ENV=false # disable
+
+# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
+# Custom completions may be added to ~/.oh-my-bash/custom/completions/
+# Example format: completions=(ssh git bundler gem pip pip3)
+# Add wisely, as too many completions slow down shell startup.
+completions=(
+  composer
+  git
+  kubectl
+  ssh
+)
+
+# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
+# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
+# Example format: aliases=(vagrant composer git-avh)
+# Add wisely, as too many aliases slow down shell startup.
+aliases=(
+  general
+)
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
+# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  bashmarks
+  brew
+  chezmoi
+  colored-man-pages
+  fzf
+  git
+  starship
+  tmux
+  zoxide
+)
+
+# Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
+# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
+# Example format:
+#  if [ "$DISPLAY" ] || [ "$SSH" ]; then
+#      plugins+=(tmux-autoattach)
+#  fi
+
+# If you want to reduce the initialization cost of the "tput" command to
+# initialize color escape sequences, you can uncomment the following setting.
+# This disables the use of the "tput" command, and the escape sequences are
+# initialized to be the ANSI version:
+#
+#OMB_TERM_USE_TPUT=no
+
+source "$OSH"/oh-my-bash.sh
+
+# User configuration
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-bash libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-bash
+# users are encouraged to define aliases within the OSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias bashconfig="mate ~/.bashrc"
+# alias ohmybash="mate ~/.oh-my-bash"
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-export PATH
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
+if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]; then
+    PATH="$HOME/.cargo/bin:$PATH"
 fi
-unset rc
+if ! [[ "$PATH" =~ "/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:" ]]; then
+    PATH="/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+export PATH
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 export QT_SCREEN_SCALE_FACTORS="1.5;1"
@@ -47,7 +199,8 @@ fi
 
 export XDG_SCREENSHOTS_DIR='~/Pictures/screenshots/'
 export SWAY_SCREENSHOT_DIR='/var/home/stoeps/Pictures/screenshots/'
-if [[ -f ~/.local/bin/nvim ]]
+
+if [[ -f /var/home/linuxbrew/.linuxbrew/bin/nvim ]]
 then
   alias vim='nvim'
   export EDITOR=nvim
@@ -55,10 +208,33 @@ else
   export EDITOR=vim
 fi
 
-alias fedora='distrobox enter fedora-stoeps'
-alias kali='distrobox enter --root kali'
-alias ubuntu='distrobox enter ubuntu'
-# alias distrobox='distrobox --file ~/.config/distrobox/distrobox.ini'
+alias 3days='khal list -o $(date +"%d.%m.%Y") 3d'
+alias 4k='gnome-monitor-config set -LpM DP-2 -m "3840x2160@59.997" -s 1.25'
+alias b="bookmarks | fzf | cut -d ' ' -f 1 | xargs xdg-open"
+alias ba='bookmarks'
+alias cnx8-db2-start='distrobox-host-exec ~/.local/bin/cnx8-db2-start.sh'
+alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
+alias external-ip='curl https://ipinfo.io/'
+alias f="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
+alias fedora='distrobox-enter fedora-stoeps'
+alias fix='git diff --name-only | uniq | xargs $EDITOR'
+alias fullhd='gnome-monitor-config set -LpM DP-2 -s 1.0 -m "1920x1080@60.000"'
+alias gmail='neomutt -F ~/.config/neomutt/neomuttrc_gmail'
+alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
+alias kali='distrobox-enter kali'
+alias nextweek='khal list -o $(date -dnext-monday +%d.%m.%Y) 7d'
+alias r='cd $(git rev-parse --show-toplevel)'
+alias sage='sage -n jupyter --ip='0.0.0.0' --port=8888'
+alias ssh='TERM=xterm ssh'
+alias tmux_work='tmuxp load ~/.config/tmux/tmuxp-work.yml'
+alias today='khal list -o $(date +"%d.%m.%Y") 1d'
+alias tomorrow='khal list -o $(date -d "+1 days" +"%d.%m.%Y") 1d'
+alias tpane="tmux rename-window $(echo $HOSTNAME | awk -F '.' '{print $1}')"
+alias ubuntu='distrobox-enter ubuntu'
+alias vf='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
+alias yt-mp3='youtube-dl -t mp3 -x'
+alias yt-mp4='youtube-dl -t mp4'
 
 export GDK_SCALE=1.5
 
@@ -71,14 +247,30 @@ function set_tmux_title() {
 export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 eval $(ssh-agent -s)
 export CHEZMOI_GITHUB_ACCESS_TOKEN='{{ (bitwarden "item" "ChezmoiGHToken").login.password}}'
-# eval $(starship init bash)
+eval $(starship init bash)
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 # [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Load Liquid Prompt.
-source ~/.liquidprompt/liquidprompt
-# Load the theme.
-source ~/.liquidprompt/themes/unfold/unfold.theme
-lp_theme unfold
+# ripgrep->fzf->vim [QUERY]
+vg() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)
+
+test -f /usr/share/ublue-os/bling/bling.sh && source /usr/share/ublue-os/bling/bling.sh
+### bling.sh source end
