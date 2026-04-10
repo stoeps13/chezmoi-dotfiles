@@ -4,7 +4,7 @@ Wants=mbsync.timer
 
 [Service]
 Type=oneshot
-ExecStart=/var/home/stoeps/.local/bin/mbsync -a
+ExecStart=/var/home/linuxbrew/.linuxbrew/bin/mbsync -a
 TimeoutSec=120
 
 [Install]
