@@ -81,6 +81,18 @@ OMB_USE_SUDO=true
 OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+if ! [[ "$PATH" =~ "/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:" ]]; then
+    PATH="/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+export PATH
+
 # To enable/disable Spack environment information
 # OMB_PROMPT_SHOW_SPACK_ENV=true  # enable
 # OMB_PROMPT_SHOW_SPACK_ENV=false # disable
@@ -164,18 +176,6 @@ export LANG=en_US.UTF-8
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-if ! [[ "$PATH" =~ "$HOME/.cargo/bin:" ]]; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-if ! [[ "$PATH" =~ "/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:" ]]; then
-    PATH="/var/home/linuxbrew/.linuxbrew/bin:/var/home/linuxbrew/.linuxbrew/sbin:$PATH"
-fi
-export PATH
-
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 export QT_SCREEN_SCALE_FACTORS="1.5;1"
 
@@ -235,6 +235,8 @@ alias vf='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
 alias yt-mp3='youtube-dl -t mp3 -x'
 alias yt-mp4='youtube-dl -t mp4'
+alias loremw='curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=words" -d"start=false" | jq -r ".feed.lipsum" | wl-copy'
+alias loremp='curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=paras" -d"start=false" | jq -r ".feed.lipsum" | wl-copy'
 
 export GDK_SCALE=1.5
 
