@@ -240,6 +240,11 @@ alias loremp='curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "wha
 
 export GDK_SCALE=1.5
 
+# Export BW_SESSION
+function bw_export() {
+  export BW_SESSION=$(bw unlock --raw)
+}
+
 # Shell function for more flexibility
 function set_tmux_title() {
     if [ -n "$TMUX" ]; then
