@@ -1,0 +1,29 @@
+#!/usr/bin/env python3 
+
+import sys
+import requests
+
+if len(sys.argv) < 2:
+    print("Usage: bookmarks.py <query>")
+    sys.exit(1)
+
+query = sys.argv[1]
+
+response = requests.get(
+            'https://linkding.adminforge.de/api/bookmarks/?q=%23cw16%2F2026',
+            params={'q': query},
+            headers={'Authorization': 'Token {{ (bitwardenFields "item" "linkding").token.value }}'})
+response.raise_for_status()
+data = response.json()
+
+lines = []
+for b in data['results']:
+    title = b['title']
+    url = b['url']
+    notes = (b['notes'] or '').strip()
+    lines.append(f'* [{title}]({url}): {notes}')
+
+# with open('bookmarks.md', 'w') as f:
+#     f.write('\n'.join(lines))
+
+print('\n'.join(lines))
