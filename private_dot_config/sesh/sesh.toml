@@ -1,0 +1,42 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+dir_length = 2
+
+[default_session]
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "hclcnx automation"
+path = "~/projects-work/hclcnx/automation/connections-automation/"
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "hclcnx"
+path = "~/projects-work/hclcnx/"
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "neovim config"
+path = "~/.config/nvim"
+startup_command = "nvim init.lua"
+preview_command = "bat --color=always ~/.config/nvim/init.lua"
+
+[[session]]
+name = "tmux config"
+path = "~/.config/tmux"
+startup_command = "nvim tmux.conf"
+preview_command = "bat --color=always ~/.config/tmux/tmux.conf"
+
+[[session]]
+name = "Vimwiki"
+path = "~/vimwiki/"
+startup_command = "nvim -c VimwikiMakeDiaryNote"
+
+[[session]]
+name = "VIT Cloud"
+path = "~/projects-work/iac/vit/cloud/"
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "Blog"
+path = "~/projects-personal/blog/stoeps.de-new/"
+preview_command = "eza --all --git --icons --color=always {}"
