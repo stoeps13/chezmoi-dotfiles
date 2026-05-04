@@ -1,0 +1,11 @@
+[Unit]
+Description=check mail
+Wants=mbsync.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync -a
+TimeoutSec=120
+
+[Install]
+WantedBy=default.target
