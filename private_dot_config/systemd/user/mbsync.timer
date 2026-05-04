@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Mail every ten minutes
+Requires=mbsync.service
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Check calendars and contacts every 15 minutes
+Requires=vdirsync.service
+
+[Timer]
+Persistent=false
+OnBootSec=5min
+OnUnitActiveSec=15min
+Unit=vdirsync.service
+
+[Install]
+WantedBy=timers.target
