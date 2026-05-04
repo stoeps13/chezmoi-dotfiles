@@ -1,0 +1,38 @@
+
+alias 3days='khal list -o (date +"%d.%m.%Y") 3d'
+alias 4k='gnome-monitor-config set -LpM DP-2 -m "3840x2160@59.997" -s 1.25'
+alias b="bookmarks | fzf | cut -d ' ' -f 1 | xargs xdg-open"
+alias ba='bookmarks'
+alias cnx8-db2-start='distrobox-host-exec ~/.local/bin/cnx8-db2-start.sh'
+alias dvga='podman run --rm -t -p 5000:5000 docker.io/dolevf/dvga'
+alias external-ip='curl https://ipinfo.io/'
+alias f="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
+alias fedora='distrobox-enter fedora-stoeps'
+alias fullhd='gnome-monitor-config set -LpM DP-2 -s 1.0 -m "1920x1080@60.000"'
+alias gmail='neomutt -F ~/.config/neomutt/neomuttrc_gmail'
+alias juiceshop='podman run --rm -p 3000:3000 docker.io/bkimminich/juice-shop'
+alias kali='distrobox-enter kali'
+alias nextweek='khal list -o (date -dnext-monday +%d.%m.%Y) 7d'
+alias r='cd (git rev-parse --show-toplevel)'
+alias sage='sage -n jupyter --ip=0.0.0.0 --port=8888'
+alias ssh='TERM=xterm ssh'
+alias tmux_work='tmuxp load ~/.config/tmux/tmuxp-work.yml'
+alias today='khal list -o (date +"%d.%m.%Y") 1d'
+alias tomorrow='khal list -o (date -d "+1 days" +"%d.%m.%Y") 1d'
+alias ubuntu='distrobox-enter ubuntu'
+alias vf='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias virsh-shutdown='distrobox-host-exec ~/.local/bin/virsh-shutdown.sh'
+alias yt-mp3='youtube-dl -t mp3 -x'
+alias yt-mp4='youtube-dl -t mp4'
+alias loremw='curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=words" -d "start=false" | jq -r ".feed.lipsum" | wl-copy'
+alias loremp='curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=paras" -d "start=false" | jq -r ".feed.lipsum" | wl-copy'
+
+# ── Functions (can't be aliases) ──────────────────────────────────────────────
+
+function fix
+    git diff --name-only | uniq | xargs $EDITOR
+end
+
+function tpane
+    tmux rename-window (echo $hostname | awk -F '.' '{print $1}')
+end

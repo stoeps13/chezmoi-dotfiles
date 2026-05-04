@@ -19,11 +19,9 @@ if [[ $DESKTOP_SESSION = "gnome" ]]
     # Switch workspace on all displays
     gsettings set org.gnome.mutter workspaces-only-on-primary false
 
-    # Set shortcuts
-    # gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom900/']"
-    # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom900/ name 'Take and edit screenshot'
-    # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom900/ command 'flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE'
-    # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom900/ binding '<Super><Print>'
+    # Enable Middle mouse button paste
+    gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+
   else
     echo "Skip gsettings script, no gnome session detected!"
 fi
