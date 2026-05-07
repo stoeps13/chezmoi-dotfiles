@@ -25,4 +25,11 @@ function vg
         --query "$argv"
 end
 
+function bwu
+  set -xU BW_SESSION (bw unlock --raw $argv[1])
+end
+
+set -x XDG_CONFIG_HOME "/home/stoeps/.config"
+set -x EDITOR "/usr/bin/nvim"
+
 fish_ssh_agent
