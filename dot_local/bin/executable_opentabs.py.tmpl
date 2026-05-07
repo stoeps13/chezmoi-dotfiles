@@ -1,4 +1,4 @@
-#!/usr/bin/env python3 
+#!/usr/bin/env python3
 
 import sys
 import requests
@@ -10,20 +10,31 @@ if len(sys.argv) < 2:
 query = sys.argv[1]
 
 response = requests.get(
-            'https://linkding.adminforge.de/api/bookmarks/?q=%23cw16%2F2026',
-            params={'q': query},
-            headers={'Authorization': 'Token {{ (bitwardenFields "item" "linkding").token.value }}'})
+    "https://linkding.adminforge.de/api/bookmarks/?q=%23cw16%2F2026",
+    params={"q": query},
+    headers={'Authorization': 'Token {{ (bitwardenFields "item" "linkding").token.value }}'})
+)
 response.raise_for_status()
 data = response.json()
 
 lines = []
-for b in data['results']:
-    title = b['title']
-    url = b['url']
-    notes = (b['notes'] or '').strip()
-    lines.append(f'* [{title}]({url}): {notes}')
+tags = set()
 
-# with open('bookmarks.md', 'w') as f:
-#     f.write('\n'.join(lines))
+for b in data["results"]:
+    title = b["title"]
+    url = b["url"]
+    link = f"[{title}]({url})"
+    notes = (b["notes"] or "").replace("@@link@@", link).strip()
+    tags.update(b["tag_names"])
 
-print('\n'.join(lines))
+    if "@@link@@" in (b["notes"]):
+        lines.append(f"* {notes}")
+    else:
+        lines.append(f"* {link}: {notes}")
+
+sorted_tags = sorted(tags)
+tags_formatted = ", ".join(f'"{t}"' for t in sorted_tags)
+
+print(f"Tags: [{tags_formatted}]\n\n")
+
+print("\n".join(lines))
