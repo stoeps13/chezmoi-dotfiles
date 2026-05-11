@@ -1,0 +1,15 @@
+[nextcloud]
+url      = '{{- (bitwardenFields "item" "nextcloud").base_url.value -}}'
+username = '{{ (bitwarden "item" "nextcloud").login.username }}'
+password = '{{- (bitwardenFields "item" "nextcloud").app_pw_news.value -}}'
+
+[readeck]
+url   = '{{- (bitwardenFields "item" "readeck").base_url.value -}}'
+token = '{{- (bitwardenFields "item" "readeck").app_pw_news.value -}}'
+
+[sync]
+# Extra labels always added to every bookmark pushed to Readeck
+extra_labels = ["news"]
+# Add a date label like "2025-05-08"? true/false
+add_date_label = true
+
