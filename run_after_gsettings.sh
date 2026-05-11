@@ -22,6 +22,9 @@ if [[ $DESKTOP_SESSION = "gnome" ]]
     # Enable Middle mouse button paste
     gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
 
+    # Enable Logout menu entry
+    gsettings set org.gnome.shell always-show-log-out true
+
   else
     echo "Skip gsettings script, no gnome session detected!"
 fi
