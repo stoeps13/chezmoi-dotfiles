@@ -29,6 +29,11 @@ function bwu
   set -xU BW_SESSION (bw unlock --raw $argv[1])
 end
 
+# Disable fish greeting (default: fastfetch), add emtpy function
+function fish_greeting
+    
+end
+
 set -x XDG_CONFIG_HOME "/home/stoeps/.config"
 set -x EDITOR "/usr/bin/nvim"
 
