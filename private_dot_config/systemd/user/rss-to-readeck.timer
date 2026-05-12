@@ -1,0 +1,15 @@
+# Timer for starred item sync
+# By Christoph Stoettner
+# Licensed under GPL v3
+ 
+[Unit]
+Description=Move starred rss entries to readeck
+Requires=rss-to-readeck.service
+
+[Timer]
+Unit=rss-to-readeck.service
+OnBootSec=5min
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target

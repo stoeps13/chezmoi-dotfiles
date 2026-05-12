@@ -1,0 +1,14 @@
+# This service syncs starred items from Nextcloud News to Readeck
+# By Christoph Stoettner
+# Licensed under GPL v3
+ 
+[Unit]
+Description=Runs sync bash script
+Wants=rss-to-readeck.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/stoeps/.local/bin/starred-news-to-readeck.py
+
+[Install]
+WantedBy=multi-user.target
