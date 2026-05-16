@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 
 import sys
+import re
 import requests
 
 if len(sys.argv) < 2:
-    print("Usage: bookmarks.py <query>")
+    print("Usage: opentabs.py <query> [--tags-only | --body-only | --patch <file>]")
     sys.exit(1)
 
 query = sys.argv[1]
+mode = sys.argv[2] if len(sys.argv) > 2 else None
+patch_file = sys.argv[3] if mode == "--patch" and len(sys.argv) > 3 else None
 
 response = requests.get(
-    "https://linkding.adminforge.de/api/bookmarks/?q=%23cw16%2F2026",
+    "https://linkding.adminforge.de/api/bookmarks/",
     params={"q": query},
     headers={'Authorization': 'Token {{ (bitwardenFields "item" "linkding").token.value }}'})
 )
@@ -27,14 +30,40 @@ for b in data["results"]:
     notes = (b["notes"] or "").replace("@@link@@", link).strip()
     tags.update(b["tag_names"])
 
-    if "@@link@@" in (b["notes"]):
+    if "@@link@@" in (b["notes"] or ""):
         lines.append(f"* {notes}")
     else:
         lines.append(f"* {link}: {notes}")
 
 sorted_tags = sorted(tags)
 tags_formatted = ", ".join(f'"{t}"' for t in sorted_tags)
+tags_yaml = f"[{tags_formatted}]"
+body = "\n".join(lines)
 
-print(f"Tags: [{tags_formatted}]\n\n")
+if mode == "--tags-only":
+    print(tags_yaml)
+elif mode == "--body-only":
+    print(body)
+elif mode == "--patch":
+    # patch tags into frontmatter and append body + credit
+    with open(patch_file) as f:
+        content = f.read()
 
-print("\n".join(lines))
+    content = re.sub(r"^tags:.*", f"tags: {tags_yaml}", content, flags=re.MULTILINE)
+
+    credit = (
+        "\n---"
+        '\n<p class="text-sm text-neutral-700 dark:text-neutral-400 mt-6">\n'
+        'Background photo by <a href="https://unsplash.com/@impatrickt">'
+        "Patrick Tomasso</a> on "
+        '<a href="https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c">Unsplash</a>\n</p>\n'
+    )
+
+    with open(patch_file, "w") as f:
+        f.write(content)
+        f.write(f"{body}\n")
+        f.write(credit)
+else:
+    # default: original output format
+    print(f"[{tags_formatted}]\n\n")
+    print(body)
