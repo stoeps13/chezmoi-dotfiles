@@ -37,4 +37,16 @@ end
 set -x XDG_CONFIG_HOME "/home/stoeps/.config"
 set -x EDITOR "/usr/bin/nvim"
 
+# Update tmux window name to current directory
+function fish_prompt_update_tmux --on-event fish_prompt
+    if set -q TMUX
+        tmux rename-window (basename (pwd))
+    end
+end
+function fish_cd_update_tmux --on-variable PWD
+    if set -q TMUX
+        tmux rename-window (basename (pwd))
+    end
+end
+
 fish_ssh_agent
