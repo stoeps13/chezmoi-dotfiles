@@ -57,10 +57,10 @@ location=$(echo "$1" | sed 's/ /%20/g')  # URL-encode spaces
 geo_data=$(curl -s "http://api.openweathermap.org/geo/1.0/direct?q=$location&appid=$API_KEY")
 [ $DEBUG -eq 1 ] && echo "Geo Data: $geo_data"
 
-lat=$(echo $geo_data | jq -r '.[0].lat')
-lon=$(echo $geo_data | jq -r '.[0].lon')
-location_name=$(echo $geo_data | jq -r '.[0].name')
-country=$(echo $geo_data | jq -r '.[0].country')
+lat=$(echo "$geo_data" | jq -r '.[0].lat')
+lon=$(echo "$geo_data" | jq -r '.[0].lon')
+location_name=$(echo "$geo_data" | jq -r '.[0].name')
+country=$(echo "$geo_data" | jq -r '.[0].country')
 
 # Get current weather data
 weather_data=$(curl -s "http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$API_KEY&units=metric")

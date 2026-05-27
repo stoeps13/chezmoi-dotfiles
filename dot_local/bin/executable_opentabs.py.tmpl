@@ -16,7 +16,7 @@ response = requests.get(
     "https://linkding.adminforge.de/api/bookmarks/",
     params={"q": query},
     headers={'Authorization': 'Token {{ (bitwardenFields "item" "linkding").token.value }}'})
-)
+
 response.raise_for_status()
 data = response.json()
 
