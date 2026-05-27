@@ -50,3 +50,7 @@ function fish_cd_update_tmux --on-variable PWD
 end
 
 fish_ssh_agent
+if type -q keychain
+    SHELL=(which fish) keychain --quiet --eval id_ed25519 | source
+end
+set -gx KIMCHI_API_KEY castai_v1_11acaf4bfb798c1ef584899bb1f7b739fdca1c7446c547264703e1f0baac8d1e_375fb16a
