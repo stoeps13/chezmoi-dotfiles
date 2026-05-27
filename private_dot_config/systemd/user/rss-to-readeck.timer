@@ -9,7 +9,7 @@ Requires=rss-to-readeck.service
 [Timer]
 Unit=rss-to-readeck.service
 OnBootSec=5min
-OnUnitActiveSec=15min
+OnUnitActiveSec=120min
 
 [Install]
 WantedBy=timers.target
