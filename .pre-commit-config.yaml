@@ -14,7 +14,7 @@ repos:
           - --fix=lf
         description: Forces to replace line ending by the UNIX 'lf' character.
   - repo: https://github.com/betterleaks/betterleaks
-    rev: v1.1.1
+    rev: v1.3.1
     hooks:
       - id: betterleaks-system
         pass_filenames: false
