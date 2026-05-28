@@ -48,8 +48,6 @@ print(f"Total open cases: {total_cases}\n")
 
 # Print markdown output grouped by priority
 for prio in sorted(cases_by_priority.keys()):  # Ensure sorted order
-    print(
-        f"## Cases prio {prio.lower()} (Open cases: {len(cases_by_priority[prio])})\n"
-    )
+    print(f"## Cases Prio {prio} (Open cases: {len(cases_by_priority[prio])})\n")
     print("\n".join(cases_by_priority[prio]))
     print()  # Extra newline for spacing
