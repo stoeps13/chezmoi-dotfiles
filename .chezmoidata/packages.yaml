@@ -49,6 +49,7 @@ packages:
       - obs-studio
       - pandoc
       - pika-backup
+      - pre-commit
       - python-six
       - python-tasklib
       - python-tzlocal
@@ -170,6 +171,7 @@ packages:
       - zen-browser-bin
       - zoxide
     yay:
+      - betterleaks
       - davmail
       - difft
       - gnome-shell-extension-gradia-capture-git
