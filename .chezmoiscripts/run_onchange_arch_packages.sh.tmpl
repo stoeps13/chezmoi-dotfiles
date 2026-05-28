@@ -1,13 +1,13 @@
+#!/usr/bin/env bash
 {{- if or (eq .chezmoi.osRelease.id "cachyos") (eq .chezmoi.osRelease.id "arch") (ne .profile "devcontainer") -}}
-#!/bin/sh
-
 set -e -u
 
 {{- if .packages.arch.pacman }}
+sudo pacman -Syyu --noconfirm
 {{- range .packages.arch.pacman }}
 if ! dpkg -l {{ . | quote }} >/dev/null 2>&1; then
     echo "Installing pacman package: {{ . }}"
-    sudo pacman -Sy --noconfirm {{ . | quote }}
+    sudo pacman -S --noconfirm {{ . | quote }}
 fi
 {{- end }}
 {{- end }}
@@ -16,7 +16,7 @@ fi
 {{- range .packages.arch.yay }}
 if ! dpkg -l {{ . | quote }} >/dev/null 2>&1; then
     echo "Installing AUR package: {{ . }}"
-    yay -Sy --noconfirm {{ . | quote }}
+    yay -S --noconfirm {{ . | quote }}
 fi
 {{- end }}
 {{- end }}

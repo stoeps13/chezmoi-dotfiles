@@ -1,8 +1,8 @@
-{{ if eq .chezmoi.os "arch" -}}
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e -u
 
+{{- if eq .chezmoi.osRelease.id "cachyos" "arch" -}}
 # Fisher is a fish function, not a binary — check via fish itself
 if ! fish -c "type fisher" >/dev/null 2>&1; then
     echo "Error: fisher is not available. Ensure 'fisher' is in your brew list and has been installed."
