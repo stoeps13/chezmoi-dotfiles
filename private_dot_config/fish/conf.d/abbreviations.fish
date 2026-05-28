@@ -25,8 +25,8 @@ abbr loremp 'curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what
 abbr weather 'curl -s wttr.in/heppenheim?1&d&F'
 
 # Replace ls with eza
-abbr ls 'eza -al --color=always --group-directories-first --icons=always' # preferred listing
-abbr la 'eza -a --color=always --group-directories-first --icons=always'  # all files and dirs
+# abbr ls 'eza -al --color=always --group-directories-first --icons=always' # preferred listing
+abbr la 'eza -la --color=always --group-directories-first --icons=always'  # all files and dirs
 abbr ll 'eza -l --color=always --group-directories-first --icons=always'  # long format
 abbr lt 'eza -aT --color=always --group-directories-first --icons=always' # tree listing
 abbr l. "eza -a | grep -e '^\.'"                                     # show only dotfiles
