@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args:
+          - --fix=lf
+        description: Forces to replace line ending by the UNIX 'lf' character.
+      - id: trailing-whitespace
+        exclude: .*arkenfox.js$
+  - repo: https://github.com/betterleaks/betterleaks
+    rev: v1.1.1
+    hooks:
+      - id: betterleaks-system
+        pass_filenames: false
