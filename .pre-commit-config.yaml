@@ -13,8 +13,6 @@ repos:
         args:
           - --fix=lf
         description: Forces to replace line ending by the UNIX 'lf' character.
-      - id: trailing-whitespace
-        exclude: .*arkenfox.js$
   - repo: https://github.com/betterleaks/betterleaks
     rev: v1.1.1
     hooks:
