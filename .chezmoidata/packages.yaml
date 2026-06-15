@@ -171,14 +171,27 @@ packages:
       - zen-browser-bin
       - zoxide
     yay:
+      - apachedirectorystudio
+      - bcompare
       - betterleaks
+      - c++utilities
       - davmail
       - difft
+      - epson-inkjet-printer-escpr
+      - epson-inkjet-printer-escpr2
       - gnome-shell-extension-gradia-capture-git
+      - gradia
+      - htmlhint
+      - jack
       - jd-gui-bin
+      - nodejs-jsonlint
+      - qtforkawesome
+      - qtutilities
+      - sesh-bin
       - syncthingtray
       - taskopen
       - virtnbdbackup
+      - zoom
     fisher:
       - lewisacidic/fish-kubectl-abbr
       - IlanCosman/tide@v6
