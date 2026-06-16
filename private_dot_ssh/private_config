@@ -1,28 +1,23 @@
-Match tagged vit
-  IdentityFile ~/.ssh/vit-ed25519-gitea
-  IdentitiesOnly yes
+# DevPod Start website.devpod
+Host website.devpod
   ForwardAgent yes
-
-Match tagged stoeps
-  IdentityFile ~/.ssh/vit-ed25519-stoeps.de
-
-Match tagged iac
-  IdentityFile ~/.ssh/cnx6
-  IdentitiesOnly yes
-  StrictHostKeyChecking=no
-
-Match tagged github
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/vit-ed25519-github
-
-Match tagged gitlab
-  IdentitiesOnly yes
-        IdentityFile ~/.ssh/gitlab-ed25519
-
-Match tagged kali
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardX11 yes
-
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user node website
+  User node
+# DevPod End website.devpod
+# DevPod Start vscode-remote-try-node.devpod
+Host vscode-remote-try-node.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user node vscode-remote-try-node
+  User node
+# DevPod End vscode-remote-try-node.devpod
 # DevPod Start vit.devpod
 Host vit.devpod
   ForwardAgent yes
@@ -61,6 +56,7 @@ Host stoeps.de
   ServerAliveCountMax 15
   IdentitiesOnly yes
   IdentityFile ~/.ssh/ionos-ed25519
+
 Host gitlab.com
   HostName gitlab.com
   User git
@@ -127,6 +123,12 @@ Host pve.stoeps.home
   Hostname 192.168.11.220
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
+Host 192.168.11.220
+  Port 22
+  User root
+  Hostname 192.168.11.220
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
 Host 192.168.1.211
   Port 22
   User ubuntu
@@ -163,7 +165,42 @@ Host OMV
 Host www7.your-server.de
   Hostname www7.your-server.de
   User stoepsa
-Host 192.168.11.1
-Host *
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/ansible_ed25519
+Host localhost
+  Hostname localhost
+  User stoeps
+  Tag localhost
+
+  # Host 192.168.11.1
+  # Host *
+  #   AddKeysToAgent yes
+  #   IdentitiesOnly yes
+  #   IdentityFile ~/.ssh/ansible_ed25519
+Match tagged vit
+  IdentityFile ~/.ssh/vit-ed25519-gitea
+  IdentitiesOnly yes
+  ForwardAgent yes
+
+Match tagged localhost
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+  ForwardAgent yes
+
+Match tagged stoeps
+  IdentityFile ~/.ssh/vit-ed25519-stoeps.de
+
+Match tagged iac
+  IdentityFile ~/.ssh/cnx6
+  IdentitiesOnly yes
+  StrictHostKeyChecking=no
+
+Match tagged github
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/vit-ed25519-github
+
+Match tagged gitlab
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/gitlab-ed25519
+
+Match tagged kali
+  IdentityFile ~/.ssh/id_ed25519
+  ForwardX11 yes
