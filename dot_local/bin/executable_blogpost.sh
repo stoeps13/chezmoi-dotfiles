@@ -23,7 +23,7 @@ curl -Ls "${BUBBLE}" | rg -i 'target="_blank"' | cut -d '"' -f2 >> ${TMP}
 sed 's,https://s2f.kytta.dev/,,' ${TMP} | sed '/^$/d' | sort -u > ${OUT}
 
 # Filter out already seen links
-NEW_LINKS=$(grep -vxFf "$SEEN" "$OUT")
+NEW_LINKS=$(rg -vxFf "$SEEN" "$OUT")
 
 # If all links are old, fetch again or exit gracefully
 if [[ -z "$NEW_LINKS" ]]; then
