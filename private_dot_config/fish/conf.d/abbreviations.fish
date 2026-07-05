@@ -23,6 +23,8 @@ abbr yt-mp4 'youtube-dl -t mp4'
 abbr loremw 'curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=words" -d "start=false" | jq -r ".feed.lipsum" | wl-copy'
 abbr loremp 'curl -s -X POST https://lipsum.com/feed/json -d "amount=5" -d "what=paras" -d "start=false" | jq -r ".feed.lipsum" | wl-copy'
 abbr weather 'curl -s wttr.in/heppenheim?1&d&F'
+abbr weathernow 'echo "Weather at "(date +%H:%M)":" (curl -s wttr.in/heppenheim?format="+%c+%t+%h+%w+%m+%p+%P+%u\n")'
+
 
 # Replace ls with eza
 # abbr ls 'eza -al --color=always --group-directories-first --icons=always' # preferred listing
@@ -33,3 +35,7 @@ abbr l. "eza -a | grep -e '^\.'"                                     # show only
 # vimwiki abbreviations
 abbr diary "cd ~/vimwiki; vim -c VimwikiMakeDiaryNote"
 abbr index "cd ~/vimwiki; vim latest/index.md"
+# taskwarrior
+abbr t    "task"
+abbr ta "task status.not:completed all"
+abbr to "taskopen "
