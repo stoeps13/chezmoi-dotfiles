@@ -1,3 +1,63 @@
 private_dot_davmail.properties.tmpl
 .davmail.properties
 README.md
+
+{{- if not .distrobox -}}
+~/.config/distrobox/distrobox.ini
+{{- end -}}
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# WSL-specific code
+~/.XCompose
+~/.config/alacritty
+~/.config/alacritty/**
+~/.config/asciinema
+~/.config/asciinema/**
+~/.config/davmail
+~/.config/davmail/**
+~/.config/distrobox
+~/.config/distrobox/**
+~/.config/ghostty
+~/.config/ghostty/**
+~/.config/k9s
+~/.config/k9s/**
+~/.config/khal
+~/.config/khal/**
+~/.config/khard
+~/.config/khard/**
+~/.config/kitty
+~/.config/kitty/**
+~/.config/neomutt
+~/.config/neomutt/**
+~/.config/obs-studio
+~/.config/obs-studio/**
+~/.config/sesh
+~/.config/sesh/**
+~/.config/stoeps
+~/.config/stoeps/**
+~/.config/systemd
+~/.config/systemd/**
+~/.config/task
+~/.config/task/**
+~/.config/taskopen
+~/.config/taskopen/**
+~/.config/vale
+~/.config/vale/**
+~/.config/vdirsyncer
+~/.config/vdirsyncer/**
+~/.local/bin
+~/.local/share/applications/maestral.desktop
+~/.local/share/icons
+~/.mbsyncrc
+~/.msmtprc
+~/.npmrc
+~/.sn_envrc
+~/.ssh
+~/.ssh/**
+~/.tcc/user.conf
+~/.wireguard
+~/.wireguard/**
+~/symlink_bookmarks
+{{   end }}
+{{ end }}

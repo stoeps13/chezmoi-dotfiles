@@ -1,3 +1,9 @@
+{{- $distrobox := false -}}
+
+{{- if (eq .chezmoi.hostname "lnx-stwsh") -}}
+{{- $distrobox = true -}}
+{{- end -}}
+
 [edit]
   apply = true
 
@@ -13,3 +19,6 @@
 
 [bitwarden]
   unlock = "auto"
+
+[data]
+distrobox = {{ $distrobox }}

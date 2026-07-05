@@ -27,3 +27,6 @@ include "%L"
 
 # Misc
 <Multi_key> <minus> <minus>                          : "–" # en-dash
+<Multi_key> <T> <plus>                               : "☑" 
+<Multi_key> <T> <minus>                              : "☐"
+<Multi_key> <C> <S>                                  : "🐄"
