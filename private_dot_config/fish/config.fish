@@ -29,6 +29,9 @@ function bwu
   set -xU BW_SESSION (bw unlock --raw $argv[1])
 end
 
+# direnv
+direnv hook fish | source
+
 # Disable fish greeting (default: fastfetch), add emtpy function
 function fish_greeting
     
@@ -54,3 +57,12 @@ fish_ssh_agent
 #     SHELL=(which fish) keychain --quiet --eval id_ed25519 | source
 # end
 set -gx KIMCHI_API_KEY castai_v1_11acaf4bfb798c1ef584899bb1f7b739fdca1c7446c547264703e1f0baac8d1e_375fb16a
+
+function fish_remove_path
+    if set -l index (contains -i $argv[1] $fish_user_paths)
+        set --erase --universal fish_user_paths[$index]
+        echo "Updated fish_user_paths: $fish_user_paths"
+    else
+        echo "$argv[1] not found in fish_user_paths: $fish_user_paths"
+    end
+end
