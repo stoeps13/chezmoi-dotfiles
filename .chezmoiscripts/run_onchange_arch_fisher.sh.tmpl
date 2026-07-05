@@ -16,3 +16,10 @@ if ! grep -qF {{ . | quote }} ~/.config/fish/fish_plugins 2>/dev/null; then
 fi
 {{ end -}}
 {{ end -}}
+
+{{- if eq .chezmoi.osRelease.id "cachyos" "arch" -}}
+echo "Add local path to $PATH"
+fish_add_path ~/go/bin
+fish_add_path ~/.cargo/bin
+fish_add_path ~/.local/bin
+{{ end -}}
