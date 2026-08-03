@@ -1,0 +1,5 @@
+# Personal Git settings.
+# Add personal-only settings here when they differ from ~/.gitconfig.
+[user]
+	name = Christoph Stoettner
+	email = christoph.stoettner@stoeps.de

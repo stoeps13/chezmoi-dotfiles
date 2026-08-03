@@ -1,6 +1,10 @@
 [user]
 	name = Christoph Stoettner
 	email = christoph.stoettner@stoeps.de
+[includeIf "gitdir:~/Projects/work/**"]
+	path = ~/.gitconfig-work
+[includeIf "gitdir:~/Projects/personal/**"]
+	path = ~/.gitconfig-personal
 [core]
 	editor = nvim
 [init]

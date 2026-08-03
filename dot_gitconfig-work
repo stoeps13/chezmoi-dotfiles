@@ -1,0 +1,5 @@
+# Work-specific Git settings.
+# Add [user] name/email and any work-only settings here.
+[user]
+	name = Christoph Stoettner
+	email = stoeps@vegardit.com
