@@ -1,0 +1,15 @@
+[Unit]
+Description=Weave web frontend for zk
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.sn_envrc
+Environment=ZK_NOTEBOOK_DIR=%h/zk
+ExecStart=%h/.local/bin/weave
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
