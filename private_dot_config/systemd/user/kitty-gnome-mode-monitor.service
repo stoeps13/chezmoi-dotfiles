@@ -1,0 +1,11 @@
+[Unit]
+Description=Matches Kitty's mode with Gnome light/dark mode
+
+[Service]
+Type=forking
+Environment="PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/stoeps/.local/bin/kitty-gnome-mode-monitor
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
