@@ -3,6 +3,8 @@ AGENTS.md
 TODO.md
 .davmail.properties
 README.md
+.config/fish/completions
+.config/fish/conf.d/fish_frozen_key_bindings.fish.bak
 
 {{- if not .distrobox -}}
 ~/.config/distrobox/distrobox.ini

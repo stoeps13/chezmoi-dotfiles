@@ -248,5 +248,3 @@ function kubectl_abbr_uninstall --on-event kubectl_abbr_uninstall
     abbr -e kdj
     abbr -e kdelj
 end
-
-
