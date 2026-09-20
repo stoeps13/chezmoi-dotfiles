@@ -25,6 +25,23 @@ if [[ $DESKTOP_SESSION = "gnome" ]]
     # Enable Logout menu entry
     gsettings set org.gnome.shell always-show-log-out true
 
+    # Bind Shift+Super+S to Wayshot capture
+    wayshot_keybinding="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wayshot/"
+    custom_keybindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+    if [[ $custom_keybindings != *"$wayshot_keybinding"* ]]; then
+      custom_keybindings=${custom_keybindings#@as }
+      custom_keybindings=${custom_keybindings%]}
+      if [[ $custom_keybindings = "[" ]]; then
+        custom_keybindings="['$wayshot_keybinding']"
+      else
+        custom_keybindings="$custom_keybindings, '$wayshot_keybinding']"
+      fi
+      gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$custom_keybindings"
+    fi
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$wayshot_keybinding name "Wayshot capture"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$wayshot_keybinding command "flatpak run --env=WAYSHOT_CAPTURE=1 io.github.gutopardini.wayshot"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$wayshot_keybinding binding "<Shift><Super>s"
+
   else
     echo "Skip gsettings script, no gnome session detected!"
 fi
