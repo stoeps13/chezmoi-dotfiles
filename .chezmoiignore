@@ -1,4 +1,5 @@
 private_dot_davmail.properties.tmpl
+~/.vim/plugged/**
 AGENTS.md
 TODO.md
 .davmail.properties
