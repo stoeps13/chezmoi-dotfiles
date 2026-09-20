@@ -7,5 +7,8 @@ direnv hook fish | source
 set -gx PATH $PATH /home/stoeps/.lmstudio/bin
 # End of LM Studio CLI section
 
+if status is-interactive
+    mise activate fish | source
+end
 # ssh-add -q ~/.ssh/id_ed25519
 # ssh-add -q ~/.ssh/gitlab-ed25519
