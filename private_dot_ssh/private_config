@@ -5,9 +5,29 @@ Host website.devpod
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
   HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
-  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user node website
+  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user node website --workdir "/workspaces/website"
   User node
 # DevPod End website.devpod
+# DevPod Start vegard-community-themes.devpod
+Host vegard-community-themes.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user ubuntu vegard-community-themes --workdir "/workspace"
+  User ubuntu
+# DevPod End vegard-community-themes.devpod
+# DevPod Start interval-timer.devpod
+Host interval-timer.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/home/stoeps/.local/bin/devpod" ssh --stdio --context default --user node interval-timer
+  User node
+# DevPod End interval-timer.devpod
 # DevPod Start vscode-remote-try-node.devpod
 Host vscode-remote-try-node.devpod
   ForwardAgent yes
@@ -83,6 +103,7 @@ Host *.stoeps.home
   UserKnownHostsFile /dev/null
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
+  IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
   StrictHostKeyChecking=no
 Host 10.0.22.1
@@ -115,6 +136,12 @@ Host pi2
   Port 22
   User stoeps
   Hostname 192.168.11.210
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+Host openstack
+  Port 22
+  User stack
+  Hostname 192.168.11.200
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 Host pve.stoeps.home
@@ -169,12 +196,25 @@ Host localhost
   Hostname localhost
   User stoeps
   Tag localhost
+Host cxw-prd88
+  Hostname cxw-prd88.cxw.local
+  User rockylinux
+  Tag cxw
+Host cxw-dmz40
+  Hostname cxw-dmz40.cxw.local
+  User rockylinux
+  Tag cxw
 
   # Host 192.168.11.1
   # Host *
   #   AddKeysToAgent yes
   #   IdentitiesOnly yes
   #   IdentityFile ~/.ssh/ansible_ed25519
+Match tagged cxw
+  IdentityFile ~/.ssh/vit-crossworks.ed25519
+  IdentitiesOnly yes
+  ForwardAgent yes
+
 Match tagged vit
   IdentityFile ~/.ssh/vit-ed25519-gitea
   IdentitiesOnly yes

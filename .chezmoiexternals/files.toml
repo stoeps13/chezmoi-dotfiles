@@ -40,3 +40,8 @@ url = "https://raw.githubusercontent.com/tbabej/taskpirate/refs/heads/master/on-
 executable = true
 refreshPeriod = "168h"
 
+[".local/bin/bw-env"]
+type = "file"
+executable = true
+refreshPeriod = "168h"
+url = "https://raw.githubusercontent.com/FulcrumOps/bw-env/refs/heads/main/bw-env"
