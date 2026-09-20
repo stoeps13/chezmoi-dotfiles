@@ -41,7 +41,7 @@ include ~/.config/task/nord.theme
 #include no-color.theme
 include ~/.config/task/holidays.de-DE.rc
 
-news.version=3.4.1
+news.version=3.5.0
 uda.priority.values = H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
@@ -65,3 +65,13 @@ sync.server.url=https:\/\/{{ (bitwardenFields "item" "taskwarriorsync").base_url
 sync.server.client_id={{ (bitwarden "item" "taskwarriorsync").login.username }}
 sync.encryption_secret={{ (bitwarden "item" "taskwarriorsync").login.password }}
 
+context.Vegard.read=(proj:vit or proj:work or proj:vegard)
+context.Vegard.write=(proj:vit or proj:work or proj:vegard)
+context.Atruvia.read=(project:aag or project:atruvia)
+context.Atruvia.write=(project:aag or project:atruvia)
+context.Bosch.read=(project:rb or project:bosch)
+context.Bosch.write=(project:rb or project:bosch)
+context.Personal.read=(project:home or project:personal or project:blog)
+context.Personal.write=(project:home or project:personal or project:blog)
+context.Inbox.read=+inbox
+context.Inbox.write=+inbox

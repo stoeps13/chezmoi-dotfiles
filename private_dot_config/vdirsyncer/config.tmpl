@@ -68,9 +68,9 @@ collections = null
 # --------------------------------------------------------------------------------------
 [storage nc_cal_remote]
 type = "caldav"
-url = "{{ (bitwardenFields "item" "nextcloud").URL.value }}"
-username = "{{ (bitwarden "item" "nextcloud").login.username }}"
-password = "{{ (bitwarden "item" "nextcloud").login.password }}"
+url = "{{ (bitwardenFields "item" "nextcloud cal").URL.value }}"
+username = "{{ (bitwarden "item" "nextcloud cal").login.username }}"
+password = "{{ (bitwarden "item" "nextcloud cal").login.password }}"
 
 [storage nc_cal_local]
 type = "filesystem"
@@ -153,4 +153,3 @@ b = "o365_vit_addressbook_remote"
 conflict_resolution = "b wins"
 collections = ["from a", "from b"]
 metadata = ["displayname"]
-

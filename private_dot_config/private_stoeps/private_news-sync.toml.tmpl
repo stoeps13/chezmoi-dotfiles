@@ -1,7 +1,7 @@
 [nextcloud]
-url      = '{{- (bitwardenFields "item" "nextcloud").base_url.value -}}'
-username = '{{ (bitwarden "item" "nextcloud").login.username }}'
-password = '{{- (bitwardenFields "item" "nextcloud").app_pw_news.value -}}'
+url      = '{{- (bitwardenFields "item" "nextcloud news").base_url.value -}}'
+username = '{{ (bitwarden "item" "nextcloud news").login.username }}'
+password = '{{- (bitwardenFields "item" "nextcloud news").app_pw_news.value -}}'
 
 [readeck]
 url   = '{{- (bitwardenFields "item" "readeck").base_url.value -}}'
@@ -12,4 +12,3 @@ token = '{{- (bitwardenFields "item" "readeck").app_pw_news.value -}}'
 extra_labels = ["news"]
 # Add a date label like "2025-05-08"? true/false
 add_date_label = true
-
