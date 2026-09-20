@@ -1,8 +1,13 @@
-# [".config/nvim"]
-# type = "git-repo"
-# #url = "git@github.com:stoeps13/kickstart.nvim.git"
-# url = "https://github.com/stoeps13/kickstart.nvim.git"
-# refreshPeriod = "168h"
+[".config/nvim"]
+type = "git-repo"
+url = "git@github.com:stoeps13/kickstart.nvim.git"
+#url = "https://github.com/stoeps13/kickstart.nvim.git"
+refreshPeriod = "168h"
+
+["zk"]
+type = "git-repo"
+url = "git@gitlab.com:stoeps/zk.git"
+refreshPeriod = "24h"
 
 ["data/SecLists"]
 type = "git-repo"
