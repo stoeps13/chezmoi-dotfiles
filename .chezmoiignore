@@ -45,6 +45,10 @@ README.md
 ~/.config/kitty/**
 ~/.config/neomutt
 ~/.config/neomutt/**
+~/.config/obs-studio/plugin_config/rtmp-services/package.json
+~/.config/obs-studio/plugin_config/rtmp-services/services.json
+~/.config/obs-studio/plugin_config/rtmp-services/twitch_ingests.json
+~/.config/obs-studio/plugin_config/text-freetype2/.keep
 ~/.config/obs-studio
 ~/.config/obs-studio/**
 ~/.config/sesh

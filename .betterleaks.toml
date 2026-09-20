@@ -1,0 +1,9 @@
+title = "Repository Betterleaks configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+  '''(^|/)(private_dot_config/|\.config/)?obs-studio/basic/scenes/Untitled\.json$'''
+]
