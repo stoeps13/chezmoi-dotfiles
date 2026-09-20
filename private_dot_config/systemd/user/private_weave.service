@@ -5,9 +5,8 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-EnvironmentFile=%h/.sn_envrc
 Environment=ZK_NOTEBOOK_DIR=%h/zk
-ExecStart=%h/.local/bin/weave
+ExecStart=/bin/sh -c 'WEAVE_PASSWORD="$(/usr/bin/pass show weave/password)" exec %h/.local/bin/weave'
 Restart=on-failure
 RestartSec=5s
 
