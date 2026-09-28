@@ -194,3 +194,4 @@ packages:
       - lewisacidic/fish-kubectl-abbr
       - IlanCosman/tide@v6
       - PatrickF1/fzf.fish
+      - gazorby/fish-abbreviation-tips
