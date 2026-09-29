@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/themes/noctalia.toml"]
+import = ["~/.config/alacritty/dank-theme.toml"]
 
 [window]
 opacity = 0.8

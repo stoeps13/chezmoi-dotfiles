@@ -39,9 +39,3 @@ type = "file"
 url = "https://raw.githubusercontent.com/tbabej/taskpirate/refs/heads/master/on-modify-pirate"
 executable = true
 refreshPeriod = "168h"
-
-[".local/bin/nirilayout"]
-type="file"
-url = {{ gitHubLatestReleaseAssetURL "calico32/nirilayout" "nirilayout" | quote }}
-refreshPeriod = "168h"
-executable = true
