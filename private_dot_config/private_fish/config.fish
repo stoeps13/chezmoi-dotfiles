@@ -12,3 +12,4 @@ if status is-interactive
 end
 # ssh-add -q ~/.ssh/id_ed25519
 # ssh-add -q ~/.ssh/gitlab-ed25519
+fish_ssh_agent
