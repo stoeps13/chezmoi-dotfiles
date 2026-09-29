@@ -113,6 +113,13 @@ Host 10.0.22.1
   IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
   AddressFamily inet
+Host nixos
+  Hostname 10.0.22.243
+  Port 22
+  User stoeps
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+  AddressFamily inet
 Host 10.0.22.241
   Port 22
   User kali 
@@ -168,23 +175,6 @@ Host lnx-stwsh
   IdentityFile ~/.ssh/ansible_ed25519
   IdentitiesOnly yes
   AddressFamily inet
-Host kali-kvm
-  User stoeps
-  Hostname 10.0.22.240
-  Port 22
-  IdentityFile ~/.ssh/kali-pve-ed25519
-Host kali
-  User stoeps
-  Hostname 192.168.10.109
-  Port 22
-  IdentityFile ~/.ssh/kali-pve-ed25519
-  ForwardX11 yes
-Host kali-root
-  User root
-  Hostname 192.168.10.109
-  Port 22
-  IdentityFile ~/.ssh/kali-pve-ed25519
-  ForwardX11 yes
 Host OMV
   Hostname 192.168.223.3
   User root
@@ -205,11 +195,6 @@ Host cxw-dmz40
   User rockylinux
   Tag cxw
 
-  # Host 192.168.11.1
-  # Host *
-  #   AddKeysToAgent yes
-  #   IdentitiesOnly yes
-  #   IdentityFile ~/.ssh/ansible_ed25519
 Match tagged cxw
   IdentityFile ~/.ssh/vit-crossworks.ed25519
   IdentitiesOnly yes
