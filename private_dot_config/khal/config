@@ -1,40 +1,31 @@
 [calendars]
 
   [[vegard]]
-    path = ~/.local/share/calendars/o365-vit/calendar/
+    path = ~/calendars/o365-vit/calendar/
     color = dark blue
-  [[zep]]
-    path = ~/.local/share/calendars/zep/
-    color = light blue
-  [[dnug events]]
-    path = ~/.local/share/calendars/dnug/
+  [[vit-vacation]]
+    path = ~/calendars/zep/absences/
+    color = dark blue
+  [[vit-events]]
+    path = ~/calendars/zep/events/
     color = dark red
+  [[dnug]]
+    path = ~/.local/share/calendars/dnug/
+    color = light gray
   [[personal]]
     path = ~/.local/share/calendars/google/christoph.stoettner@stoeps.de/
     color = dark green
-  [[nextcloud personal]]
-    path = ~/.local/share/calendars/nextcloud/personal/
-    color = dark green
-  [[birthdays]]
-    path = ~/.local/share/calendars/nextcloud/contact_birthdays
-    color = dark magenta
-  [[feiertage]]
-    path = ~/.local/share/calendars/nextcloud/feiertage-in-hessen-2025/
-    color = light green
-  [[ferien]]
-    path = ~/.local/share/calendars/nextcloud/ferien-in-hessen-2025
-    color = yellow
-  [[zakb]]
-    path = ~/.local/share/calendars/nextcloud/abfuhrtermine
-    color = light gray
   [[corinna]]
-    path = ~/.local/share/calendars/google/corinna.stoettner@stoeps.de
-    color = light red
-  [[paula]]
-    path = ~/.local/share/calendars/google/paula@stoeps.de
-    color = light magenta
+    path = ~/.local/share/calendars/google/corinna.stoettner@stoeps.de/
+    color = dark red
   [[ida]]
-    path = ~/.local/share/calendars/google/ida@stoeps.de
+    path = ~/.local/share/calendars/google/ida@stoeps.de/
+    color = yellow
+  [[paula]]
+    path = ~/.local/share/calendars/google/paula@stoeps.de/
+    color = brown
+  [[zakb]]
+    path = ~/.local/share/calendars/google/c_74e1b44802ac5e2b1fde1e41f702eb155674ff67e95de9973b91bd1e5856b5f6@group.calendar.google.com/
     color = light cyan
 
 [locale]
