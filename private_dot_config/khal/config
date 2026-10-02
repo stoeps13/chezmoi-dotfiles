@@ -1,13 +1,13 @@
 [calendars]
 
   [[vegard]]
-    path = ~/calendars/o365-vit/calendar/
+    path = ~/.local/share/calendars/o365-vit/calendar/
     color = dark blue
   [[vit-vacation]]
-    path = ~/calendars/zep/absences/
+    path = ~/.local/share/calendars/zep/absences/
     color = dark blue
   [[vit-events]]
-    path = ~/calendars/zep/events/
+    path = ~/.local/share/calendars/zep/events/
     color = dark red
   [[dnug]]
     path = ~/.local/share/calendars/dnug/
@@ -24,6 +24,12 @@
   [[paula]]
     path = ~/.local/share/calendars/google/paula@stoeps.de/
     color = brown
+  [[feiertage]]
+    path = ~/.local/share/calendars/feiertage/
+    color = yellow
+  [[ferien]]
+    path = ~/.local/share/calendars/ferien/
+    color = yellow
   [[zakb]]
     path = ~/.local/share/calendars/google/c_74e1b44802ac5e2b1fde1e41f702eb155674ff67e95de9973b91bd1e5856b5f6@group.calendar.google.com/
     color = light cyan
