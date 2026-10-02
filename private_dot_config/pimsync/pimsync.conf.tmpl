@@ -1,0 +1,72 @@
+status_path "~/.local/share/pimsync/"
+
+# Calendar Synchronisation
+# --------------------------------------------------------------------------------------
+# M365 Calendars
+# --------------------------------------------------------------------------------------
+storage o365_vit_calendars_remote {
+  type caldav
+  read_only
+  url http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/calendar/
+  username {{ (bitwarden "item" "Microsoft-Mail").login.username }}
+  password {{ (bitwarden "item" "Microsoft-Mail").login.password }}
+}
+storage o365_vit_calendars_local {
+  type vdir/icalendar
+  path ~/calendars/o365-vit/
+  fileext ics
+}
+
+pair calendars {
+  storage_a o365_vit_calendars_local
+  storage_b o365_vit_calendars_remote
+  collections all
+}
+
+# --------------------------------------------------------------------------------------
+# ZEP calendars
+# --------------------------------------------------------------------------------------
+storage zep_vit_calendars_local {
+  type vdir/icalendar
+  path ~/calendars/zep/
+  fileext ics
+}
+
+storage zep_vit_calendars_remote {
+  type caldav
+  read_only
+  url https://www.zep-online.de/zepvegard/sync/dav.php/calendars/stoeps/absences/
+  username {{ (bitwarden "item" "www.zep-online.de").login.username }} 
+  password {{ (bitwarden "item" "www.zep-online.de").login.password }}
+}
+
+pair zep_calendars {
+  storage_a zep_vit_calendars_local
+  storage_b zep_vit_calendars_remote
+  collections all
+}
+
+# --------------------------------------------------------------------------------------
+# Addressbook synchronisation
+# --------------------------------------------------------------------------------------
+# Card DAV
+# --------------------------------------------------------------------------------------
+storage o365_vit_addressbook_local {
+  type vdir/vcard
+  path ~/contacts/o365-vit
+  fileext vcf
+}
+
+storage o365_vit_addressbook_remote {
+  type carddav
+  url http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/contacts
+  username {{ (bitwarden "item" "Microsoft-Mail").login.username }}
+  password {{ (bitwarden "item" "Microsoft-Mail").login.password }}
+}
+
+pair work_addressbook {
+  storage_a o365_vit_addressbook_local
+  storage_b o365_vit_addressbook_remote
+  collections all
+  metadata displayname
+}
