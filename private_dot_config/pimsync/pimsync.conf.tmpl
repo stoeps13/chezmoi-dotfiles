@@ -46,27 +46,22 @@ pair zep_calendars {
   collections all
 }
 
-# --------------------------------------------------------------------------------------
-# Addressbook synchronisation
-# --------------------------------------------------------------------------------------
-# Card DAV
-# --------------------------------------------------------------------------------------
-storage o365_vit_addressbook_local {
-  type vdir/vcard
-  path ~/contacts/o365-vit
-  fileext vcf
+# Feiertage
+#
+storage feiertage_local {
+  type vdir/icalendar
+  path ~/calendars/feiertage
+  fileext ics
 }
 
-storage o365_vit_addressbook_remote {
-  type carddav
-  url http://127.0.0.1:1080/users/{{ (bitwarden "item" "Microsoft-Mail").login.username }}/contacts
-  username {{ (bitwarden "item" "Microsoft-Mail").login.username }}
-  password {{ (bitwarden "item" "Microsoft-Mail").login.password }}
+storage feiertage_remote {
+  type webcal
+  url https://www.feiertage-deutschland.de/content/kalender-download/force-download.php
+  collection feiertage
 }
 
-pair work_addressbook {
-  storage_a o365_vit_addressbook_local
-  storage_b o365_vit_addressbook_remote
+pair feiertage {
+  storage_a feiertage_remote
+  storage_b feiertage_local
   collections all
-  metadata displayname
 }
