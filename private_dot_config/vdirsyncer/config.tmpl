@@ -46,6 +46,42 @@ metadata = ["color"]
 conflict_resolution = "b wins"
 
 # --------------------------------------------------------------------------------------
+# DNUG / Import only
+# --------------------------------------------------------------------------------------
+[storage dnug_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars/dnug/"
+fileext = ".ics"
+
+[storage dnug_calendars_remote]
+type = "http"
+url = "https://dnug.de/ical-de.ics"
+read_only = true
+
+[pair dnug_calendar]
+a = "dnug_calendars_local"
+b = "dnug_calendars_remote"
+collections = null
+
+# --------------------------------------------------------------------------------------
+# Feiertage
+# --------------------------------------------------------------------------------------
+[storage feiertage_calendars_local]
+type = "filesystem"
+path = "~/.local/share/calendars/feiertage/"
+fileext = ".ics"
+
+[storage feiertage_calendars_remote]
+type = "http"
+url = "https://www.feiertage-deutschland.de/content/kalender-download/force-download.php"
+read_only = true
+
+[pair feiertage_calendar]
+a = "feiertage_calendars_local"
+b = "feiertage_calendars_remote"
+collections = null
+
+# --------------------------------------------------------------------------------------
 # Addressbook synchronisation
 # --------------------------------------------------------------------------------------
 # Card DAV
