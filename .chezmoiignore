@@ -6,6 +6,7 @@ TODO.md
 README.md
 .config/fish/completions
 .config/fish/conf.d/fish_frozen_key_bindings.fish.bak
+private_dot_config/DankMaterialShell/plugins/
 
 {{- if not .distrobox -}}
 ~/.config/distrobox/distrobox.ini

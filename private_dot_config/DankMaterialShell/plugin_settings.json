@@ -1,0 +1,9 @@
+{
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": ""
+  },
+  "dankmailUnread": {
+    "enabled": true
+  }
+}
